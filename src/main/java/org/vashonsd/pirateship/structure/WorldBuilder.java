@@ -9,28 +9,69 @@ package org.vashonsd.pirateship.structure;
  */
 public class WorldBuilder {
 	
-	public static World testWorld()
+	/*
+	 * Consider this a very simple example of a Factory method; it makes a World based on a given String.
+	 */
+	public static World makeWorld(String s)
+	{
+		if (s.equals("BBS"))
+		{
+			return BBSWorld();
+		}
+		else
+		{
+			return busyWorld();
+		}
+	}
+	
+	public static World busyWorld()
 	{
 		World w = new World("Busytown");
-		Location ch = new Location("City Hall", "You stand before a brick building with Greek gods painted on it");
-		Location chinside = new Location("City Hall Lobby", "Giant columns rise up 100 feet.");
-		Location hpark = new Location("Happy Park", "This happy place has birds singing, people playing.");
-		Location des = new Location("Dead End Street", "This place is miserable.");
+		Location main = new Location("City Hall", "You stand before a brick building with Greek gods painted on it");
+		Location chat = new Location("City Hall Lobby", "Giant columns rise up 100 feet.");
+		Location soft = new Location("Happy Park", "This happy place has birds singing, people playing.");
+		Location news = new Location("Dead End Street", "This place is miserable.");
 		
-		ch.addRoute("You see a heavy door with a brass handle", "open", chinside);
-		ch.addRoute("A gravel walkway leads to a park", "east", hpark);
-		ch.addRoute("You can just barely spot a dark alley", "north", des);
+		main.addRoute("You see a heavy door with a brass handle", "open", chat);
+		main.addRoute("A gravel walkway leads to a park", "east", soft);
+		main.addRoute("You can just barely spot a dark alley", "north", news);
 		
-		des.addRoute("You can return to City Hall", "south", ch);
-		hpark.addRoute("The gravel walkway leads back to City Hall", "west", ch);
-		chinside.addRoute("It's time to head back outside", "open", ch);
+		news.addRoute("You can return to City Hall", "south", main);
+		soft.addRoute("The gravel walkway leads back to City Hall", "west", main);
+		chat.addRoute("It's time to head back outside", "open", main);
 		
-		w.addLocation(ch);
-		w.addLocation(chinside);
-		w.addLocation(hpark);
-		w.addLocation(des);
+		w.addLocation(main);
+		w.addLocation(chat);
+		w.addLocation(soft);
+		w.addLocation(news);
 		
-		w.setPointer(ch);
+		w.setPointer(main);
+		
+		return w;
+	}
+	
+	public static World BBSWorld()
+	{
+		World w = new World("BBS");
+		Location main = new Location("Main board", "Here you can view updates from the admins.");
+		Location chat = new Location("Chat Room", "Start a conversation!");
+		Location soft = new Location("Software Exchange", "Come get your shareware!");
+		Location news = new Location("News room", "This place is miserable.");
+		
+		main.addRoute("Visit the chat room -->", "chat", chat);
+		main.addRoute("Shareware library -->", "soft", soft);
+		main.addRoute("Latest news", "news", news);
+		
+		news.addRoute("Back to the main board", "main", main);
+		soft.addRoute("Back to the main board", "main", main);
+		chat.addRoute("Back to the main board", "main", main);
+		
+		w.addLocation(main);
+		w.addLocation(chat);
+		w.addLocation(soft);
+		w.addLocation(news);
+		
+		w.setPointer(main);
 		
 		return w;
 	}

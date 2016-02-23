@@ -5,7 +5,10 @@ import java.util.*;
 /**
  * @author andy
  * A location represents a single place in our world.
- * It keeps an ArrayList available routes away from this location to connected locations.
+ * It keeps an ArrayList of available routes away from this location to connected locations.
+ * 
+ * Notice that a location does not "know" how you got there; it does not know what locations can get to it.
+ * It can, through the routes list, figure out what destinations it can go to.
  */
 public class Location
 {
@@ -27,6 +30,10 @@ public class Location
 	   return this.name;
    }
    
+   /*
+    * Concatenates the descriptions of all the routes into a single stack, with a line break in between
+    * each one.
+    */
    public String routeDescriptions()
    {
 	   String result = "";
@@ -37,12 +44,19 @@ public class Location
 	   return result;
    }
    
+   /*
+    * Use this method if you have not already created the Route; it will create the route for you,
+    * using the description and accessor you provide.
+    */
    public void addRoute(String description, String accessor, Location dest)
    {
 	   Route r = new Route(description, accessor, dest);
 	   routes.add(r);
    }
    
+   /*
+    * Use this method if you already have the Route prepared, including a destination Location.
+    */
    public void addRoute(Route r)
    {
 	   routes.add(r);
@@ -63,6 +77,10 @@ public class Location
 	   return false;
    }
    
+   /*
+    * This looks among the routes, finds the one whose accessor matches the given string,
+    * and returns the Location this route takes us to.
+    */
    public Location travel(String command) {
 	   for(Route r: routes) {
 		   if (r.getAccessor().equals(command))

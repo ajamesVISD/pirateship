@@ -3,8 +3,11 @@ package org.vashonsd.pirateship.structure;
 import java.util.*;
 /**
  * @author andy
- * A World represents a collection of Locations. The connections among the Locations -- the Routes
+ * A World represents a collection of Locations. The connections among the Locations -- the Routes --
  * are stored within each Location; the World does know "know" anything about the routes. 
+ * 
+ * This class has all the basic methods for adding Locations and getting them; it does not include larger-scale
+ * methods for building a World; for that, turn to the WorldBuilder class.
  */
 public class World {
 	private String name;

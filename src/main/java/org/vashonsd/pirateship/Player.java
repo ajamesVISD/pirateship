@@ -2,6 +2,11 @@ package org.vashonsd.pirateship;
 
 import org.vashonsd.pirateship.structure.*;
 
+
+/**
+ * @author andy
+ * The Player is really the keeper of state in this system.
+ */
 public class Player {
 	private String name;
 	private Location currentLocation;
