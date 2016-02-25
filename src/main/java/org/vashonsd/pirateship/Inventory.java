@@ -1,6 +1,6 @@
 public class Inventory
 {
-    private Hashmap<Item, int> inventory;
+    private Hashmap<Item, Integer> inventory;
     
     public Inventory()
     {
@@ -40,8 +40,4 @@ public class Inventory
 		return toReturn;
 	}
 	
-	public Hashmap getInventory()
-	{
-		return inventory;
-	}
 }
