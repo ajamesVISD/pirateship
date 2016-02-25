@@ -11,13 +11,13 @@ import java.util.*;
 public class Player 
 {
 	private String name;
-	private Hashmap<Item, int> inventory;
+	private Inventory inventory;
 	private Location current;
 	
 	public Player(String name) 
 	{
 		this.name  = name;
-		inventory = new Hashmap<Item, int>();
+		inventory = new Inventory;
 	}
 	
 	public String toString() 
@@ -25,40 +25,7 @@ public class Player
 		return "Player: " + name + "is at location: " + current.getName();
 	}
 	
-	public void addItem(Item other, int quan)
-	{
-		inventory.put(other, quan);
-	}
-	
-	public void removeItem(Item other)
-	{
-		inventory.remove(other);
-	}
-	
-	public void removeItem(Item other, int quan)
-	{
-		int cur = inventory.get(other);
-		
-		inventory.remove(other);
-		inventory.put(other, quan);
-	}
-	
-	public void dumpInventory()
-	{
-		inventory.clear();
-	}
-	
-	public String inventoryToString()
-	{
-		String toReturn;
-		
-		for(Item n: inventory.keySet())
-			toReturn += "Item: " + n.getName() + "Quantity: " + inventory.get(n) + "\n";
-			
-		return toReturn;
-	}
-	
-	public Hashmap getInventory()
+	public Inventory getInventory()
 	{
 		return inventory;
 	}
