@@ -42,7 +42,7 @@ public class Item {
 	}
 	
 	// Method returning the Weight of the item.
-	public int getWeight() {
+	public double getWeight() {
 		return weight;
 	}
 	
