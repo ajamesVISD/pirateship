@@ -1,10 +1,10 @@
 public class Inventory
 {
-    private Hashmap<Item, Integer> inventory;
+    private HashMap<Item, Integer> inventory;
     
     public Inventory()
     {
-        inventory = new Hashmap<Item, int>();    
+        inventory = new HashMap<Item, int>();    
     }
     
     public void addItem(Item other, int quan)
