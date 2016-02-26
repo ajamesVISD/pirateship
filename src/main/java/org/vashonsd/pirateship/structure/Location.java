@@ -16,7 +16,7 @@ public class Location
    private String description;
    // Events occuring within location
    private ArrayList<Event> eventStack;
-   // Number of events/structures within location
+   // Number of events within location
    private int size = 0;
    // Tells if player is in location
    private boolean occupied;
@@ -127,7 +127,7 @@ public class Location
    	occupied = false;
    }
    
-   public String toString()
+   public String testerToString()
    {
 	   String toReturn = "";
 	   toReturn += "This is node: " + name + "\n";
@@ -138,6 +138,20 @@ public class Location
 	   for(int i=0; i<routes.size(); i++)
 	   {
 		   toReturn += "- Node: " + routes[i].getTo.getName() + "\n";
+	   }
+	   
+	   return toReturn;
+   }
+   
+   public String toString()
+   {
+   	String toReturn = "";
+   	toReturn += "You are in " + name + "\n";
+   	toReturn += "You see " + routes.size() + " paths before you: " + "\n";
+   	
+   	for(int i=0; i<routes.size(); i++)
+	   {
+		   toReturn += routes[i].getTo.getName() + "\n";
 	   }
 	   
 	   return toReturn;
