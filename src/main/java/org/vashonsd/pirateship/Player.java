@@ -42,7 +42,7 @@ public class Player
 		return current.toString();
 	}
 	
-	public Location getLocation()
+	public Location getCurrentLocation()
 	{
 		return current;
 	}
