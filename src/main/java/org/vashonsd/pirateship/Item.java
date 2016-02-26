@@ -46,9 +46,4 @@ public class Item {
 		return weight;
 	}
 	
-	// Removes quantity of item from player inventory.
-	public void useItem(Item item, Player other, int quantity) {
-		other.removeItem(item, quantity);
-	}
-	
 }
