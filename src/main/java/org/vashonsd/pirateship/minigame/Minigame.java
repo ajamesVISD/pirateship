@@ -14,21 +14,6 @@ package org.vashonsd.pirateship.minigame;
  * grab control of the interface and never let it go.
  */
 public interface Minigame {
-	
-	/*
-	 * The name is the public version of what this game is called. Let's use the example of CrazyChess,
-	 * a game that plays random chess moves with no hope of winning. GetName() would return "CrazyChess."
-	 */
-	public String getName();
-	
-	/*
-	 * Announce() provides the String by which the Minigame announces its presence in a Location.
-	 * 
-	 * The game of CrazyChess might return: "If you want to beat a really terrible opponent in chess,
-	 * CrazyChess is the game for you!"
-	 */
-  public String getDescription();
-	
   /*
    * Run starts up the Minigame. It should return a String to announce its starting up; this may
    * be displayed back to the user.
