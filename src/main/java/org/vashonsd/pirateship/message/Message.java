@@ -7,7 +7,7 @@ import java.util.*;
 
 /**
  * @author Gabriele
- *
+ * This class creates a simple message with no information about the world outside it.
  */
 public class Message {
 	private String messageText;
