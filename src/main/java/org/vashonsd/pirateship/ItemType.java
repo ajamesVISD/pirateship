@@ -21,6 +21,7 @@ public class ItemType
         tags.add("Blessed");
         tags.add("Light");
         tags.add("Heavy");
-        tags.sort();
+        
+        tags = Collections.sort(tags);
     }
 }
