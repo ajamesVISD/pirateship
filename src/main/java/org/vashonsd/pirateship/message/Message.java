@@ -4,6 +4,7 @@
 package org.vashonsd.pirateship.message;
 
 import java.util.*;
+import java.io.*;
 
 /**
  * @author Gabriele
@@ -16,9 +17,10 @@ public class Message {
 	/**
 	 * @param args
 	 */
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
+	
+	public Message()
+	{
+		
 	}
 	
 	public Message(String text)
@@ -32,6 +34,15 @@ public class Message {
 	{
 		messageText = text;
 		messageRecipient = recipient;
+	}
+	
+	public void createMessage() throws IOException
+	{
+		BufferedReader in=new BufferedReader(new InputStreamReader(System.in)); 
+		System.out.print("Insert the message here: ");
+		messageText=in.readLine();
+		System.out.print("Insert the recipient: ");
+		messageRecipient = in.readLine();
 	}
 	
 	public String getMessageText()
