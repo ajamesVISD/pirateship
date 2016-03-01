@@ -37,7 +37,7 @@ public class WorldBuilder {
 		Location soft = new Location("Happy Park", "This happy place has birds singing, people playing.");
 		Location news = new Location("Dead End Street", "This place is miserable.");
 		
-		main.addRoute("You see a heavy door with a brass handle", "open", chat);
+		main.addRoute("You see a heavy door with a brass handle", "open", chat, 3.1);
 		main.addRoute("A gravel walkway leads to a park", "east", soft);
 		main.addRoute("You can just barely spot a dark alley", "north", news);
 		

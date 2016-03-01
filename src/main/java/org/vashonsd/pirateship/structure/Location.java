@@ -39,7 +39,10 @@ public class Location
 	   String result = "";
 	   for (Route s : routes)
 	   {
-		   result += s.getDescription() + "\n";
+		   result += s.getDescription();
+		   if(s.getDistance() > 0)
+		   result += " It is " + s.getDistance() + "pr away.";
+		   result += "\n";
 	   }
 	   return result;
    }
@@ -54,6 +57,11 @@ public class Location
 	   routes.add(r);
    }
    
+   public void addRoute(String description, String accessor, Location dest, double dist)
+   {
+	   Route r = new Route(description, accessor, dest, dist);
+	   routes.add(r);
+   }
    /*
     * Use this method if you already have the Route prepared, including a destination Location.
     */
@@ -70,7 +78,7 @@ public class Location
     */
    public boolean commandAvailable(String command) {
 	   for(Route r: routes) {
-		   if (r.getAccessor().equals(command)) {
+		   if (r.getAccessor().equalsIgnoreCase(command)) {
 			   return true;
 		   }
 	   }
@@ -83,7 +91,7 @@ public class Location
     */
    public Location travel(String command) {
 	   for(Route r: routes) {
-		   if (r.getAccessor().equals(command))
+		   if (r.getAccessor().equalsIgnoreCase(command))
 		   {
 			   return r.getDestination();
 		   }
