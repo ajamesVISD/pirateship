@@ -1,13 +1,14 @@
 package org.vashonsd.pirateship.structure;
 
 /**
- * @author andy
+ * @author andy 
  * This class creates an entire structure of connected locations and routes. It can do so
  * interactively, or it can load a preset from a file or database.
  * 
  * Eventually the WorldBuilder should allow a user to build a world which can be saved to a database.
  */
 public class WorldBuilder {
+	
 	
 	/*
 	 * Consider this a very simple example of a Factory method; it makes a World based on a given String.
@@ -18,9 +19,13 @@ public class WorldBuilder {
 		{
 			return BBSWorld();
 		}
-		else
+		else if (s.equals("BUSYWORLD"))
 		{
 			return busyWorld();
+		}
+		else
+		{
+			return littleTown();
 		}
 	}
 	
@@ -72,6 +77,65 @@ public class WorldBuilder {
 		w.addLocation(news);
 		
 		w.setPointer(main);
+		
+		return w;
+	}
+	
+	
+	public static World littleTown() {
+		World w = new World("Littletown");
+		Location square = new Location("Town square", "It's bustling with excitment.");
+		Location florist = new Location("Florist stand", "Fresh flowers for sale!");
+		Location baker = new Location("Baker's shop", "Bread, bagels, and buns all right here.");
+		Location clother = new Location("Tailorist", "Clothes for everybody folks.");
+		Location west = new Location("West Street", "A nice looking cobblestone road with houses lining it.");
+		Location houseJacob = new Location("Jacob's House", "A good sized oak door with a shining brass door handle.");
+		Location houseJacobLocked = new Location("The door is locked tight", "Must not be home.");
+		Location houseMary = new Location("Mary's House", "A small circular door with colorful painted designs.");
+		Location houseMaryInside = new Location("Mary's house is very bright with colors", "Mary is sobbing in the corner.");
+		Location houseMaryInsideTalk = new Location("She says through her tears", "My hampster died and i'm sad.");
+		Location houseMaryInsideTalkNice = new Location("Her tears dry up", "She starts to smile.");
+		Location houseMaryInsideTalkMean = new Location("She pushes you away", "You are forced to leave.");
+		
+		square.addRoute("The florist's stand is bright with colors", "florist", florist);
+		square.addRoute("A warm aroma wafts from the bakery", "bakery", baker);
+		square.addRoute("The tailor is hard at work mending a green shirt", "tailor", clother);
+		square.addRoute("Neighbors talk and laugh in the street", "west", west);
+		
+		west.addRoute("Visit Jacob's house", "jacob", houseJacob);
+		west.addRoute("Visit Mary's house", "mary", houseMary);
+		west.addRoute("Go back to the square", "back", square);
+		
+		houseJacob.addRoute("Go inside", "open", houseJacobLocked);
+		houseJacobLocked.addRoute("Leave", "back", west);
+		
+		houseMary.addRoute("Go inside", "open", houseMaryInside);
+		houseMaryInside.addRoute("Talk to her", "talk", houseMaryInsideTalk);
+		houseMaryInsideTalk.addRoute("Comfort her", "comfort", houseMaryInsideTalkNice);
+		houseMaryInsideTalkNice.addRoute("Talk to her some more", "talk", houseMaryInsideTalk);
+		houseMaryInsideTalkNice.addRoute("Leave", "leave", west);
+		houseMaryInsideTalk.addRoute("Laugh in her face", "laugh", houseMaryInsideTalkMean);
+		houseMaryInsideTalkMean.addRoute("Leave", "leave", west);
+		houseMaryInside.addRoute("Leave", "back", west);
+		
+		florist.addRoute("Leave the florist's stand", "back", square);
+		baker.addRoute("Leave the bakery", "back", square);
+		clother.addRoute("Leave the tailorist's", "back", square);	
+		
+		w.addLocation(square);
+		w.addLocation(florist);
+		w.addLocation(baker);
+		w.addLocation(clother);
+		w.addLocation(west);
+		w.addLocation(houseJacob);
+		w.addLocation(houseJacobLocked);
+		w.addLocation(houseMary);
+		w.addLocation(houseMaryInside);
+		w.addLocation(houseMaryInsideTalk);
+		w.addLocation(houseMaryInsideTalkNice);
+		w.addLocation(houseMaryInsideTalkMean);
+		
+		w.setPointer(square);
 		
 		return w;
 	}
