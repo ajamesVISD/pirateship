@@ -48,6 +48,11 @@ public class Envelope {
 	public void setMessage(Message message) {
 		this.message = message;
 	}
+
+	@Override
+	public String toString() {
+		return "Envelope [sender=" + sender + ", recipient=" + recipient + ", message=" + message + "]";
+	}
 	
 	
 }
