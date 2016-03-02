@@ -12,7 +12,7 @@ import java.io.*;
  */
 public class Message {
 	private String messageText;
-	private String messageRecipient;
+	private String messageSubject;
 
 	/**
 	 * @param args
@@ -26,23 +26,22 @@ public class Message {
 	public Message(String text)
 	{
 		messageText = text;
-		messageRecipient = "everyone";
 
 	}
 	
-	public Message(String text, String recipient)
-	{
-		messageText = text;
-		messageRecipient = recipient;
-	}
 	
-	public void createMessage() throws IOException
-	{
-		BufferedReader in=new BufferedReader(new InputStreamReader(System.in)); 
-		System.out.print("Insert the message here: ");
-		messageText=in.readLine();
-		System.out.print("Insert the recipient: ");
-		messageRecipient = in.readLine();
+	public Message(String messageSubject, String messageText) {
+		super();
+		this.messageText = messageText;
+		this.messageSubject = messageSubject;
+	}
+
+	public String getSubject() {
+		return messageSubject;
+	}
+
+	public void setSubject(String messageSubject) {
+		this.messageSubject = messageSubject;
 	}
 	
 	public String getMessageText()
@@ -50,29 +49,19 @@ public class Message {
 		return messageText;
 	}
 	
-	public String getMessageRecipient()
-	{
-		return messageRecipient;
-	}
-	
 	public void setMessageText(String text)
 	{
 		messageText = text;
 	}
 	
-	public void setMessageRecipient(String recipient)
+	public String printMessageText()
 	{
-		messageRecipient = recipient;
+		return messageText;
 	}
 	
-	public void printMessageText()
+	public String toString()
 	{
-		System.out.println(messageText);
-	}
-	
-	public void printMessage()
-	{
-		System.out.println("Message to "+messageRecipient+": "+messageText);
+		return "Subject: " + messageSubject + "\nMessage: " + messageText;
 	}
 
 }
