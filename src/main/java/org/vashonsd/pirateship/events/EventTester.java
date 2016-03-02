@@ -3,7 +3,8 @@ package org.vashonsd.pirateship.events;
 public class EventTester {
 	public static void main (String[] args) {
 		
-		System.out.println(EventFactory.getEvent("hurricane"));
+		System.out.println(EventFactory.getEvent("kraken"));
+		System.out.println(EventFactory.getEvent("dinghy"));
 		
 //		Event e = new Waterspout("Walter the Waterspout");
 //		System.out.println("I'm Walter the Waterspout. " + e.sayDamage());

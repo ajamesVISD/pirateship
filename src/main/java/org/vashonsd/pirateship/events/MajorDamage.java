@@ -2,9 +2,9 @@ package org.vashonsd.pirateship.events;
 
 public class MajorDamage implements DamageBehavior {
 
-	public String dealDamage() {
+	public int dealDamage() {
 		// TODO Auto-generated method stub
-		return "I deal major damage.";
+		return dealDamage();
 	}
 
 }

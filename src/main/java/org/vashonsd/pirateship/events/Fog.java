@@ -4,7 +4,7 @@ public class Fog extends Event {
 	
 	public Fog(String theName) {
 		super(theName);
-		setMydamage(new NoDamage());
+		setMydamage(0);
 	}
 
 }
