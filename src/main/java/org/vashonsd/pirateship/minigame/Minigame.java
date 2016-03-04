@@ -13,14 +13,19 @@ package org.vashonsd.pirateship.minigame;
  * This means that Minigames need to be able to quit gracefully, returning an exit message. They cannot
  * grab control of the interface and never let it go.
  */
+
+
 public interface Minigame {
   /*
    * Run starts up the Minigame. It should return a String to announce its starting up; this may
-   * be displayed back to the user.
+   * be displayed back to the user. This is the only responsibility of this method.
    * 
+   * For the example of CrazyChess, the Minigame might return "Welcome to CrazyChess! Let's get started!",
+   * then display the opening board and say "You go first! What's your move?"
    * 
    */
   public String Run();
+  
   
   /*
    * The "prompt" in getPrompt is what will be displayed in the chat with the user. 
@@ -34,6 +39,8 @@ public interface Minigame {
    */
   public String getPrompt();
   
+  
+  
   /*
    * This is the entry point for commands to reach the minigame. This of this as the user input; the return
    * value is the output.
@@ -42,10 +49,16 @@ public interface Minigame {
    * 
    * The return value might be a string representing the board, with CrazyChess' move and bizarre messages.
    */
-  public String Request(String s);
+  public String Handle(String s);
+  
+  
   
   /*
    * This sends control back to the main environment, along with one last message.
+   * 
+   * CrazyChess might return:
+   * 
+   * "Well, that was something! Thanks for playing!"
    */
   public String Exit();
 }
