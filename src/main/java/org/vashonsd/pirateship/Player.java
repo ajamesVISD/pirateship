@@ -5,11 +5,14 @@ import org.vashonsd.pirateship.structure.*;
 
 /**
  * @author andy
- * The Player is really the keeper of state in this system.
+ * The Player is a minimal representation of a user in the system. To keep track of the user's state,
+ * look into the GameState to find the Player matched to a PlayerState.
  */
 public class Player {
 	private String name;
-	private Location currentLocation;
+	private String accountName;
+	
+	private Process startingProcess;
 	
 	public Player(String name) {
 		super();
@@ -24,11 +27,19 @@ public class Player {
 		this.name = name;
 	}
 
-	public Location getCurrentLocation() {
-		return currentLocation;
+	public String getAccountName() {
+		return accountName;
 	}
 
-	public void setCurrentLocation(Location currentLocation) {
-		this.currentLocation = currentLocation;
+	public void setAccountName(String accountName) {
+		this.accountName = accountName;
+	}
+
+	public Process getStartingProcess() {
+		return startingProcess;
+	}
+
+	public void setStartingProcess(Process startingProcess) {
+		this.startingProcess = startingProcess;
 	}
 }
