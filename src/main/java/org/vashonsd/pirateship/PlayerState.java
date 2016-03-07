@@ -2,6 +2,7 @@ package org.vashonsd.pirateship;
 
 import java.util.Stack;
 
+import org.vashonsd.pirateship.io.IOConfig;
 import org.vashonsd.pirateship.structure.Location;
 import org.vashonsd.pirateship.structure.World;
 
@@ -25,6 +26,8 @@ public class PlayerState {
 	 * In computer science, we would say you push(book) onto the stack, and you pop(book) off it. Same idea.
 	 */
 	private Stack<Process> processStack;
+	
+	private IOConfig io;
 	
 	/*
 	 * This is some real premature optimization. This is just in case we want to keep prior states in a git-like
@@ -60,6 +63,12 @@ public class PlayerState {
 	public void setCurrentWorld(World currentWorld) {
 		this.currentWorld = currentWorld;
 	}
-	
-	
+
+	public IOConfig getIo() {
+		return io;
+	}
+
+	public void setIo(IOConfig io) {
+		this.io = io;
+	}
 }

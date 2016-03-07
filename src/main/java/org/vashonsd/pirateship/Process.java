@@ -7,7 +7,7 @@ public interface Process {
 	   * 
 	   * 
 	   */
-	  public String Run();
+	  public String greet();
 	  
 	  /*
 	   * The "prompt" in getPrompt is what will be displayed in the chat with the user. 

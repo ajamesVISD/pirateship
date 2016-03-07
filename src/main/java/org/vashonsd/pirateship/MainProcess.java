@@ -10,13 +10,11 @@ package org.vashonsd.pirateship;
  */
 public class MainProcess implements Process {
 
-	public String Run() {
-		// TODO Auto-generated method stub
-		return null;
+	public String greet() {
+		return "Loading...";
 	}
 
 	public String getPrompt() {
-		// TODO Auto-generated method stub
 		return ">";
 	}
 
@@ -27,7 +25,7 @@ public class MainProcess implements Process {
 
 	public String Exit() {
 		// TODO Auto-generated method stub
-		return null;
+		return "Closing down...";
 	}
 
 }
