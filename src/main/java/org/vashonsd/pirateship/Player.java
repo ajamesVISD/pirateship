@@ -1,8 +1,7 @@
 package org.vashonsd.pirateship;
 
 import org.vashonsd.pirateship.structure.*;
-
-import java.util.*;
+import org.vashonsd.pirateship.itemstuff.*;
 
 /**
  * The Player is really the keeper of state in this system.
@@ -17,7 +16,7 @@ public class Player
 	public Player(String name) 
 	{
 		this.name  = name;
-		inventory = new Inventory;
+		inventory = new Inventory();
 	}
 	
 	public String toString() 
@@ -30,11 +29,9 @@ public class Player
 		return inventory;
 	}
 
-	public void changeLocation(Location next) 
+	public void setCurrentLocation(Location next) 
 	{
-		current.leave();
 		this.current = next;
-		next.enter();
 	}
 	
 	public String locationToString()
