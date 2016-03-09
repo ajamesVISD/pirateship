@@ -1,5 +1,6 @@
 package org.vashonsd.pirateship;
 
+import java.io.FileOutputStream;
 import java.io.IOException;
 
 import org.vashonsd.pirateship.io.*;
@@ -8,6 +9,8 @@ import org.vashonsd.pirateship.structure.*;
 public class Game {
 	private StringRead reader;
 	private StringWrite writer;
+	
+	private DatabaseWriter db = new DatabaseWriter();
 	
 	private World thisWorld;
 	
@@ -51,6 +54,7 @@ public class Game {
     }
     
     public void quitGracefully() throws IOException {
+    	db.worldWriter(thisWorld);
     	writer.write("Thank you for exploring " + thisWorld.getName() +".");
     	System.exit(1);
     }

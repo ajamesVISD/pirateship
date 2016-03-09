@@ -30,6 +30,14 @@ public class Location
 	   return this.name;
    }
    
+   public String getDescription() {
+	   return this.description;
+   }
+   
+   public ArrayList<Route> getRoutes() {
+	   return routes;
+   }
+   
    /*
     * Concatenates the descriptions of all the routes into a single stack, with a line break in between
     * each one.

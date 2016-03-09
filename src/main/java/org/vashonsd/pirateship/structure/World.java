@@ -42,6 +42,10 @@ public class World {
 	public Location getStartingLocation() {
 		return locations.get(pointer);
 	}
+	
+	public ArrayList<Location> getLocations() {
+		return locations;
+	}
 
 	public String getName() {
 		return name;

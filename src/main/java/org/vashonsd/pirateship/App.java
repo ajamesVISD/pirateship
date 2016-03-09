@@ -15,6 +15,5 @@ public class App
     {
     	Game g = new Game("BBSchat");
     	g.Run();
-
     }   
 }
