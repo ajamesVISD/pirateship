@@ -13,6 +13,9 @@ public class FileIn implements StringRead {
 	//FileIn requires the fileName as a string, it should equal the name of the 
 	//text file you are using to record input.
 	
+	//You must create a text file in the same folder as your src.
+	//Ex; Z:\git\"Your Branch Name"\.git
+	
 	public String read() throws IOException {
 		return reader.readLine();
 	}
