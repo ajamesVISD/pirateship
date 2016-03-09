@@ -16,6 +16,7 @@ public class FileOut implements StringWrite {
 	public void write(String s) throws IOException {
 		s = s.replace("\n", "\r\n");
 		writer.write(s, 0, s.length());
+		writer.write("\r\n", 0, 2);
 	}
 
 	public void close() throws IOException {
