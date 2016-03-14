@@ -22,7 +22,7 @@ public class Registry {
 	
 	/*
 	 * PROGRAMMERS! This chunk of code is where we enroll minigames. Keep adding them here, and
-	 * if you've set them up correctly, 
+	 * if you've set them up correctly, you can run them from the MinigameRunner's run method.
 	 */
 	private void enrollMinigames() {
 		minigames.add(new TwentyQuestionsFactory());
