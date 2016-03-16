@@ -3,6 +3,8 @@
  */
 package org.vashonsd.pirateship.minigame;
 
+import twitter4j.TwitterException;
+
 /**
  * @author andy
  * The Minigame interface describes the behaviors of anything that can work as a Minigame in our world.
@@ -49,7 +51,7 @@ public interface Minigame {
    * 
    * The return value might be a string representing the board, with CrazyChess' move and bizarre messages.
    */
-  public String Handle(String s);
+  public String Handle(String s) throws Exception;
   
   
   
