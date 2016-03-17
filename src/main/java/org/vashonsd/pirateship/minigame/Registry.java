@@ -27,6 +27,8 @@ public class Registry {
 	private void enrollMinigames() {
 		minigames.add(new TwentyQuestionsFactory());
 		minigames.add(new MathFactory());
+		minigames.add(new GuessingCalculatorFactory());
+//		minigames.add(new DumbMinigameFactory());
 	}
 	
 	/*
