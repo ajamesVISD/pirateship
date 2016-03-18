@@ -14,22 +14,35 @@ public class MinigameTwitter implements Minigame {
 	}
 
 	public String Run() {
-		return "Here are the latest tweets from VHSPirateShip:";
+		return "Here are the latest tweets from a specific user:";
 	}
 
 	public String getPrompt() {
 		return "Twitter";
 	}
 
-	public String Handle(String s) throws TwitterException, IOException {
+	public String Handle(String s) {
 		String toReturn = "";
 		
 		BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
 		System.out.print("Insert the username of the user: ");
-		String username = "" + in.readLine();
+		String username = "VHSPirates";
+		try {
+			username = "" + in.readLine();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			System.out.println("Could not parse the username. Printing the tweets of Vashon Island High School");
+		}
 		
 		final Twitter twitter2 = new TwitterFactory().getInstance();
-	    final List<Status> statuses2 = twitter2.getUserTimeline(username);
+	    List<Status> statuses2 = null;
+		try {
+			statuses2 = twitter2.getUserTimeline(username);
+		} catch (TwitterException e) {
+			e.printStackTrace();
+			System.out.println("Couldn't find any tweet");
+		}
 
 	    for (Status status : statuses2) {
 	        toReturn +=("@" + status.getUser().getScreenName() + " - " + status.getText() + "\n");

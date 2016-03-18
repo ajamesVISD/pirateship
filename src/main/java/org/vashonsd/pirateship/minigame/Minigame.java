@@ -51,7 +51,7 @@ public interface Minigame {
    * 
    * The return value might be a string representing the board, with CrazyChess' move and bizarre messages.
    */
-  public String Handle(String s) throws Exception;
+  public String Handle(String s);
   
   
   

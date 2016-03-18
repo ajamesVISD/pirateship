@@ -15,7 +15,7 @@ public class MinigameTwitterFactory implements MinigameFactory {
 	}
 
 	public String getDescription() {
-		return "I'll print Vashon High School's account latest tweets for you!";
+		return "I'll print your latest tweets for you!";
 	}
 
 	public Minigame newGame() {
