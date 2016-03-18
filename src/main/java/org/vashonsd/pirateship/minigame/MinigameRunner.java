@@ -8,7 +8,7 @@ public class MinigameRunner {
 	
 	private static MinigameRuntime rt;
 	
-	public static void main(String[] args) throws IOException {
+	public static void main(String[] args) throws Exception {
 		// TODO Auto-generated method stub
 		rt = new MinigameRuntime();
 		BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
