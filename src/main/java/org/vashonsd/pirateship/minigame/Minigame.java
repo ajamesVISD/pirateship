@@ -3,8 +3,6 @@
  */
 package org.vashonsd.pirateship.minigame;
 
-import twitter4j.TwitterException;
-
 /**
  * @author andy
  * The Minigame interface describes the behaviors of anything that can work as a Minigame in our world.

@@ -1,4 +1,3 @@
-
 package org.vashonsd.pirateship.minigame;
 
 import java.io.BufferedReader;
