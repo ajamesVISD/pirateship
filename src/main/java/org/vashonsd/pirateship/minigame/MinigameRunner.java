@@ -1,3 +1,4 @@
+
 package org.vashonsd.pirateship.minigame;
 
 import java.io.BufferedReader;
@@ -8,7 +9,7 @@ public class MinigameRunner {
 	
 	private static MinigameRuntime rt;
 	
-	public static void main(String[] args) throws Exception {
+	public static void main(String[] args) throws IOException {
 		// TODO Auto-generated method stub
 		rt = new MinigameRuntime();
 		BufferedReader in = new BufferedReader(new InputStreamReader(System.in));

@@ -33,7 +33,7 @@ public class MinigameRuntime {
 		return receiver.getPrompt() + "> " + s;
 	}
 
-	public String handle(String input) throws Exception {
+	public String handle(String input) {
 		// Our first condition: We don't have a runtime set for any minigame. Time to see if
 		// have been sent a valid choice for one.
 		if (receiver == null) {
