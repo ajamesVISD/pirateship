@@ -21,6 +21,11 @@ public class Buildings
 	{
 		return cps;
 	}
+	public void setCps(double cp)
+	{
+		cps = cp;
+	}
+	
 	public double getCost()
 	{
 		return cost;
@@ -41,6 +46,6 @@ public class Buildings
 	
 	public String toString()
 	{
-		return name + ": " + cost;
+		return amount + " " + name + "|cost: " + cost;
 	}
 }

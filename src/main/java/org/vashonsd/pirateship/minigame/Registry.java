@@ -26,6 +26,7 @@ public class Registry {
 	 */
 	private void enrollMinigames() {
 		minigames.add(new TwentyQuestionsFactory());
+		minigames.add(new CookieClickerFactory());
 	}
 	
 	/*
