@@ -1,5 +1,8 @@
 package org.vashonsd.pirateship;
 
+import org.vashonsd.pirateship.processes.DisplayLevel;
+import org.vashonsd.pirateship.processes.Process;
+
 /**
  * @author andy
  * This is the main process the game runs on, a bit like the shell prompt in a workstation.
@@ -18,7 +21,7 @@ public class MainProcess implements Process {
 		return ">";
 	}
 
-	public String Request(String s) {
+	public String Handle(String s) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -26,6 +29,14 @@ public class MainProcess implements Process {
 	public String Exit() {
 		// TODO Auto-generated method stub
 		return "Closing down...";
+	}
+
+    /*
+     * Strangely enough, we never see the name of the main process, because we cannot invoke it with
+     * a command anyway. The program starts it for us.
+     */
+	public Enum<DisplayLevel> displayLevel() {
+		return DisplayLevel.SECRET;
 	}
 
 }

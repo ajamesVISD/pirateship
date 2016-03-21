@@ -1,6 +1,7 @@
-package org.vashonsd.pirateship;
+package org.vashonsd.pirateship.processes;
 
 public interface Process {
+	  
 	  /*
 	   * Run starts up the Process. It should return a String to announce its starting up; this may
 	   * be displayed back to the user.
@@ -29,7 +30,7 @@ public interface Process {
 	   * 
 	   * The return value might be a string representing the board, with CrazyChess' move and bizarre messages.
 	   */
-	  public String Request(String s);
+	  public ProcessResponse Handle(String s);
 	  
 	  /*
 	   * This sends control back to the main environment, along with one last message.

@@ -3,6 +3,8 @@ package org.vashonsd.pirateship;
 import java.util.Stack;
 
 import org.vashonsd.pirateship.io.IOConfig;
+import org.vashonsd.pirateship.processes.Process;
+import org.vashonsd.pirateship.processes.ProcessRegistry;
 import org.vashonsd.pirateship.structure.Location;
 import org.vashonsd.pirateship.structure.World;
 
@@ -28,6 +30,11 @@ public class PlayerState {
 	private Stack<Process> processStack;
 	
 	private IOConfig io;
+	
+	/*
+	 * Some commands are just about always available to the player. This list can be snipped or added to.
+	 */
+	public ProcessRegistry availableCommands;
 	
 	/*
 	 * This is some real premature optimization. This is just in case we want to keep prior states in a git-like

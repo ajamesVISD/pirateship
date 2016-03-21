@@ -2,6 +2,7 @@ package org.vashonsd.pirateship;
 
 import org.vashonsd.pirateship.io.IOConfig;
 import org.vashonsd.pirateship.io.StringRead;
+import org.vashonsd.pirateship.processes.Process;
 import org.vashonsd.pirateship.structure.*;
 
 
