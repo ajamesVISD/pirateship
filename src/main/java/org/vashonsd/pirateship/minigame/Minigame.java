@@ -42,7 +42,7 @@ public interface Minigame {
    * 
    * The return value might be a string representing the board, with CrazyChess' move and bizarre messages.
    */
-  public String Request(String s);
+  public String Handle(String s);
   
   /*
    * This sends control back to the main environment, along with one last message.

@@ -21,7 +21,7 @@ public class TwentyQuestions implements Minigame {
 		return "I am thinking of a number from 1 to 1,000. What number do you guess?";
 	}
 
-	public String Request(String s) {
+	public String Handle(String s) {
 		// TODO Auto-generated method stub
 		int g;
 		try {
