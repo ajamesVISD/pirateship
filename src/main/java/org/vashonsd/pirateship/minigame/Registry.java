@@ -26,8 +26,10 @@ public class Registry {
 	 */
 	private void enrollMinigames() {
 		minigames.add(new TwentyQuestionsFactory());
+		
+		minigames.add(new TicTacToeFactory());
 	}
-	
+
 	/*
 	 * This method walks through the list of minigames, asking each for its name and using that
 	 * name as the key in the basic map.
