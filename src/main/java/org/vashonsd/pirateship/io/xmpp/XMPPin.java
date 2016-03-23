@@ -15,7 +15,7 @@ public class XMPPin {
 	public XMPPin() {
 		super();
 		TcpConnectionConfiguration tcpConfiguration = TcpConnectionConfiguration.builder()
-			    .hostname("192.168.0.242")
+			    .hostname("xmpp.pirateship.vashonsd.org")
 			    .port(5222)
 			    .build();
 		
