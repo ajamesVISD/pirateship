@@ -202,9 +202,11 @@ public class Hand
     
     public void removeCard(Card c)
     {
+    	Card cur;
+    	
 		for(int i=0; i<cards.size(); i++)
 		{
-			Card cur = cardAt(i);
+			cur = cardAt(i);
 			
 			if(c.getRank() == cur.getRank() && c.getSuit() == cur.getSuit())
 				cards.remove(i);
@@ -213,9 +215,11 @@ public class Hand
     
     public void removeCardByRank(Card c)
     {
+    	Card cur;
+    	
     	for(int i=0; i<cards.size(); i++)
 		{
-			Card cur = cardAt(i);
+			cur = cardAt(i);
 			
 			if(c.getRank() == cur.getRank())
 			{
@@ -223,6 +227,32 @@ public class Hand
 				break;
 			}
 		}
+    }
+    
+    public void removePair(int n)
+    {
+    	int pair = 0;
+    	ArrayList<Card> toRemove = new ArrayList<Card>();
+    	
+    	for(Card cur: cards)
+		{
+    		int k = cur.getRank();
+    		
+			if(k == n)
+			{
+				toRemove.add(cur);
+				//System.out.println(cur.rankToString());
+				pair++;
+			}
+			
+			if(pair >= 2)
+				break;
+		}
+    	
+    	for(Card c: toRemove)
+    	{
+    		cards.remove(c);
+    	}
     }
     
     public boolean isEmpty()
@@ -243,5 +273,17 @@ public class Hand
     	
     	return false;
     }
-
+    
+    public String rankToString()
+    {
+    	String toReturn = "";
+    	
+    	for(Card c: cards)
+    	{
+    		toReturn += c.rankToString();
+    		toReturn += " ";
+    	}
+    	
+    	return toReturn;
+    }
 }

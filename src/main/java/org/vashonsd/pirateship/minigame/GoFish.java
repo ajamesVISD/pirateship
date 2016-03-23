@@ -1,7 +1,6 @@
 package org.vashonsd.pirateship.minigame;
 
 import org.vashonsd.pirateship.minigame.playingcards.*;
-
 import java.io.IOException;
 import java.util.*;
 import org.vashonsd.pirateship.io.*;
@@ -14,10 +13,10 @@ public class GoFish implements Minigame {
 	private Hand otherHand;
 	private Deck deck;
 	private int score;
-	private Hand handyHand;
-	private ArrayList<Card> testList;
 	// Player turn = 0, Computer Turn = 1
 	private int turn;
+	private int n;
+	private Card fish;
 	
 	
 	public GoFish() 
@@ -34,13 +33,13 @@ public class GoFish implements Minigame {
 		hand = new Hand();
 		otherHand = new Hand();
 		dealHand(hand);
+		System.out.println(hand.gofishToString());
 		checkPairs(hand);
 		dealHand(otherHand);
 		checkPairs(otherHand);
 		score = 0;
-		handyHand = new Hand();
-		testList = new ArrayList<Card>();
-		
+		n = 0;
+		fish = new Card(0, 'F');
 	}
 	
 	public String Run() 
@@ -71,13 +70,15 @@ public class GoFish implements Minigame {
 			{
 				hand.removeCardByRank(c);
 				otherHand.addCard(c);
+				otherHand.addPair(c);
 				checkPairs(otherHand);
 				turn = PLAYER_TURN;
 				return "Computer asked for a " + c.getRankName() + ". Computer got a pair. \n" + "Your turn, ask for a card. Hand: ( " + hand.gofishToString() + " )";
 			}
 			else
 			{
-				goFish(otherHand);
+				fish = deck.deal();
+				goFish(otherHand, fish);
 				turn = PLAYER_TURN;
 				return "Computer asked for a " + c.getRankName() + ". Computer goes fish. \n" + "Your turn, ask for a card. Hand: ( " + hand.gofishToString() + " )";
 			}
@@ -102,16 +103,17 @@ public class GoFish implements Minigame {
 				{
 					otherHand.removeCardByRank(c);
 					hand.addCard(c);
+					hand.addPair(c);
 					checkPairs(hand);
 					turn = COMPUTER_TURN;
 					return "You got a pair! Hand: ( " + hand.gofishToString() + " ) \n" + "Enter for Computer's turn.";
 				}
 			}
 			
-			goFish(hand);
-			checkPairs(hand);
+			fish = deck.deal();
+			goFish(hand, fish);
 			turn = COMPUTER_TURN;
-			return "Go Fish. Hand: ( " + hand.gofishToString() + " ) \n" + "Enter for Computer's turn.";
+			return "Go Fish. You drew a " + fish.getRankName() + ". \nHand: ( " + hand.gofishToString() + " ) \n" + "Enter for Computer's turn.";
 		}
 		
 		if(hand.isEmpty())
@@ -143,30 +145,34 @@ public class GoFish implements Minigame {
 	
 	public void checkPairs(Hand other)
 	{
-		handyHand = other;
-		testList = handyHand.getList();
-		int n = 0;
-		
-		for(Card c: testList)
+		for(int i=0; i<other.getSize(); i++)
 		{
-			handyHand.getList().remove(c);
-			
-			for(Card cur: handyHand.getList())
-			{
-				if(c.getRank() == cur.getRank())
-				{
-					other.removeCardByRank(c);
-					other.addPair(c);
-					break;
-				}
-			}
+			n = checkDuplicates(other.getList(), i);
+			other.removePair(n);
 		}
 	}
 	
-	public void goFish(Hand other)
+	public int checkDuplicates(ArrayList<Card> cards, int k)
 	{
-		other.addCard(deck.deal());
+		Card checkFor = cards.get(k);
+		ArrayList<Card> checkFrom = new ArrayList<Card>();
+		checkFrom = cards;
+		
+		for(Card c: checkFrom)
+		{
+			if(checkFor.getRank() == c.getRank() && c.getSuit() != checkFor.getSuit())
+			{
+				return checkFor.getRank();
+			}
+		}
+		
+		return 15;
+	}
+	
+	public void goFish(Hand other, Card c)
+	{
+		other.addCard(c);
 		checkPairs(other);
 	}
-
+	
 }
