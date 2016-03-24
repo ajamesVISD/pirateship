@@ -17,7 +17,7 @@ public class Hand
 
     // This represents the list of cards in the hand.
     private ArrayList<Card> cards;
-    private ArrayList<Card> pairs = new ArrayList<Card>();
+    private ArrayList<Card> pairs;
     
     /**
      * This constructor sets up our hand by initializing our
@@ -26,6 +26,7 @@ public class Hand
     public Hand()
     {
         cards = new ArrayList<Card>();
+        pairs = new ArrayList<Card>();
     }
     
     /**
@@ -241,7 +242,7 @@ public class Hand
 			if(k == n)
 			{
 				toRemove.add(cur);
-				//System.out.println(cur.rankToString());
+				addPair(cur);
 				pair++;
 			}
 			

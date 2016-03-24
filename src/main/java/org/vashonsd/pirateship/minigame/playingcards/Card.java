@@ -67,6 +67,11 @@ public class Card
         return rank;
     }
     
+    public void setRank(int n)
+    {
+    	rank = n;
+    }
+    
     /**
      * This returns the suit of the card as an integer.
      * 
@@ -117,6 +122,7 @@ public class Card
     {
     	return rankStrings[rank];
     }
+    
     
     /**
      * This utility method converts from a suit integer to a String.

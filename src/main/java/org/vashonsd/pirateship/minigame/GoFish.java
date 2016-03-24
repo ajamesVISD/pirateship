@@ -17,6 +17,7 @@ public class GoFish implements Minigame {
 	private int turn;
 	private int n;
 	private Card fish;
+	private ArrayList<Card> askedFor;
 	
 	
 	public GoFish() 
@@ -33,13 +34,13 @@ public class GoFish implements Minigame {
 		hand = new Hand();
 		otherHand = new Hand();
 		dealHand(hand);
-		System.out.println(hand.gofishToString());
 		checkPairs(hand);
 		dealHand(otherHand);
 		checkPairs(otherHand);
 		score = 0;
 		n = 0;
 		fish = new Card(0, 'F');
+		askedFor = new ArrayList<Card>();
 	}
 	
 	public String Run() 
@@ -61,10 +62,20 @@ public class GoFish implements Minigame {
 			winCondition = true;
 		
 		String winner = "No winner";
+		String toReturn = "";
 		
 		if(turn == COMPUTER_TURN && winCondition == false)
 		{
 			Card c = otherHand.cardAt(Randomizer.nextInt(otherHand.getList().size()));
+			
+			for(Card q: askedFor)
+			{
+				if(otherHand.hasCard(q))
+				{
+					c = q;
+					break;
+				}
+			}
 			
 			if(hand.hasCard(c))
 			{
@@ -73,15 +84,33 @@ public class GoFish implements Minigame {
 				otherHand.addPair(c);
 				checkPairs(otherHand);
 				turn = PLAYER_TURN;
-				return "Computer asked for a " + c.getRankName() + ". Computer got a pair. \n" + "Your turn, ask for a card. Hand: ( " + hand.gofishToString() + " )";
+				
+				if(winCondition == false)
+				{
+					toReturn = "Computer asked for a " + c.getRankName() + ". Computer got a pair. \n" + "Your turn, ask for a card. Hand: ( " + hand.gofishToString() + " )";
+				}
+				else if(winCondition == true)
+				{
+					toReturn = "Computer asked for a " + c.getRankName() + ". Computer got a pair. \n";
+				}
 			}
 			else
 			{
 				fish = deck.deal();
 				goFish(otherHand, fish);
 				turn = PLAYER_TURN;
-				return "Computer asked for a " + c.getRankName() + ". Computer goes fish. \n" + "Your turn, ask for a card. Hand: ( " + hand.gofishToString() + " )";
+				
+				if(winCondition == false)
+				{
+					toReturn = "Computer asked for a " + c.getRankName() + ". Computer goes fish. \n" + "Your turn, ask for a card. Hand: ( " + hand.gofishToString() + " )";
+				}
+				else if (winCondition = true)
+				{
+					toReturn = "Computer asked for a " + c.getRankName() + ". Computer goes fish. \n";
+				}
 			}
+			
+			return toReturn;
 		}
 		
 		for(Card c: hand.getList())
@@ -89,6 +118,7 @@ public class GoFish implements Minigame {
 			if(s.equals(c.getRankName()))
 			{
 				breakCondition = false;
+				fish = nameToCard(s);
 			}
 		}
 		
@@ -97,44 +127,76 @@ public class GoFish implements Minigame {
 		
 		if(turn == PLAYER_TURN && winCondition == false)
 		{
-			for(Card c: otherHand.getList())
+			if(otherHand.hasCard(fish))
 			{
-				if(s.equals(c.rankToString()))
+				otherHand.removeCardByRank(fish);
+				hand.addCard(fish);
+				askedFor.add(fish);
+				hand.addPair(fish);
+				checkPairs(hand);
+				turn = COMPUTER_TURN;
+				
+				if(winCondition = false)
 				{
-					otherHand.removeCardByRank(c);
-					hand.addCard(c);
-					hand.addPair(c);
-					checkPairs(hand);
-					turn = COMPUTER_TURN;
-					return "You got a pair! Hand: ( " + hand.gofishToString() + " ) \n" + "Enter for Computer's turn.";
+					toReturn = "You got a pair! Hand: ( " + hand.gofishToString() + " ) \n" + "Enter for Computer's turn.";
+				}
+				else if(winCondition = true)
+				{
+					toReturn = "You got a pair! Hand: ( " + hand.gofishToString() + " ) \n";
 				}
 			}
 			
+			askedFor.add(fish);
 			fish = deck.deal();
 			goFish(hand, fish);
 			turn = COMPUTER_TURN;
-			return "Go Fish. You drew a " + fish.getRankName() + ". \nHand: ( " + hand.gofishToString() + " ) \n" + "Enter for Computer's turn.";
+			
+			if(winCondition = false)
+			{
+				toReturn = "Go Fish. You drew a " + fish.getRankName() + ". \nHand: ( " + hand.gofishToString() + " ) \n" + "Enter for Computer's turn.";
+			}
+			else if(winCondition = true)
+			{
+				toReturn = "Go Fish. You drew a " + fish.getRankName() + ". \nHand: ( " + hand.gofishToString() + " ) \n";
+			}
 		}
 		
-		if(hand.isEmpty())
+		if(turn == PLAYER_TURN)
 		{
-			winner = "Player wins!";
-			score = hand.getPairs().size();
+			if(hand.isEmpty())
+			{
+				winner = "Player wins!";
+				score = hand.getPairs().size();
+			}
+			
+			if(otherHand.isEmpty())
+			{
+				winner = "Computer wins.";
+				score = 0 - otherHand.getPairs().size();
+			}
 		}
-		
-		if(otherHand.isEmpty())
+		else if(turn == COMPUTER_TURN)
 		{
-			winner = "Computer wins.";
-			score = 0 - otherHand.getPairs().size();
+			if(otherHand.isEmpty())
+			{
+				winner = "Computer wins.";
+				score = 0 - otherHand.getPairs().size();
+			}
+			
+			if(hand.isEmpty())
+			{
+				winner = "Player wins!";
+				score = hand.getPairs().size();
+			}
 		}
 		
 		setUpGame();
-		return winner + "Score: " + score;
+		return winner + " Score: " + score + "\nWould you like to play again?";
 	}
 
 	public String Exit() {
 		// TODO Auto-generated method stub
-		return "Thanks for playing, you quitter you!";
+		return "Thanks for playing, you quitter you! \n";
 	}
 	
 	public void dealHand(Hand other)
@@ -175,4 +237,22 @@ public class GoFish implements Minigame {
 		checkPairs(other);
 	}
 	
+	public Card nameToCard(String s)
+    {
+		String[] rankStrings = {"X", "X", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "jack", "queen", "king", "ace"};
+    	String str = "";
+    	Card c = new Card(0, 'A');
+    	
+    	for(int i=0; i<rankStrings.length; i++)
+    	{
+    		 str = rankStrings[i];
+    		 
+    		 if(s.equals(str))
+    		 {
+    			 c.setRank(i);
+    		 }
+    	}
+    	
+    	return c;
+    }
 }
