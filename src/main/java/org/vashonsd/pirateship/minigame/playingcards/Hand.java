@@ -250,9 +250,12 @@ public class Hand
 				break;
 		}
     	
-    	for(Card c: toRemove)
+    	if(pair >= 2)
     	{
-    		cards.remove(c);
+	    	for(Card c: toRemove)
+	    	{
+	    		cards.remove(c);
+	    	}
     	}
     }
     

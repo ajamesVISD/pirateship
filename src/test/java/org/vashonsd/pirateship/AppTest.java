@@ -37,6 +37,7 @@ public class AppTest
      */
     public void testApp()
     {
-        assertTrue( true );
+    	String t = "Hello " + "world";
+        assertTrue( t.equals("Hello world"));
     }
 }
