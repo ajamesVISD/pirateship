@@ -22,16 +22,17 @@ public class Registry {
 	
 	/*
 	 * PROGRAMMERS! This chunk of code is where we enroll minigames. Keep adding them here, and
-	 * if you've set them up correctly, you can run them from the MinigameRunner's run method.
+	 * if you've set them up correctly, 
 	 */
 	private void enrollMinigames() {
 		minigames.add(new TwentyQuestionsFactory());
+		minigames.add(new CookieClickerFactory());
 		minigames.add(new MathFactory());
 		minigames.add(new GuessingCalculatorFactory());
 //		minigames.add(new DumbMinigameFactory());
 		minigames.add(new TicTacToeFactory());
 	}
-
+	
 	/*
 	 * This method walks through the list of minigames, asking each for its name and using that
 	 * name as the key in the basic map.
