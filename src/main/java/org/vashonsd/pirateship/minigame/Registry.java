@@ -29,8 +29,9 @@ public class Registry {
 		minigames.add(new MathFactory());
 		minigames.add(new GuessingCalculatorFactory());
 //		minigames.add(new DumbMinigameFactory());
+		minigames.add(new TicTacToeFactory());
 	}
-	
+
 	/*
 	 * This method walks through the list of minigames, asking each for its name and using that
 	 * name as the key in the basic map.
