@@ -14,6 +14,11 @@ public class Location
 {
    private String name;
    private String description;
+   // Events occuring within location
+   //private ArrayList<Event> eventStack;
+   // Number of events within location
+   // private int size = 0;
+   // Tells if player is in location
    
    private ArrayList<Route> routes;
    
@@ -99,12 +104,43 @@ public class Location
 	   return this;
    }
    
+   //Sets size
+   /*
+   public void setSize(int size)
+   {
+   	this.size = size;
+   }
+   */
+   
+   // Adds event to list of events
+   /*
+   public void addEvent(Event other)
+   {
+   	eventStack.add(other);
+   	size++;
+   }
+   */
+   
+   // Removes event from list of events
+   /*
+   public void removeEvent(int index)
+   {
+   	eventStack.remove(index);
+   	size--;
+   }
+   */
+   
    public String toString()
    {
-	   String result = "";
-	   result += name + "\n";
-	   result += description + "\n";
-	   result += routeDescriptions();
-	   return result;
+   	String toReturn = "";
+   	toReturn += "You are in " + name + "\n";
+   	toReturn += "You see " + routes.size() + " paths before you: " + "\n";
+   	
+   	for(int i=0; i<routes.size(); i++)
+	   {
+		   toReturn += routes.get(i).getDestination().getName() + " (" + routes.get(i).getAccessor() + ")" + "\n";
+	   }
+	   
+	   return toReturn;
    }
 }

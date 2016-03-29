@@ -1,34 +1,47 @@
 package org.vashonsd.pirateship;
 
 import org.vashonsd.pirateship.structure.*;
-
+import org.vashonsd.pirateship.itemstuff.*;
 
 /**
- * @author andy
  * The Player is really the keeper of state in this system.
  */
-public class Player {
+
+public class Player 
+{
 	private String name;
-	private Location currentLocation;
+	private Inventory inventory;
+	private Location current;
 	
-	public Player(String name) {
-		super();
-		this.name = name;
+	public Player(String name) 
+	{
+		this.name  = name;
+		inventory = new Inventory();
+	}
+	
+	public String toString() 
+	{
+		return "Player: " + name + "is at location: " + current.getName();
+	}
+	
+	public Inventory getInventory()
+	{
+		return inventory;
 	}
 
-	public String getName() {
-		return name;
+	public void setCurrentLocation(Location next) 
+	{
+		this.current = next;
 	}
-
-	public void setName(String name) {
-		this.name = name;
+	
+	public String locationToString()
+	{
+		return current.toString();
 	}
-
-	public Location getCurrentLocation() {
-		return currentLocation;
+	
+	public Location getCurrentLocation()
+	{
+		return current;
 	}
-
-	public void setCurrentLocation(Location currentLocation) {
-		this.currentLocation = currentLocation;
-	}
+	
 }
