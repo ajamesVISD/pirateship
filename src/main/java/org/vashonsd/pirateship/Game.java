@@ -1,6 +1,5 @@
 package org.vashonsd.pirateship;
 
-import java.io.FileOutputStream;
 import java.io.IOException;
 
 import org.vashonsd.pirateship.io.*;
@@ -17,10 +16,11 @@ public class Game {
 	private Player player;
 	private String quitWord = "exit";
 	
-	public Game(String world) {
+	public Game(String world) throws IOException {
 		super();
-    	thisWorld = WorldBuilder.makeWorld(world);
-    	player = new Player("Ronaldo");
+    	//thisWorld = WorldBuilder.makeWorld(world);
+    	thisWorld = WorldBuilder.makeWorldByFile(world);
+		player = new Player("Ronaldo");
     	player.setCurrentLocation(thisWorld.getStartingLocation());
     	
     	reader = new UserInput();

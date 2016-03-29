@@ -6,7 +6,7 @@ import java.util.*;
 import com.google.gson.stream.*;
 
 public class DatabaseWriter {
-	private ArrayList<Integer> writtenIDs = new ArrayList<Integer>();
+	private ArrayList<String> writtenids = new ArrayList<String>();
 	private ArrayList<Location> checkedLocations = new ArrayList<Location>();
 	//private HashMap<Route, Integer> routeIDs = new HashMap<Route, Integer>();
 	
@@ -16,23 +16,24 @@ public class DatabaseWriter {
 	
 	public void worldWriter(World world) throws IOException {
 		JsonWriter writer;
-		File file = new File("C:/Users/petersen.preston/Desktop/DatabaseTest/worlds.json");
+		String fileName = "Z:/git/pirateship/src/main/resources/" + world.getName() + ".json";
+		File file = new File(fileName);
 		if(!file.exists() && file.isDirectory()) {
 			file.createNewFile();
+			System.out.println("Created?");
 		}
 		writer = new JsonWriter(new FileWriter(file));
 		writer.setIndent("  ");
 		try {
 			writer.beginObject();
 			writer.name("name").value(world.getName());
-			writer.name("starting_location").value(world.getStartingLocation().getName());
 			writer.name("locations");
 			writer.beginArray();
 			for(Location l: world.getLocations()) {
 				writer.beginObject();
-				writer.name("name").value(l.getName());
+				writer.name("locname").value(l.getName());
 				writer.name("description").value(l.getDescription());
-				writer.name("remote_id");
+				writer.name("route_id");
 				writer.beginArray();
 				for(Route r: l.getRoutes()) {
 					writer.value(r.getId());
@@ -45,13 +46,21 @@ public class DatabaseWriter {
 			writer.beginArray();
 			for(Location l: world.getLocations()) {
 				for(Route r: l.getRoutes()) {
-					if(!(writtenIDs.contains(r.getId()))) {
-						writtenIDs.add(r.getId());
+					if(!(writtenids.contains(r.getId()))) {
+						writtenids.add(r.getId());
+						writer.beginObject();
+						writer.name("id").value(r.getId());
+						writer.name("description").value(r.getDescriptionNA());
+						writer.name("accessor").value(r.getAccessor());
+						writer.name("from").value(r.getFrom());
+						writer.name("destination").value(r.getDestination().getName());
+						writer.endObject();
 					}
 				}
 				checkedLocations.add(l);
 			}
 			writer.endArray();
+			writer.endObject();
 			System.out.println("World: " + world.getName() + " Saved!");
 		}
 		catch(IOException e) {

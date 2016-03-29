@@ -27,7 +27,7 @@ public class Shotgun implements Minigame {
 		return "Shot";
 	}
 
-	public String Request(String s) {
+	public String Handle(String s) {
 		// TODO Auto-generated method stub
 		String request = "";
 		Random rnd = new Random();
@@ -48,25 +48,41 @@ public class Shotgun implements Minigame {
 		else {
 			if(compAmmo == 0) {
 				request += "They dodge, ";
+				r = 0;
 			}
 			else {
 				request += "They shoot, ";
+				compAmmo--;
 			}
 		}
 		if(s.equalsIgnoreCase("Reload")) {
 			request += "you reload.";
+			userAmmo++;
 		}
 		else if(s.equalsIgnoreCase("Dodge")) {
 			request += "you dodge.";
 		}
 		else {
 			request += "you shoot.";
+			userAmmo--;
 		}
-		
+		if(r == 0 && s.equalsIgnoreCase("Shoot")){
+			setUpGame();
+			return request + " You win! \nMake your first move. Reload, Dodge or Shoot.";
+		}
+		if(r == 2 && s.equalsIgnoreCase("Reload")) {
+			setUpGame();
+			return request + " You lose. \nMake your first move. Reload, Dodge or Shoot.";
+		}
+		if(r == 2 && s.equalsIgnoreCase("Shoot")) {
+			setUpGame();
+			return request + " You both lose... \nMake your first move. Reload, Dodge or Shoot.";
+		}
+		return request + " Your ammo is " + userAmmo + ", their ammo is " + compAmmo + ".";
 	}
 
 	public String Exit() {
 		// TODO Auto-generated method stub
-		return null;
+		return "Thanks for playin'. Please come again.";
 	}
 }

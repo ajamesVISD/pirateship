@@ -53,6 +53,6 @@ public class MinigameRuntime {
 			return result;
 		}
 		//Otherwise, send back whatever the receiver does with the input.
-		return prompted(receiver.Request(input));
+		return prompted(receiver.Handle(input));
 	}
 }
