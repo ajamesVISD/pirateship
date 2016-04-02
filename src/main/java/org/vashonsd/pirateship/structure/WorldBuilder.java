@@ -1,5 +1,7 @@
 package org.vashonsd.pirateship.structure;
 
+import java.io.IOException;
+
 /**
  * @author andy 
  * This class creates an entire structure of connected locations and routes. It can do so
@@ -7,6 +9,7 @@ package org.vashonsd.pirateship.structure;
  * 
  * Eventually the WorldBuilder should allow a user to build a world which can be saved to a database.
  */
+
 public class WorldBuilder {
 	
 	
@@ -29,6 +32,11 @@ public class WorldBuilder {
 		}
 	}
 	
+	public static World makeWorldByFile(String s) throws IOException {
+		DatabaseParser dp = new DatabaseParser();
+		return dp.parseWorld(s);
+	}
+	
 	public static World busyWorld()
 	{
 		World w = new World("Busytown");
@@ -37,13 +45,13 @@ public class WorldBuilder {
 		Location soft = new Location("Happy Park", "This happy place has birds singing, people playing.");
 		Location news = new Location("Dead End Street", "This place is miserable.");
 		
-		main.addRoute("You see a heavy door with a brass handle", "open", chat, 3.1);
-		main.addRoute("A gravel walkway leads to a park", "east", soft);
-		main.addRoute("You can just barely spot a dark alley", "north", news);
+		main.addRoute("You see a heavy door with a brass handle", "open", "City Hall", chat);
+		main.addRoute("A gravel walkway leads to a park", "east", "City Hall", soft);
+		main.addRoute("You can just barely spot a dark alley", "north", "City Hall", news);
 		
-		news.addRoute("You can return to City Hall", "south", main);
-		soft.addRoute("The gravel walkway leads back to City Hall", "west", main);
-		chat.addRoute("It's time to head back outside", "open", main);
+		news.addRoute("You can return to City Hall", "south", "Dead End Street", main);
+		soft.addRoute("The gravel walkway leads back to City Hall", "west", "Happy Park", main);
+		chat.addRoute("It's time to head back outside", "open", "City Hall Lobby", main);
 		
 		w.addLocation(main);
 		w.addLocation(chat);
@@ -63,13 +71,13 @@ public class WorldBuilder {
 		Location soft = new Location("Software Exchange", "Come get your shareware!");
 		Location news = new Location("News room", "This place is miserable.");
 		
-		main.addRoute("Visit the chat room -->", "chat", chat);
-		main.addRoute("Shareware library -->", "soft", soft);
-		main.addRoute("Latest news", "news", news);
+		main.addRoute("Visit the chat room -->", "chat", "Main board", chat);
+		main.addRoute("Shareware library -->", "soft", "Main board", soft);
+		main.addRoute("Latest news", "news", "Main board", news);
 		
-		news.addRoute("Back to the main board", "main", main);
-		soft.addRoute("Back to the main board", "main", main);
-		chat.addRoute("Back to the main board", "main", main);
+		news.addRoute("Back to the main board", "main", "News room", main);
+		soft.addRoute("Back to the main board", "main", "Software Exchange", main);
+		chat.addRoute("Back to the main board", "main", "Chat Room", main);
 		
 		w.addLocation(main);
 		w.addLocation(chat);

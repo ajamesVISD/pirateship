@@ -10,8 +10,7 @@ public class App
 {	
     public static void main( String[] args ) throws IOException
     {
-    	Game g = new Game("BBS");
+    	Game g = new Game("Busytown");
     	g.Run();
-
     }   
 }
