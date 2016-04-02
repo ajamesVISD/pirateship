@@ -1,9 +1,3 @@
-/Minigame.class
-/MinigameFactory.class
-/MinigameRunner.class
-/MinigameRuntime.class
-/Registry.class
-/TwentyQuestions.class
-/TwentyQuestionsFactory.class
-/MinigameTwitter.class
-/MinigameTwitterFactory.class
+*.class
+/.settings
+/.classpath
