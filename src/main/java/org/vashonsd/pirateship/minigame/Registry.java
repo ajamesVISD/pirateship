@@ -29,8 +29,8 @@ public class Registry {
 		minigames.add(new CookieClickerFactory());
 		minigames.add(new MathFactory());
 		minigames.add(new GuessingCalculatorFactory());
-//		minigames.add(new DumbMinigameFactory());
 		minigames.add(new TicTacToeFactory());
+		minigames.add(new MinigameTwitterFactory());
 	}
 	
 	/*
