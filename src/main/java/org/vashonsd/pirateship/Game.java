@@ -1,6 +1,7 @@
 package org.vashonsd.pirateship;
 
 import java.io.IOException;
+import java.util.HashMap;
 
 import org.vashonsd.pirateship.io.*;
 import org.vashonsd.pirateship.structure.*;
@@ -13,6 +14,8 @@ public class Game {
 	
 	private World thisWorld;
 	
+	private HashMap<String, Player> players;
+	
 	private Player player;
 	private String quitWord = "exit";
 	
@@ -22,6 +25,8 @@ public class Game {
     	thisWorld = WorldBuilder.makeWorldByFile(world);
 		player = new Player("Ronaldo");
     	player.setCurrentLocation(thisWorld.getStartingLocation());
+    	
+    	players.put(player.getName(), player);
     	
     	reader = new UserInput();
     	writer = new ConsoleOut();
