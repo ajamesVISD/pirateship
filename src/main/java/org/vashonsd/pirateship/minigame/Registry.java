@@ -12,7 +12,7 @@ public class Registry {
 		super();
 		minigames = new ArrayList<MinigameFactory>();
 		minigameMap = new HashMap<String, MinigameFactory>();
-		enrollMinigames();
+		//enrollMinigames();
 		createMap();
 	}
 	
@@ -20,10 +20,17 @@ public class Registry {
 		return minigameMap.containsKey(which);
 	}
 	
+	public void addGame(MinigameFactory toAdd)
+	{
+		minigames.add(toAdd);
+	}
+	
 	/*
 	 * PROGRAMMERS! This chunk of code is where we enroll minigames. Keep adding them here, and
 	 * if you've set them up correctly, 
 	 */
+	
+	/*
 	private void enrollMinigames() {
 		minigames.add(new TwentyQuestionsFactory());
 		minigames.add(new CookieClickerFactory());
@@ -33,6 +40,7 @@ public class Registry {
 		minigames.add(new MinigameTwitterFactory());
 		minigames.add(new ShotgunFactory());
 	}
+	*/
 	
 	/*
 	 * This method walks through the list of minigames, asking each for its name and using that

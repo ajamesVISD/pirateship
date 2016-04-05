@@ -1,6 +1,7 @@
 package org.vashonsd.pirateship.structure;
 
 import java.util.*;
+import org.vashonsd.pirateship.minigame.*;
 
 /**
  * @author andy
@@ -14,6 +15,8 @@ public class Location
 {
    private String name;
    private String description;
+   private Registry games;
+   private MinigameRunner runner;
    
    private ArrayList<Route> routes;
    private ArrayList<Integer> route_id;
@@ -29,6 +32,11 @@ public class Location
 	   this.description = description;
 	   
 	   routes = new ArrayList<Route>();
+   }
+   
+   public void addGame(MinigameFactory toAdd)
+   {
+	   games.addGame(toAdd);
    }
    
    public String getName()
