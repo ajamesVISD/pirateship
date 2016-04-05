@@ -12,8 +12,6 @@ public class DatabaseParser {
 	private World world;
 	private Route current;
 	
-	//!!!!!!!!!!!!!!!!!!!!!!!!!!!! Excluding route ids using comments
-	
 	private String currentLocation;
 	
 	public DatabaseParser() {
@@ -21,7 +19,8 @@ public class DatabaseParser {
 	}
 	
 	public World parseWorld(String worldName) throws IOException {
-		String fileName = "Z:/git/pirateship/src/main/resources/" + worldName + ".json";
+		DatabaseParser.class.getClassLoader().getResource("main/resources/" + worldName + ".json");
+		String fileName = "src/main/resources/" + worldName + ".json";
 		JsonReader reader = new JsonReader(new FileReader(fileName));
 		reader.beginObject();
 		while(reader.hasNext()) {

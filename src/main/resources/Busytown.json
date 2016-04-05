@@ -1,0 +1,79 @@
+{
+  "name": "Busytown",
+  "locations": [
+    {
+      "locname": "City Hall",
+      "description": "You stand before a brick building with Greek gods painted on it",
+      "route_id": [
+        "City HallCity Hall Lobby",
+        "City HallHappy Park",
+        "City HallDead End Street"
+      ]
+    },
+    {
+      "locname": "City Hall Lobby",
+      "description": "Giant columns rise up 100 feet.",
+      "route_id": [
+        "City Hall LobbyCity Hall"
+      ]
+    },
+    {
+      "locname": "Happy Park",
+      "description": "This happy place has birds singing, people playing.",
+      "route_id": [
+        "Happy ParkCity Hall"
+      ]
+    },
+    {
+      "locname": "Dead End Street",
+      "description": "This place is miserable.",
+      "route_id": [
+        "Dead End StreetCity Hall"
+      ]
+    }
+  ],
+  "route": [
+    {
+      "id": "City HallCity Hall Lobby",
+      "description": "You see a heavy door with a brass handle",
+      "accessor": "open",
+      "from": "City Hall",
+      "destination": "City Hall Lobby"
+    },
+    {
+      "id": "City HallHappy Park",
+      "description": "A gravel walkway leads to a park",
+      "accessor": "east",
+      "from": "City Hall",
+      "destination": "Happy Park"
+    },
+    {
+      "id": "City HallDead End Street",
+      "description": "You can just barely spot a dark alley",
+      "accessor": "north",
+      "from": "City Hall",
+      "destination": "Dead End Street"
+    },
+    {
+      "id": "City Hall LobbyCity Hall",
+      "description": "It's time to head back outside",
+      "accessor": "open",
+      "from": "City Hall Lobby",
+      "destination": "City Hall"
+    },
+    {
+      "id": "Happy ParkCity Hall",
+      "description": "The gravel walkway leads back to City Hall",
+      "accessor": "west",
+      "from": "Happy Park",
+      "destination": "City Hall"
+    },
+    {
+      "id": "Dead End StreetCity Hall",
+      "description": "You can return to City Hall",
+      "accessor": "south",
+      "from": "Dead End Street",
+      "destination": "City Hall"
+    }
+  ]
+}

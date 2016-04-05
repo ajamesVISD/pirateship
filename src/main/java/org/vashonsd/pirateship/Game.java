@@ -14,7 +14,7 @@ public class Game {
 	
 	private World thisWorld;
 	
-	private HashMap<String, Player> players;
+	//private HashMap<String, Player> players;
 	
 	private Player player;
 	private String quitWord = "exit";
@@ -26,7 +26,7 @@ public class Game {
 		player = new Player("Ronaldo");
     	player.setCurrentLocation(thisWorld.getStartingLocation());
     	
-    	players.put(player.getName(), player);
+    	//players.put(player.getName(), player);
     	
     	reader = new UserInput();
     	writer = new ConsoleOut();
