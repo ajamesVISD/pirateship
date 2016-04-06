@@ -5,6 +5,7 @@ import java.util.HashMap;
 
 import org.vashonsd.pirateship.io.*;
 import org.vashonsd.pirateship.structure.*;
+import org.vashonsd.pirateship.minigame.*;
 
 public class Game {
 	private StringRead reader;
@@ -18,6 +19,8 @@ public class Game {
 	
 	private Player player;
 	private String quitWord = "exit";
+	
+	private LocationMiniRunner runner;
 	
 	public Game(String world) throws IOException {
 		super();
@@ -82,5 +85,25 @@ public class Game {
     	db.worldWriter(thisWorld);
     	writer.write("Thank you for exploring " + thisWorld.getName() +".");
     	System.exit(1);
+    }
+    
+    public void playMinigame(Location place) throws IOException
+    {
+    	runner = new LocationMiniRunner(place.getGames());
+    	
+    	while(true)
+    	{
+    		String r = runner.Run(reader.read());
+    		
+    		if(r.equals("Thanks for playing! Goodbye."))
+    		{
+    			writer.write(r);
+    			break;
+    		} 
+    		else
+    		{
+    			writer.write(r);
+    		}
+    	}
     }
 }

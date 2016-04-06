@@ -21,6 +21,12 @@ public class MinigameRuntime {
 		//By default, we'll use the console in as input. If we want to set a different input later, we can.
 	}
 	
+	public MinigameRuntime(Registry r)
+	{
+		super();
+		this.r = r;
+	}
+	
 	public String showGames() {
 		return r.toString();
 	}
