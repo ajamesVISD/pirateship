@@ -14,4 +14,9 @@ public class ConsoleOut implements StringWrite {
 		System.out.println(s);
 	}
 
+	public void close() throws IOException {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

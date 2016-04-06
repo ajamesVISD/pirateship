@@ -14,4 +14,6 @@ import java.io.*;
  */
 public interface StringWrite {
 	public void write(String s) throws IOException;
+	public void close() throws IOException;
+
 }
