@@ -15,4 +15,5 @@ import java.io.*;
  */
 public interface StringRead {
 	public String read() throws IOException;
+	public void close() throws IOException;
 }
