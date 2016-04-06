@@ -39,6 +39,11 @@ public class Location
 	   games.addGame(toAdd);
    }
    
+   public Registry getGames()
+   {
+	   return games;
+   }
+   
    public String getName()
    {
 	   return this.name;
