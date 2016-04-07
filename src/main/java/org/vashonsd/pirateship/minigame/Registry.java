@@ -32,6 +32,7 @@ public class Registry {
 		minigames.add(new TicTacToeFactory());
 		minigames.add(new MinigameTwitterFactory());
 		minigames.add(new ShotgunFactory());
+		minigames.add(new PrisonEscapeFactory());
 	}
 	
 	/*
