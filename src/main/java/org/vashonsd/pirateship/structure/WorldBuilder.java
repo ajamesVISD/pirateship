@@ -1,6 +1,7 @@
 package org.vashonsd.pirateship.structure;
 
 import java.io.IOException;
+import org.vashonsd.pirateship.minigame.*;
 
 /**
  * @author andy 
@@ -70,14 +71,17 @@ public class WorldBuilder {
 		Location chat = new Location("Chat Room", "Start a conversation!");
 		Location soft = new Location("Software Exchange", "Come get your shareware!");
 		Location news = new Location("News room", "This place is miserable.");
+		Location gameRoom = new Location("Game Room", "Play minigames!");
 		
 		main.addRoute("Visit the chat room -->", "chat", "Main board", chat);
 		main.addRoute("Shareware library -->", "soft", "Main board", soft);
 		main.addRoute("Latest news", "news", "Main board", news);
+		main.addRoute("Have fun in the Game Room", "games", "Main board", gameRoom);
 		
 		news.addRoute("Back to the main board", "main", "News room", main);
 		soft.addRoute("Back to the main board", "main", "Software Exchange", main);
 		chat.addRoute("Back to the main board", "main", "Chat Room", main);
+		gameRoom.addRoute("Back to the main board", "main", "Game Room", main);
 		
 		w.addLocation(main);
 		w.addLocation(chat);
@@ -86,10 +90,17 @@ public class WorldBuilder {
 		
 		w.setPointer(main);
 		
+		gameRoom.addGame(new TwentyQuestionsFactory());
+		gameRoom.addGame(new CookieClickerFactory());
+		gameRoom.addGame(new MathFactory());
+		gameRoom.addGame(new GuessingCalculatorFactory());
+		gameRoom.addGame(new TicTacToeFactory());
+		gameRoom.addGame(new MinigameTwitterFactory());
+		gameRoom.addGame(new ShotgunFactory());
+		
 		return w;
 	}
-	
-	
+        /*	
 	public static World littleTown() {
 		World w = new World("Littletown");
 		Location square = new Location("Town square", "It's bustling with excitment.");
@@ -129,6 +140,30 @@ public class WorldBuilder {
 		florist.addRoute("Leave the florist's stand", "back", "Florist stand", square);
 		baker.addRoute("Leave the bakery", "back", "Baker's shop", square);
 		clother.addRoute("Leave the tailorist's", "back", "Tailorist", square);	
+		square.addRoute("The florist's stand is bright with colors", "florist", florist);
+		square.addRoute("A warm aroma wafts from the bakery", "bakery", baker);
+		square.addRoute("The tailor is hard at work mending a green shirt", "tailor", clother);
+		square.addRoute("Neighbors talk and laugh in the street", "west", west);
+		
+		west.addRoute("Visit Jacob's house", "jacob", houseJacob);
+		west.addRoute("Visit Mary's house", "mary", houseMary);
+		west.addRoute("Go back to the square", "back", square);
+		
+		houseJacob.addRoute("Go inside", "open", houseJacobLocked);
+		houseJacobLocked.addRoute("Leave", "back", west);
+		
+		houseMary.addRoute("Go inside", "open", houseMaryInside);
+		houseMaryInside.addRoute("Talk to her", "talk", houseMaryInsideTalk);
+		houseMaryInsideTalk.addRoute("Comfort her", "comfort", houseMaryInsideTalkNice);
+		houseMaryInsideTalkNice.addRoute("Talk to her some more", "talk", houseMaryInsideTalk);
+		houseMaryInsideTalkNice.addRoute("Leave", "leave", west);
+		houseMaryInsideTalk.addRoute("Laugh in her face", "laugh", houseMaryInsideTalkMean);
+		houseMaryInsideTalkMean.addRoute("Leave", "leave", west);
+		houseMaryInside.addRoute("Leave", "back", west);
+		
+		florist.addRoute("Leave the florist's stand", "back", square);
+		baker.addRoute("Leave the bakery", "back", square);
+		clother.addRoute("Leave the tailorist's", "back", square);	
 		
 		w.addLocation(square);
 		w.addLocation(florist);
@@ -147,4 +182,5 @@ public class WorldBuilder {
 		
 		return w;
 	}
+*/
 }
