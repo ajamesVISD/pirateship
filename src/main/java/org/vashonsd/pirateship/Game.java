@@ -1,7 +1,6 @@
 package org.vashonsd.pirateship;
 
 import java.io.IOException;
-import java.util.HashMap;
 
 import org.vashonsd.pirateship.io.*;
 import org.vashonsd.pirateship.structure.*;
@@ -17,10 +16,10 @@ public class Game {
 	//private HashMap<String, Player> players;
 	
 	private Player player;
-	private String quitWord = "exit";
 	
 	public Game(String world) throws IOException {
 		super();
+
     	//thisWorld = WorldBuilder.makeWorld(world);
     	thisWorld = WorldBuilder.makeWorldByFile(world);
 		player = new Player("Ronaldo");
@@ -30,31 +29,20 @@ public class Game {
     	
     	reader = new UserInput();
     	writer = new ConsoleOut();
+
 	}
 	
 	public void Run() throws IOException {
 		while(true) {
-        	writer.write(player.getCurrentLocation().toString());
-        	String command = getCommand();
-        	evalCommand(command);
+			writer.write(player.getCurrentLocation().toString());
+			String[] s = evalCommand();
+			handle(s);
 		}
 	}
 	
 	/*
      * Gets the player's command, checking for valid/invalid input.
      */
-    public String getCommand() throws IOException {
-    	while(true) {
-    		String command = reader.read();
-    		if (command.equalsIgnoreCase(quitWord)) { quitGracefully(); };
-    		if (player.getCurrentLocation().commandAvailable(command)) {
-    			return command;
-    		}
-		writer.write("---Error 314---"
-    		     + "\n" + center(command) + "\n" + 
-					 "place not found");
-    	}
-    }
     
     private String center(String c)
     {
@@ -74,13 +62,44 @@ public class Game {
     	return center;
     }
     
+    public String[] evalCommand() throws IOException {
+		String c = reader.read();
+		c = c.toLowerCase();
+		String[] one;		
+		one = c.split(" ");
+		return one;
+	}
+    
+    public void handle(String[] array) throws IOException {
+		int i = 0;
+		if(array[i].equals("exit")) {
+			quitGracefully();
+		}
+		else if(array[i].equals("go")) {
+			i++;
+			player.setCurrentLocation(player.getCurrentLocation().travel(array[i]));
+		}
+		else {
+			String command = "";
+			for(int a = 0; a < array.length; a++) {
+				command+=array[a];
+			}
+			writer.write("---Error 314---"
+	   			 + "\n" + center(command) + "\n" + 
+   					 "place not found");
+		}
+	}
+    
     public void evalCommand(String c) {
     	player.setCurrentLocation(player.getCurrentLocation().travel(c));
     }
     
     public void quitGracefully() throws IOException {
-    	db.worldWriter(thisWorld);
+    	//db.worldWriter(thisWorld);
     	writer.write("Thank you for exploring " + thisWorld.getName() +".");
-    	System.exit(1);
-    }
+		writer.close();
+		reader.close();
+		System.exit(1);
+	}
+
 }

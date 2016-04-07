@@ -2,6 +2,7 @@ package org.vashonsd.pirateship.minigame;
 
 import java.util.*;
 
+
 public class Registry {
 	// First we make an arraylist of Minigames, then we walk through each one, finding out its short name
 	// and using that to enroll it in the hashmap.

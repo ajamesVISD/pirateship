@@ -20,4 +20,9 @@ public class UserInput implements StringRead{
 	public void StringReader() {
 		
 	}
+
+	public void close() throws IOException {
+		// TODO Auto-generated method stub
+		
+	}
 }
