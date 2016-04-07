@@ -55,22 +55,26 @@ public class WorldBuilder {
 		Location soft = new Location("Happy Park", "This happy place has birds singing, people playing.");
 		Location news = new Location("Dead End Street", "This place is miserable.");
 		Location gameRoom = new Location("Game Room", "Play minigames!");
+		Location prison = new Location("Pig Prison", "You done it no sonny");
 		
 		main.addRoute("You see a heavy door with a brass handle", "open", "City Hall", chat);
 		main.addRoute("A gravel walkway leads to a park", "east", "City Hall", soft);
 		main.addRoute("You can just barely spot a dark alley", "north", "City Hall", news);
-		main.addRoute("Have fun in the Game Room", "games", "Main board", gameRoom);
+		main.addRoute("Have fun in the Game Room", "games", "back", gameRoom);
+		main.addRoute("Go straight to jail", "prison", "back", prison);
 		
 		news.addRoute("You can return to City Hall", "south", "Dead End Street", main);
 		soft.addRoute("The gravel walkway leads back to City Hall", "west", "Happy Park", main);
 		chat.addRoute("It's time to head back outside", "open", "City Hall Lobby", main);
 		gameRoom.addRoute("Back to the main board", "main", "Game Room", main);
+		prison.addRoute("Escape!", "back", "prison", main);
 		
 		w.addLocation(main);
 		w.addLocation(chat);
 		w.addLocation(soft);
 		w.addLocation(news);
 		w.addLocation(gameRoom);
+		w.addLocation(prison);
 		
 		gameRoom.addGame(new TwentyQuestionsFactory());
 		gameRoom.addGame(new CookieClickerFactory());
@@ -79,6 +83,8 @@ public class WorldBuilder {
 		gameRoom.addGame(new TicTacToeFactory());
 		gameRoom.addGame(new MinigameTwitterFactory());
 		gameRoom.addGame(new ShotgunFactory());
+		
+		//prison.addGame(new PrisonEscapeFactory());
 		
 		w.setPointer(main);
 		
