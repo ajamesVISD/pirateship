@@ -15,7 +15,7 @@ public class PrisonEscape implements Minigame {
 	public static int LOWLEVEL = -10;
 	
 	/*
-	 * QUESTION TIERS.
+	 * QUESTION TIERS
 	 */
 	// Basic prompt starters
 	public static ArrayList<String> basicPrompts = new ArrayList<String> ();
