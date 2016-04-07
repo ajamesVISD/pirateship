@@ -8,12 +8,11 @@ public class LocationMiniRunner
 	public LocationMiniRunner(Registry r)
 	{
 		this.r = r;
+		rt = new MinigameRuntime(r);
 	}
 	
 	public String Run(String s)
 	{
-		rt = new MinigameRuntime(r);
-		
 		String input = s;
 		if (!(rt.hasReceiver()) && input.equals("exit")) 
 		{
@@ -26,7 +25,6 @@ public class LocationMiniRunner
 	}
 	
 	public String printGreeting() {
-		rt = new MinigameRuntime(r);
 		return "Available games: \n" + rt.showGames();
 	}
 }

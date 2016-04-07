@@ -42,7 +42,8 @@ public class MinigameRuntime {
 	public String handle(String input) {
 		// Our first condition: We don't have a runtime set for any minigame. Time to see if
 		// have been sent a valid choice for one.
-		if (receiver == null) {
+		if (receiver == null) 
+		{
 			if (r.hasGame(input)) {
 				receiver = r.getGame(input);
 				return prompted(receiver.Run());
