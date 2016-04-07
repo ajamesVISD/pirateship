@@ -14,9 +14,6 @@ public class LocationMiniRunner
 	{
 		rt = new MinigameRuntime(r);
 		
-		if (!(rt.hasReceiver())) {
-			printGreeting();
-		}
 		String input = s;
 		if (!(rt.hasReceiver()) && input.equals("exit")) 
 		{
@@ -28,8 +25,8 @@ public class LocationMiniRunner
 
 	}
 	
-	public static void printGreeting() {
-		System.out.println("Available games:");
-		System.out.println(rt.showGames());
+	public String printGreeting() {
+		rt = new MinigameRuntime(r);
+		return "Available games: \n" + rt.showGames();
 	}
 }

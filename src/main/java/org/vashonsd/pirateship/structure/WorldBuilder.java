@@ -31,12 +31,21 @@ public class WorldBuilder {
 		{
 			return null;
 		}
+		
+		/*
+		else
+		{
+			return littleTown();
+		}
+		*/
 	}
 	
+	/*
 	public static World makeWorldByFile(String s) throws IOException {
 		DatabaseParser dp = new DatabaseParser();
 		return dp.parseWorld(s);
 	}
+	*/
 	
 	public static World busyWorld()
 	{
@@ -45,19 +54,31 @@ public class WorldBuilder {
 		Location chat = new Location("City Hall Lobby", "Giant columns rise up 100 feet.");
 		Location soft = new Location("Happy Park", "This happy place has birds singing, people playing.");
 		Location news = new Location("Dead End Street", "This place is miserable.");
+		Location gameRoom = new Location("Game Room", "Play minigames!");
 		
 		main.addRoute("You see a heavy door with a brass handle", "open", "City Hall", chat);
 		main.addRoute("A gravel walkway leads to a park", "east", "City Hall", soft);
 		main.addRoute("You can just barely spot a dark alley", "north", "City Hall", news);
+		main.addRoute("Have fun in the Game Room", "games", "Main board", gameRoom);
 		
 		news.addRoute("You can return to City Hall", "south", "Dead End Street", main);
 		soft.addRoute("The gravel walkway leads back to City Hall", "west", "Happy Park", main);
 		chat.addRoute("It's time to head back outside", "open", "City Hall Lobby", main);
+		gameRoom.addRoute("Back to the main board", "main", "Game Room", main);
 		
 		w.addLocation(main);
 		w.addLocation(chat);
 		w.addLocation(soft);
 		w.addLocation(news);
+		w.addLocation(gameRoom);
+		
+		gameRoom.addGame(new TwentyQuestionsFactory());
+		gameRoom.addGame(new CookieClickerFactory());
+		gameRoom.addGame(new MathFactory());
+		gameRoom.addGame(new GuessingCalculatorFactory());
+		gameRoom.addGame(new TicTacToeFactory());
+		gameRoom.addGame(new MinigameTwitterFactory());
+		gameRoom.addGame(new ShotgunFactory());
 		
 		w.setPointer(main);
 		
@@ -87,8 +108,7 @@ public class WorldBuilder {
 		w.addLocation(chat);
 		w.addLocation(soft);
 		w.addLocation(news);
-		
-		w.setPointer(main);
+		w.addLocation(gameRoom);
 		
 		gameRoom.addGame(new TwentyQuestionsFactory());
 		gameRoom.addGame(new CookieClickerFactory());
@@ -98,8 +118,11 @@ public class WorldBuilder {
 		gameRoom.addGame(new MinigameTwitterFactory());
 		gameRoom.addGame(new ShotgunFactory());
 		
+		w.setPointer(main);
+		
 		return w;
 	}
+	
 	/*
 	public static World littleTown() {
 		World w = new World("Littletown");
@@ -116,13 +139,10 @@ public class WorldBuilder {
 		Location houseMaryInsideTalkNice = new Location("Her tears dry up", "She starts to smile.");
 		Location houseMaryInsideTalkMean = new Location("She pushes you away", "You are forced to leave.");
 		
-
-
-		square.addRoute("The florist's stand is bright with colors", "florist", florist);
-		square.addRoute("A warm aroma wafts from the bakery", "bakery", baker);
-		square.addRoute("The tailor is hard at work mending a green shirt", "tailor", clother);
-		square.addRoute("Neighbors talk and laugh in the street", "west", west);
-
+		square.addRoute("The florist's stand is bright with colors", "florist", "Town square", florist);
+		square.addRoute("A warm aroma wafts from the bakery", "bakery", "Town square", baker);
+		square.addRoute("The tailor is hard at work mending a green shirt", "tailor", "Town square", clother);
+		square.addRoute("Neighbors talk and laugh in the street", "west", "Town square", west);
 		
 		west.addRoute("Visit Jacob's house", "jacob", "West Street", houseJacob);
 		west.addRoute("Visit Mary's house", "mary", "West Street", houseMary);
@@ -140,13 +160,26 @@ public class WorldBuilder {
 		houseMaryInsideTalkMean.addRoute("Leave", "leave", "She pushes you away", west);
 		houseMaryInside.addRoute("Leave", "back", "Mary's house is very bright with colors", west);
 		
-		florist.addRoute("Leave the florist's stand", "back", square);
-		baker.addRoute("Leave the bakery", "back", square);
-		clother.addRoute("Leave the tailorist's", "back", square);	
+		florist.addRoute("Leave the florist's stand", "back", "Florist stand", square);
+		baker.addRoute("Leave the bakery", "back", "Baker's shop", square);
+		clother.addRoute("Leave the tailorist's", "back", "Tailorist", square);	
+		
+		w.addLocation(square);
+		w.addLocation(florist);
+		w.addLocation(baker);
+		w.addLocation(clother);
+		w.addLocation(west);
+		w.addLocation(houseJacob);
+		w.addLocation(houseJacobLocked);
+		w.addLocation(houseMary);
+		w.addLocation(houseMaryInside);
+		w.addLocation(houseMaryInsideTalk);
+		w.addLocation(houseMaryInsideTalkNice);
+		w.addLocation(houseMaryInsideTalkMean);
+		
 		w.setPointer(square);
 		
 		return w;
 	}
-		*/
-
+	*/
 }
