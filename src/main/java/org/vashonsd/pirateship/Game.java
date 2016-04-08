@@ -20,8 +20,6 @@ public class Game {
 	
 	private LocationMiniRunner runner;
 	
-	private LocationMiniRunner runner;
-	
 	public Game(String world) throws IOException {
 		super();
 
@@ -126,13 +124,6 @@ public class Game {
 		writer.close();
 		reader.close();
 		System.exit(1);
-<<<<<<< HEAD
-    }
-    
-    public void playMinigame(Location place) throws IOException
-    {
-    	runner = new LocationMiniRunner(place.getGames());
-=======
 	}
 
     public void playMinigame(Location place) throws IOException
@@ -140,7 +131,6 @@ public class Game {
     	runner = new LocationMiniRunner(place.getGames());
     	
     	writer.write(runner.printGreeting());
->>>>>>> refs/heads/prisonEscape
     	
     	while(true)
     	{

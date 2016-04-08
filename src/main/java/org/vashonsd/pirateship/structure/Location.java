@@ -36,15 +36,6 @@ public class Location
 	   games = new Registry();
    }
    
-   public void addGame(MinigameFactory toAdd)
-   {
-	   games.addGame(toAdd);
-   }
-   
-   public Registry getGames()
-   {
-	   return games;
-   }
    
    public void addGame(MinigameFactory toAdd)
    {
