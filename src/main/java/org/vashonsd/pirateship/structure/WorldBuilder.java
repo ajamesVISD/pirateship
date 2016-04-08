@@ -55,7 +55,7 @@ public class WorldBuilder {
 		Location soft = new Location("Happy Park", "This happy place has birds singing, people playing.");
 		Location news = new Location("Dead End Street", "This place is miserable.");
 		Location gameRoom = new Location("Game Room", "Play minigames!");
-		Location prison = new Location("Pig Prison", "You done it no sonny");
+		Location prison = new Location("Pig Prison", "You done it now sonny");
 		
 		main.addRoute("You see a heavy door with a brass handle", "open", "City Hall", chat);
 		main.addRoute("A gravel walkway leads to a park", "east", "City Hall", soft);
