@@ -1,6 +1,9 @@
 package org.vashonsd.pirateship.structure;
 
+import java.io.File;
 import java.io.IOException;
+
+import org.vashonsd.pirateship.io.*;
 
 /**
  * @author andy 
@@ -16,7 +19,7 @@ public class WorldBuilder {
 	/*
 	 * Consider this a very simple example of a Factory method; it makes a World based on a given String.
 	 */
-	public static World makeWorld(String s)
+	public static World makeWorld(String s) throws IOException
 	{
 		if (s.equals("BBS"))
 		{
@@ -57,6 +60,7 @@ public class WorldBuilder {
 		w.addLocation(chat);
 		w.addLocation(soft);
 		w.addLocation(news);
+		
 		
 		w.setPointer(main);
 		
