@@ -29,7 +29,7 @@ public class WorldBuilder {
 		}
 		else
 		{
-			return littleTown();
+			return null;
 		}
 	}
 	
