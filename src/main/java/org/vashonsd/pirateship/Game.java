@@ -20,11 +20,14 @@ public class Game {
 	
 	private LocationMiniRunner runner;
 	
+	private LocationMiniRunner runner;
+	
 	public Game(String world) throws IOException {
 		super();
 
     	//thisWorld = WorldBuilder.makeWorld(world);
-    	thisWorld = WorldBuilder.makeWorldByFile(world);
+    	//thisWorld = WorldBuilder.makeWorldByFile(world);
+		thisWorld = WorldBuilder.busyWorld();
 		player = new Player("Ronaldo");
     	player.setCurrentLocation(thisWorld.getStartingLocation());
     	
@@ -36,8 +39,24 @@ public class Game {
 	}
 	
 	public void Run() throws IOException {
+		String ave;
+		String end;
+		
 		while(true) {
+			
+			if(player.getCurrentLocation().getGames().isEmpty() == false)
+			{
+				ave = "Available games: \n";
+				end = "[Type 'play' then select a game]";
+			}
+			else
+			{
+				ave = "";
+				end = "";
+			}
+			
 			writer.write(player.getCurrentLocation().toString());
+			writer.write(ave + player.getCurrentLocation().getGames().toString() + end);
 			String[] s = evalCommand();
 			handle(s);
 		}
@@ -82,6 +101,10 @@ public class Game {
 			i++;
 			player.setCurrentLocation(player.getCurrentLocation().travel(array[i]));
 		}
+		else if(array[i].equals("play"))
+		{
+			playMinigame(player.getCurrentLocation());
+		}
 		else {
 			String command = "";
 			for(int a = 0; a < array.length; a++) {
@@ -103,11 +126,21 @@ public class Game {
 		writer.close();
 		reader.close();
 		System.exit(1);
+<<<<<<< HEAD
     }
     
     public void playMinigame(Location place) throws IOException
     {
     	runner = new LocationMiniRunner(place.getGames());
+=======
+	}
+
+    public void playMinigame(Location place) throws IOException
+    {
+    	runner = new LocationMiniRunner(place.getGames());
+    	
+    	writer.write(runner.printGreeting());
+>>>>>>> refs/heads/prisonEscape
     	
     	while(true)
     	{

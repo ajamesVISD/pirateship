@@ -24,6 +24,7 @@ public class Location
    public Location(String name) {
 	   this.name = name;
 	   routes = new ArrayList<Route>();
+	   games = new Registry();
    }
    
    public Location(String name, String description)
@@ -32,6 +33,17 @@ public class Location
 	   this.description = description;
 	   
 	   routes = new ArrayList<Route>();
+	   games = new Registry();
+   }
+   
+   public void addGame(MinigameFactory toAdd)
+   {
+	   games.addGame(toAdd);
+   }
+   
+   public Registry getGames()
+   {
+	   return games;
    }
    
    public void addGame(MinigameFactory toAdd)

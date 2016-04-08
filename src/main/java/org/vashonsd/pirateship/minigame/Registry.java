@@ -24,6 +24,15 @@ public class Registry {
 	public void addGame(MinigameFactory toAdd)
 	{
 		minigames.add(toAdd);
+		createMap();
+	}
+	
+	public boolean isEmpty()
+	{
+		if(minigames.size() == 0)
+			return true;
+		
+		return false;
 	}
 	
 	/*
