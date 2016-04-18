@@ -36,11 +36,23 @@ public class World {
 		pointer = locations.indexOf(l);
 	}
 	
+	public void setPointer(String name) {
+		for(Location l: locations) {
+			if(l.getName().equals("name")) {
+				pointer = locations.indexOf(l);
+			}
+		}
+	}
+	
 	/*
 	 * Returns the first location
 	 */
 	public Location getStartingLocation() {
 		return locations.get(pointer);
+	}
+	
+	public ArrayList<Location> getLocations() {
+		return locations;
 	}
 
 	public String getName() {

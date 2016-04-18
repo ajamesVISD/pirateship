@@ -16,6 +16,12 @@ public class Location
    private String description;
    
    private ArrayList<Route> routes;
+   private ArrayList<Integer> route_id;
+   
+   public Location(String name) {
+	   this.name = name;
+	   routes = new ArrayList<Route>();
+   }
    
    public Location(String name, String description)
    {
@@ -28,6 +34,25 @@ public class Location
    public String getName()
    {
 	   return this.name;
+   }
+   public void setDescription(String description) {
+	   this.description = description;
+   }
+   
+   public String getDescription() {
+	   return this.description;
+   }
+   
+   public ArrayList<Route> getRoutes() {
+	   return routes;
+   }
+   
+   public ArrayList<Integer> getRouteIDs() {
+	   return route_id;
+   }
+   
+   public void addID(int i) {
+	   route_id.add(i);
    }
    
    /*
@@ -51,9 +76,9 @@ public class Location
     * Use this method if you have not already created the Route; it will create the route for you,
     * using the description and accessor you provide.
     */
-   public void addRoute(String description, String accessor, Location dest)
+   public void addRoute(String description, String accessor, String from, Location dest)
    {
-	   Route r = new Route(description, accessor, dest);
+	   Route r = new Route(description, accessor, from, dest);
 	   routes.add(r);
    }
    
