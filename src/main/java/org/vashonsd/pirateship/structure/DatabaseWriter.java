@@ -8,7 +8,6 @@ import com.google.gson.stream.*;
 public class DatabaseWriter {
 	private ArrayList<String> writtenids = new ArrayList<String>();
 	private ArrayList<Location> checkedLocations = new ArrayList<Location>();
-	//private HashMap<Route, Integer> routeIDs = new HashMap<Route, Integer>();
 	
 	public DatabaseWriter() {
 		super();
@@ -16,7 +15,7 @@ public class DatabaseWriter {
 	
 	public void worldWriter(World world) throws IOException {
 		JsonWriter writer;
-		String fileName = "Z:/git/pirateship/src/main/resources/" + world.getName() + ".json";
+		String fileName = "main/resources/" + world.getName() + ".json";
 		File file = new File(fileName);
 		if(!file.exists() && file.isDirectory()) {
 			file.createNewFile();

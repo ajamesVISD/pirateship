@@ -1,6 +1,9 @@
 package org.vashonsd.pirateship.structure;
 
+import java.io.File;
 import java.io.IOException;
+
+import org.vashonsd.pirateship.io.*;
 
 /**
  * @author andy 
@@ -16,7 +19,7 @@ public class WorldBuilder {
 	/*
 	 * Consider this a very simple example of a Factory method; it makes a World based on a given String.
 	 */
-	public static World makeWorld(String s)
+	public static World makeWorld(String s) throws IOException
 	{
 		if (s.equals("BBS"))
 		{
@@ -57,6 +60,7 @@ public class WorldBuilder {
 		w.addLocation(chat);
 		w.addLocation(soft);
 		w.addLocation(news);
+		
 		
 		w.setPointer(main);
 		
@@ -106,30 +110,30 @@ public class WorldBuilder {
 		Location houseMaryInsideTalkNice = new Location("Her tears dry up", "She starts to smile.");
 		Location houseMaryInsideTalkMean = new Location("She pushes you away", "You are forced to leave.");
 		
-		square.addRoute("The florist's stand is bright with colors", "florist", florist);
-		square.addRoute("A warm aroma wafts from the bakery", "bakery", baker);
-		square.addRoute("The tailor is hard at work mending a green shirt", "tailor", clother);
-		square.addRoute("Neighbors talk and laugh in the street", "west", west);
+		square.addRoute("The florist's stand is bright with colors", "florist", "Town square", florist);
+		square.addRoute("A warm aroma wafts from the bakery", "bakery", "Town square", baker);
+		square.addRoute("The tailor is hard at work mending a green shirt", "tailor", "Town square", clother);
+		square.addRoute("Neighbors talk and laugh in the street", "west", "Town square", west);
 		
-		west.addRoute("Visit Jacob's house", "jacob", houseJacob);
-		west.addRoute("Visit Mary's house", "mary", houseMary);
-		west.addRoute("Go back to the square", "back", square);
+		west.addRoute("Visit Jacob's house", "jacob", "West Street", houseJacob);
+		west.addRoute("Visit Mary's house", "mary", "West Street", houseMary);
+		west.addRoute("Go back to the square", "back", "West Street", square);
 		
-		houseJacob.addRoute("Go inside", "open", houseJacobLocked);
-		houseJacobLocked.addRoute("Leave", "back", west);
+		houseJacob.addRoute("Go inside", "open", "Jacob's House", houseJacobLocked);
+		houseJacobLocked.addRoute("Leave", "back", "The door is locked tight", west);
 		
-		houseMary.addRoute("Go inside", "open", houseMaryInside);
-		houseMaryInside.addRoute("Talk to her", "talk", houseMaryInsideTalk);
-		houseMaryInsideTalk.addRoute("Comfort her", "comfort", houseMaryInsideTalkNice);
-		houseMaryInsideTalkNice.addRoute("Talk to her some more", "talk", houseMaryInsideTalk);
-		houseMaryInsideTalkNice.addRoute("Leave", "leave", west);
-		houseMaryInsideTalk.addRoute("Laugh in her face", "laugh", houseMaryInsideTalkMean);
-		houseMaryInsideTalkMean.addRoute("Leave", "leave", west);
-		houseMaryInside.addRoute("Leave", "back", west);
+		houseMary.addRoute("Go inside", "open", "Mary's House", houseMaryInside);
+		houseMaryInside.addRoute("Talk to her", "talk", "Mary's house is very bright with colors", houseMaryInsideTalk);
+		houseMaryInsideTalk.addRoute("Comfort her", "comfort", "She says through her tears", houseMaryInsideTalkNice);
+		houseMaryInsideTalkNice.addRoute("Talk to her some more", "talk", "Her tears dry up", houseMaryInsideTalk);
+		houseMaryInsideTalkNice.addRoute("Leave", "leave", "Her tears dry up", west);
+		houseMaryInsideTalk.addRoute("Laugh in her face", "laugh", "She says through her tears", houseMaryInsideTalkMean);
+		houseMaryInsideTalkMean.addRoute("Leave", "leave", "She pushes you away", west);
+		houseMaryInside.addRoute("Leave", "back", "Mary's house is very bright with colors", west);
 		
-		florist.addRoute("Leave the florist's stand", "back", square);
-		baker.addRoute("Leave the bakery", "back", square);
-		clother.addRoute("Leave the tailorist's", "back", square);	
+		florist.addRoute("Leave the florist's stand", "back", "Florist stand", square);
+		baker.addRoute("Leave the bakery", "back", "Baker's shop", square);
+		clother.addRoute("Leave the tailorist's", "back", "Tailorist", square);	
 		
 		w.addLocation(square);
 		w.addLocation(florist);

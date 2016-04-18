@@ -1,0 +1,79 @@
+{
+  "name": "BBS",
+  "locations": [
+    {
+      "locname": "Main board",
+      "description": "Here you can view updates from the admins.",
+      "route_id": [
+        "Main board - Chat Room",
+        "Main board - Software Exchange",
+        "Main board - News room"
+      ]
+    },
+    {
+      "locname": "Chat Room",
+      "description": "Start a conversation!",
+      "route_id": [
+        "Chat Room - Main board"
+      ]
+    },
+    {
+      "locname": "Software Exchange",
+      "description": "Come get your shareware!",
+      "route_id": [
+        "Software Exchange - Main board"
+      ]
+    },
+    {
+      "locname": "News room",
+      "description": "This place is miserable.",
+      "route_id": [
+        "News room - Main board"
+      ]
+    }
+  ],
+  "route": [
+    {
+      "id": "Main board - Chat Room",
+      "description": "Visit the chat room -->",
+      "accessor": "chat",
+      "from": "Main board",
+      "destination": "Chat Room"
+    },
+    {
+      "id": "Main board - Software Exchange",
+      "description": "Shareware library -->",
+      "accessor": "soft",
+      "from": "Main board",
+      "destination": "Software Exchange"
+    },
+    {
+      "id": "Main board - News room",
+      "description": "Latest news",
+      "accessor": "news",
+      "from": "Main board",
+      "destination": "News room"
+    },
+    {
+      "id": "Chat Room - Main board",
+      "description": "Back to the main board",
+      "accessor": "main",
+      "from": "Chat Room",
+      "destination": "Main board"
+    },
+    {
+      "id": "Software Exchange - Main board",
+      "description": "Back to the main board",
+      "accessor": "main",
+      "from": "Software Exchange",
+      "destination": "Main board"
+    },
+    {
+      "id": "News room - Main board",
+      "description": "Back to the main board",
+      "accessor": "main",
+      "from": "News room",
+      "destination": "Main board"
+    }
+  ]
+}
