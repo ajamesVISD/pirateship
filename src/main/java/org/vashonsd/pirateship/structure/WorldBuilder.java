@@ -77,7 +77,7 @@ public class WorldBuilder {
 		gameRoom.addGame(new MinigameTwitterFactory());
 		gameRoom.addGame(new ShotgunFactory());
 		
-		//prison.addGame(new PrisonEscapeFactory());
+		prison.addGame(new PrisonEscapeFactory());
 		
 		w.setPointer(main);
 		
