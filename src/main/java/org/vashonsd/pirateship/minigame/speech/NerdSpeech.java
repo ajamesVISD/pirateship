@@ -36,7 +36,7 @@ public class NerdSpeech implements SpeechBehavior {
 	}
 
 	public void setPigSpeech() {
-		responsePrompts.put("food", "As much as the next guy, I suppose.\nI don’t think I understand the relevancy of your question.");	
+		responsePrompts.put("food", "As much as the next guy, I suppose.\nI don’t think I understand the relevance of your question.");	
 		fLevelChange.put("food", 0);
 		responsePrompts.put("sci fi", "Oh, absolutely. I’m a die hard sci fi FANATIC.\nI must just exude that presence, for you to have noticed so easily.");
 		fLevelChange.put("sci fi", 2);
