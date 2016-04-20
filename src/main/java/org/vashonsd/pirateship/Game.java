@@ -5,6 +5,7 @@ import java.io.IOException;
 import org.vashonsd.pirateship.io.*;
 import org.vashonsd.pirateship.structure.*;
 import org.vashonsd.pirateship.minigame.*;
+//import org.vashonsd.pirateship.itemStuff.*;
 
 public class Game {
 	private StringRead reader;
@@ -102,6 +103,17 @@ public class Game {
 		else if(array[i].equals("play"))
 		{
 			playMinigame(player.getCurrentLocation());
+		}
+		else if(array[i].equals("read"))
+		{
+			/*
+			ArrayList(Item) availableBooks = new ArrayList(Item)<>;
+			
+			for(player.getInventory: Item b)
+			{
+				if(b.getType.equals("book"))
+			}
+			*/
 		}
 		else {
 			String command = "";
