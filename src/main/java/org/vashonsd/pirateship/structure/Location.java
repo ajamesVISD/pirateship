@@ -2,6 +2,7 @@ package org.vashonsd.pirateship.structure;
 
 import java.util.*;
 import org.vashonsd.pirateship.minigame.*;
+import org.vashonsd.pirateship.itemStuff.*;
 
 /**
  * @author andy
@@ -17,6 +18,7 @@ public class Location
    private String description;
    private Registry games;
    private MinigameRunner runner;
+   private Inventory inventory;
    
    private ArrayList<Route> routes;
    private ArrayList<Integer> route_id;
@@ -25,6 +27,8 @@ public class Location
 	   this.name = name;
 	   routes = new ArrayList<Route>();
 	   games = new Registry();
+	   runner = new MinigameRunner();
+	   inventory = new Inventory();
    }
    
    public Location(String name, String description)
@@ -34,8 +38,14 @@ public class Location
 	   
 	   routes = new ArrayList<Route>();
 	   games = new Registry();
+	   runner = new MinigameRunner();
+	   inventory = new Inventory();
    }
    
+   public Inventory getInventory()
+   {
+	   return inventory;
+   }
    
    public void addGame(MinigameFactory toAdd)
    {

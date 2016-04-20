@@ -53,6 +53,11 @@ public class Inventory
 		return toReturn;
 	}
 	
+	public boolean hasItem(Item t)
+	{
+		return(inventory.containsKey(t) && inventory.get(t)>0);
+	}
+	
 	public void itemSet()
 	{
 		Item knife = new Item("Knife", "A small folding knife", 2);
@@ -60,12 +65,14 @@ public class Inventory
 		Item goldCoin = new Item("Gold Coin", "A small gold coin with the queen's face stamped on one side", 0);
 		Item pirateHat = new Item("Pirate Hat", "Arrrggghhh", 3);
 		Item apple = new Item("Apple", "A shiny red Apple, take a bite deary...", 2);
+		Item book = new Item("Book", "This is a book", 1);
 		
 		addNewItem(knife, 0);
 		addNewItem(waterBottle, 0);
 		addNewItem(goldCoin, 0);
 		addNewItem(pirateHat, 0);
 		addNewItem(apple, 0);
+		addNewItem(book, 1);
 	}
 	
 }
