@@ -58,6 +58,19 @@ public class Inventory
 		return(inventory.containsKey(t) && inventory.get(t)>0);
 	}
 	
+	public boolean hasName(String s)
+	{
+		for(Item i: inventory.keySet())
+		{
+			if(i.getName().equals(s))
+			{
+				return true;
+			}
+		}
+		
+		return false;
+	}
+	
 	public void itemSet()
 	{
 		Item knife = new Item("Knife", "A small folding knife", 2);

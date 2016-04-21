@@ -104,12 +104,18 @@ public class Game {
 		{
 			playMinigame(player.getCurrentLocation());
 		}
+		/*
 		else if(array[i].equals("read"))
 		{
-			ArrayList(Item) availableBooks = new ArrayList(Item)<>;
+			ArrayList<Item> availableBooks = new ArrayList<Item>();
 			
-			if(player.getCurrentLocation().contains(book))
+			if(player.getCurrentLocation().getInventory().hasName(array[i+1]) || player.getInventory().hasName(array[i+1]))
+			{
+				
+			}
+			
 		}
+		*/
 		else {
 			String command = "";
 			for(int a = 0; a < array.length; a++) {
