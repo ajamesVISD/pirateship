@@ -20,7 +20,8 @@ public class DatabaseParser {
 	
 	public World parseWorld(String worldName) throws IOException {
 		DatabaseParser.class.getClassLoader().getResource("main/resources/" + worldName + ".json");
-		String fileName = "src/main/resources/" + worldName + ".json";
+		String fileName = "main/resources/" + worldName + ".json";
+		//TODO Is this valid construction?
 		JsonReader reader = new JsonReader(new FileReader(fileName));
 		reader.beginObject();
 		while(reader.hasNext()) {

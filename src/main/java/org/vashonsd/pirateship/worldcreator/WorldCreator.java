@@ -3,8 +3,10 @@ package org.vashonsd.pirateship.worldcreator;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import org.vashonsd.pirateship.io.ConsoleOut;
 import org.vashonsd.pirateship.io.StringRead;
 import org.vashonsd.pirateship.io.StringWrite;
+import org.vashonsd.pirateship.io.UserInput;
 import org.vashonsd.pirateship.structure.Location;
 import org.vashonsd.pirateship.structure.Route;
 import org.vashonsd.pirateship.structure.World;
@@ -22,6 +24,8 @@ public class WorldCreator {
 	
 	public World worldCreator() throws IOException {
 		
+		writer = new ConsoleOut();
+		reader = new UserInput();
 		
 		//Get name of world
 		writer.write("What is the name of your new world? ");

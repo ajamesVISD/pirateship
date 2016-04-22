@@ -14,10 +14,16 @@ public class DatabaseWriter {
 	}
 	
 	public void worldWriter(World world) throws IOException {
+		
+		File folder = new File("main/resources");
+		if(!folder.exists()) {
+			folder.mkdirs();
+		}
+		
 		JsonWriter writer;
-		String fileName = "main/resources/" + world.getName() + ".json";
-		File file = new File(fileName);
-		if(!file.exists() && file.isDirectory()) {
+		String fileName = world.getName() + ".json";
+		File file = new File(folder, fileName);
+		if(!file.exists() && folder.exists()) {
 			file.createNewFile();
 			System.out.println("Created?");
 		}
