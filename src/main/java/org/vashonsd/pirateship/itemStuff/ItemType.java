@@ -12,12 +12,14 @@ public class ItemType
 //    private EdibleBehavior edible;
 //    private StatBehavior stats;
 //	  private ModBehavior mods;
-//	  private ReadBehavior readable;
+	private ReadBehavior readable;
+	private String r;
     
     public ItemType()
     {
         tags = new ArrayList<Tag>();
         setTags();
+        r = "";
     }
     
     public void setTags()
@@ -65,5 +67,15 @@ public class ItemType
     public void removeTag(Tag tag)
     {
     	tags.remove(tag);
+    }
+    
+    public Response read()
+    {
+    	
+    }
+    
+    public void setRead(String r)
+    {
+    	this.r = r;
     }
 }
