@@ -1,0 +1,26 @@
+{
+  "name": "vashon",
+  "locations": [
+    {
+      "locname": "school",
+      "description": "red",
+      "route_id": [
+        "school - ferry"
+      ]
+    },
+    {
+      "locname": "ferry",
+      "description": "water",
+      "route_id": []
+    }
+  ],
+  "route": [
+    {
+      "id": "school - ferry",
+      "description": "bus",
+      "accessor": "bus",
+      "from": "school",
+      "destination": "ferry"
+    }
+  ]
+}

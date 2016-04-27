@@ -12,7 +12,6 @@ public class App
 {	
     public static void main( String[] args ) throws IOException
     {
-    	Lobby l = new Lobby();
-    	l.modeSelect();
+    	Lobby.modeSelect();
     }   
 }

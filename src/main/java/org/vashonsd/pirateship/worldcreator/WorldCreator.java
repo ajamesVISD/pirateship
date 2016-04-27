@@ -88,13 +88,15 @@ public class WorldCreator {
 				writer.write("Describe how you get back");
 				current.setDescription(reader.read());
 				
-				writer.write("What word will acess this route? ");
+				writer.write("What word will access this route? ");
 				current.setAccessor(reader.read());
 			
 
 				//Sets where the route starts and its destination
 				current.setFrom(newLocation.getName());
 				current.setDestination(from);
+				
+				newLocation.addRoute(current);
 				
 			}
 			
@@ -114,7 +116,18 @@ public class WorldCreator {
 				
 				//Gets location that route will start from
 				writer.write("Which location would you like to branch from?");
-				Location from = getLocation(reader.read());
+				String fromName = reader.read();
+				Location from;
+				while(true) {
+					if(locationExists(fromName)) {
+						from = getLocation(fromName);
+						break;
+					}
+					writer.write("Could not find location " + fromName + ". Try another Location.");
+					fromName = reader.read();
+				}
+				
+				
 				
 				//gets location the route will go to
 				writer.write("Which location would you like to connect to? ");
@@ -162,6 +175,14 @@ public class WorldCreator {
 			name = reader.read();
 		}
 	}
-
+	
+	private boolean locationExists(String fromName) {
+		for(Location l: newWorld.getLocations()) {
+			if(l.getName().equalsIgnoreCase(fromName)) {
+				return true;
+			}
+		}
+		return false;
+	}
 	
 }
