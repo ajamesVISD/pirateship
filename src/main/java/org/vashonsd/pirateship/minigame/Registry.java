@@ -26,6 +26,12 @@ public class Registry {
 	 */
 	private void enrollMinigames() {
 		minigames.add(new TwentyQuestionsFactory());
+		minigames.add(new CookieClickerFactory());
+		minigames.add(new MathFactory());
+		minigames.add(new GuessingCalculatorFactory());
+		minigames.add(new TicTacToeFactory());
+		minigames.add(new MinigameTwitterFactory());
+		minigames.add(new ShotgunFactory());
 	}
 	
 	/*

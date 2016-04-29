@@ -11,7 +11,6 @@ public class MinigameRunner {
 	public static void main(String[] args) throws IOException {
 		// TODO Auto-generated method stub
 		rt = new MinigameRuntime();
-		printGreeting();
 		BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
 		while(true) {
 			if (!(rt.hasReceiver())) {
@@ -26,6 +25,7 @@ public class MinigameRunner {
 				System.out.println(rt.handle(input));
 			}
 		}
+		in.close();
 	}
 	
 	public static void printGreeting() {

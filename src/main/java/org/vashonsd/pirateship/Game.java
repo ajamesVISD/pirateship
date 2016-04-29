@@ -1,6 +1,7 @@
 package org.vashonsd.pirateship;
 
 import java.io.IOException;
+import java.util.HashMap;
 
 import org.vashonsd.pirateship.io.*;
 import org.vashonsd.pirateship.structure.*;
@@ -9,16 +10,23 @@ public class Game {
 	private StringRead reader;
 	private StringWrite writer;
 	
+	private DatabaseWriter db = new DatabaseWriter();
+	
 	private World thisWorld;
+	
+	//private HashMap<String, Player> players;
 	
 	private Player player;
 	private String quitWord = "exit";
 	
-	public Game(String world) {
+	public Game(String world) throws IOException {
 		super();
-    	thisWorld = WorldBuilder.makeWorld(world);
-    	player = new Player("Ronaldo");
+    	//thisWorld = WorldBuilder.makeWorld(world);
+    	thisWorld = WorldBuilder.makeWorldByFile(world);
+		player = new Player("Ronaldo");
     	player.setCurrentLocation(thisWorld.getStartingLocation());
+    	
+    	//players.put(player.getName(), player);
     	
     	reader = new UserInput();
     	writer = new ConsoleOut();
@@ -71,6 +79,7 @@ public class Game {
     }
     
     public void quitGracefully() throws IOException {
+    	db.worldWriter(thisWorld);
     	writer.write("Thank you for exploring " + thisWorld.getName() +".");
     	System.exit(1);
     }

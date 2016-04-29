@@ -1,5 +1,7 @@
 package org.vashonsd.pirateship.structure;
 
+import java.util.Random;
+
 /**
  * The Route class provides us with a connector towards a new Location.
  * Routes are one-way; to return from the new location to the old one, you need another route.
@@ -14,13 +16,24 @@ public class Route{
 	private String accessor;
 	private double distance;
 	private Location destination;
-	
-	public Route(String description, String accessor, Location destination) {
+	private String id;
+	private Random r = new Random();
+
+	private String from;
+
+	public Route(String description, String accessor, String from, Location destination) {
 		super();
 		this.distance = 0;
 		this.description = description;
 		this.accessor = accessor;
+		this.from = from;
 		this.destination = destination;
+		this.id = from + " - " + destination.getName();
+	}
+
+	public Route(String id) {
+		super();
+		this.id = id;
 	}
 	
 	public Route(String description, String accessor, Location destination, double distance) {
@@ -36,11 +49,34 @@ public class Route{
 	public String getDescription() {
 		return description + " [" + accessor + "]";
 	}
+	
+	public String getDescriptionNA() {
+		return description;
+	}
 
 	public Location getDestination() {
 		return destination;
 	}
+	
+	public void setFrom(String from) {
+		this.from = from;
+	}
+	public String getFrom() {
+		return this.from;
+	}
+	
+	public String getId() {
+		return id;
+	}
 
+	public void setDescription(String desc) {
+		this.description = desc;
+	}
+	
+	public void setAccessor(String acc) {
+		this.accessor = acc;
+	}
+	
 	public void setDestination(Location destination) {
 		this.destination = destination;
 	}
