@@ -106,7 +106,7 @@ public class WorldCreator {
 				break;
 			}
 		}
-		
+		//Breaks somewhere after here
 		
 		//Asks user if user would like any more routes connected to existing locations
 		writer.write("Would you like to make any more routes connecting existing locations? ");
