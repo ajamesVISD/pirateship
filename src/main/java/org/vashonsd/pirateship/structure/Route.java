@@ -2,12 +2,16 @@ package org.vashonsd.pirateship.structure;
 
 import java.util.Random;
 
+import org.vashonsd.pirateship.interactions.Interactive;
+import org.vashonsd.pirateship.interactions.Request;
+import org.vashonsd.pirateship.interactions.Response;
+
 /**
  * The Route class provides us with a connector towards a new Location.
  * Routes are one-way; to return from the new location to the old one, you need another route.
  * 
  */
-public class Route{
+public class Route implements Interactive {
 	private String description;
 	
 	//	The accessor is the word the user would type to travel through the route, e.g. "east"
@@ -17,8 +21,6 @@ public class Route{
 	private double distance;
 	private Location destination;
 	private String id;
-	private Random r = new Random();
-
 	private String from;
 
 	public Route(String description, String accessor, String from, Location destination) {
@@ -44,6 +46,16 @@ public class Route{
 		this.destination = destination;
 	}
 	
+
+	public Response handle(Request r) {
+		String verb = r.getVerb();
+		Response res = new Response("I'm not sure how to do that.", r.getState());
+		if (verb.equals("go")) {
+			res.setNewLocation(destination);
+			res.setText(destination.getDescription());
+		}
+		return null;
+	}
 	
 	
 	public String getDescription() {
@@ -91,6 +103,11 @@ public class Route{
 	
 	public String getAccessor() {
 		return accessor;
+	}
+
+	public String getName() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 }

@@ -1,6 +1,7 @@
 package org.vashonsd.pirateship;
 
 import java.io.IOException;
+import java.util.HashMap;
 
 import org.vashonsd.pirateship.io.*;
 import org.vashonsd.pirateship.structure.*;
@@ -13,11 +14,15 @@ public class Game {
 	
 	private DatabaseWriter db = new DatabaseWriter();
 	
+	//Worlds act as namespaces. That is, two locations can have the same identifier as long as they exist in separate Worlds.
+	private HashMap<String, World> worlds;
+	
+	//This is our register of current Players, each with a unique ID.
+	private PlayerRegistry players;
+	
 	private World thisWorld;
 	
 	//private HashMap<String, Player> players;
-	
-	private Player player;
 	
 	private LocationMiniRunner runner;
 	
@@ -26,39 +31,58 @@ public class Game {
 
     	//thisWorld = WorldBuilder.makeWorld(world);
     	//thisWorld = WorldBuilder.makeWorldByFile(world);
+		
+		this.players = new PlayerRegistry();
 		thisWorld = WorldBuilder.busyWorld();
-		player = new Player("Ronaldo");
-    	player.setCurrentLocation(thisWorld.getStartingLocation());
-    	
-    	//players.put(player.getName(), player);
     	
     	reader = new UserInput();
     	writer = new ConsoleOut();
 
 	}
 	
-	public void Run() throws IOException {
-		String ave;
-		String end;
-		
-		while(true) {
-			
-			if(player.getCurrentLocation().getGames().isEmpty() == false)
-			{
-				ave = "Available games: \n";
-				end = "[Type 'play' then select a game]";
-			}
-			else
-			{
-				ave = "";
-				end = "";
-			}
-			
-			writer.write(player.getCurrentLocation().toString());
-			writer.write(ave + player.getCurrentLocation().getGames().toString() + end);
-			String[] s = evalCommand();
-			handle(s);
+	/**
+	 * Checks to see if the name is enrolled in the PlayerRegistry with its unique ID.
+	 * If the given name does not represent a unique ID, it auto-generated a new unique ID by adding an integer
+	 * value to the end of the name.
+	 * @param name
+	 * @param l the Location at which the player should begin.
+	 */
+	public void EnrollPlayer(String name, Location l) {
+		String id = name;
+		int incr = 0;
+		while (players.Has(id)) {
+			incr++;
+			id = name + String.valueOf(incr);
 		}
+		Player p = new Player(name);
+		p.setCurrentLocation(l);
+		players.Add(id, p);
+	}
+	
+	public void Run() throws IOException {
+		
+		
+//		String ave;
+//		String end;
+//		
+//		while(true) {
+//			
+//			if(player.getCurrentLocation().getGames().isEmpty() == false)
+//			{
+//				ave = "Available games: \n";
+//				end = "[Type 'play' then select a game]";
+//			}
+//			else
+//			{
+//				ave = "";
+//				end = "";
+//			}
+//			
+//			writer.write(player.getCurrentLocation().toString());
+//			writer.write(ave + player.getCurrentLocation().getGames().toString() + end);
+//			String[] s = evalCommand();
+//			handle(s);
+//		}
 	}
 	
 	/*

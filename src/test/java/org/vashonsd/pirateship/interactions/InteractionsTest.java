@@ -1,4 +1,4 @@
-package org.vashonsd.pirateship.interactions;
+ package org.vashonsd.pirateship.interactions;
 
 import static org.junit.Assert.*;
 
@@ -12,23 +12,19 @@ public class InteractionsTest {
 	@Before
 	public void setUp() throws Exception {
 		ai = new AvailableInteractions();
-		ai.addInteractor(new Baguette());
-		ai.addInteractor(new Book());
-		ai.addInteractor(new East());
+		ai.addActor(new Baguette());
 	}
+	
+	
 	
 	@Test
 	public void testHandle() {
 		String[] commands = new String[] {
-				"eat baguette",
-				"destroy baguette",
-				"east",
-				"go east",
-				"eat east",
-				"book",
-				"read book",
-				"examine book",
-				"ghghgh book"
+				"examine baguette",
+				"look at baguette",
+				"murf baguette",
+				"examine doodlesquat",
+				"harm baguette"
 		};
 		for (int i = 0; i < commands.length; i++)
 		{

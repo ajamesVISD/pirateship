@@ -3,15 +3,21 @@ package org.vashonsd.pirateship.interactions;
 import java.util.Arrays;
 import java.util.HashMap;
 
+/**
+ * The AvailableInteractions class is a managed HashMap of all the commands available to an Actor at a given moment.
+ * 
+ * The parsing of commands into verbs, and the finding of the correct Actors to respond to those verbs, happens here.
+ * @author andy
+ *
+ */
 public class AvailableInteractions 
 {
-	private HashMap<String, Interactive> responders;
+	private HashMap<String, Actor> responders;
 	
-	
-	
-	public AvailableInteractions() {
+	public AvailableInteractions() 
+	{
 		super();
-		this.responders = new HashMap<String, Interactive>();
+		this.responders = new HashMap<String, Actor>();
 	}
 
 	/*
@@ -19,6 +25,7 @@ public class AvailableInteractions
 	 * See https://en.wikipedia.org/wiki/Imperative_mood if you like a lot of background.
 	 * Commands are in the form "verb directObject", with the verb first (sorry, Yoda).
 	 * Examples, with | as the dividing line:
+	 * 
 	 * read | book
 	 * spit | watermelon seeds
 	 * intimidate | the cowardly judge
@@ -62,25 +69,30 @@ public class AvailableInteractions
 		return res;
 	}
 	
+	/*
+	 * Calling handle() with the given request will dispatch the Request to the correct actor
+	 * and return a Response. Along the way, side effects to the Player may occur.
+	 */
 	public Response handle(Request r)
 	{
 		//our example is "read book"
 		//we split this to get "read" and "book"
-		Response res = new Response("");
 		String[] parsed = parse(r.getText());
 		if (parsed == null) {
-			res.setText("I'm sorry, could you say that again?");
-			return res;
+			return new Response("I'm sorry, could you say that again?");
 		}
 		
-
-		Interactive theThing = responders.get(parsed[1]);
+		Actor theThing = responders.get(parsed[1]);
 		
-		Request req = new Request(parsed[0]);
-		return theThing.handle(req);
+		r.setVerb(parsed[0]);
+		return theThing.handle(parsed[0], r);
 	}
 	
-	public void addInteractor(Interactive t) {
+	public void addActor(Actor t) {
 		responders.put(t.getName(), t);
+	}
+	
+	public void removeActor(Actor t) {
+		responders.remove(t.getName());
 	}
 }
