@@ -17,9 +17,4 @@ public class Player extends Actor {
 	public Player(String name, String description) {
 		super(name, description);
 	}
-
-	@Override
-	public void changeHealth(int n) {
-		
-	}
 }

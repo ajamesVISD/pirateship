@@ -18,9 +18,10 @@ public class AvailableInteractions
 	{
 		super();
 		this.responders = new HashMap<String, Actor>();
+		this.addActor(new Always());
 	}
 
-	/*
+	/**
 	 * For now, our grammar is very simple. All commands are in the imperative mood.
 	 * See https://en.wikipedia.org/wiki/Imperative_mood if you like a lot of background.
 	 * Commands are in the form "verb directObject", with the verb first (sorry, Yoda).
@@ -32,22 +33,22 @@ public class AvailableInteractions
 	 * shake hands with | your worst enemy
 	 * knock on | the red door
 	 * knock on | the yellow door
+	 * @param s — the string to be parsed
 	 * 
 	 */
 	private String[] parse(String s) {
-		String[] words = s.split(" ");
-		String[] res = new String[2];
-		//In cases of arrays of just one word, we insert the implied "go" as the verb.
-		if (words.length == 1) {
-			if (responders.containsKey(words[0])) {
-				res[0] = "go";
-				res[1] = words[0];
-				return res;
-			} else {
-				return null;
+		String[] options = {s, "go " + s, s + " always"};
+		for (String o : options) {
+			String[] result = searchWith(o.split(" "));
+			if (result != null) {
+				return result;
 			}
 		}
-		//We loop until we find a match
+		return null;
+	}
+	
+	private String[] searchWith(String[] words) {
+		String[] res = new String[2];
 		for (int i = 0; i < words.length; i++) {
 			String directObject = concat(Arrays.copyOfRange(words, i, words.length));
 			if (responders.containsKey(directObject)){
@@ -92,7 +93,15 @@ public class AvailableInteractions
 		responders.put(t.getName(), t);
 	}
 	
+	public void addActors(Actor... actors) {
+		for (Actor a : actors) {
+			addActor(a);
+		}
+	}
+	
 	public void removeActor(Actor t) {
 		responders.remove(t.getName());
 	}
+	
+	
 }

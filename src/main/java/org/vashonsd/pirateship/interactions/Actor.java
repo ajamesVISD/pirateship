@@ -1,7 +1,7 @@
 package org.vashonsd.pirateship.interactions;
 
-import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Set;
 import java.util.Stack;
 
 import org.vashonsd.pirateship.commands.Command;
@@ -9,18 +9,25 @@ import org.vashonsd.pirateship.structure.Location;
 import org.vashonsd.pirateship.structure.World;
 
 /**
- * An interactive object keeps a dictionary of verbs and matching commands to handle those verbs.
- * It also specifies all the valid operations that can be performed on the interactive object itself.
- * This is crucial because the commands will need to know what methods can be called.
+ * An Actor is anything that can interact in the World.
+ *
+ * Actors have Locations, inventories, a list of commands by which they may be addressed (with the Actor as the direct object),
+ * and a list of commands which may be invoked by the Actor.
  * @author andy
  *
  */
 public abstract class Actor {
 	protected HashMap<String, Command> commands;
 	
-	//The inventory keeps a dictionary of objects, keyed by the object's name to a list of objects answering to that name.
-	//If we have more than one object answering to that name, it can pop the last one from the list on a LIFO basis.
-	protected HashMap<String, Stack<Actor>> inventory;
+	/**
+	 * An object representing the commands which the Actor may invoke.
+	 */
+	protected AvailableInteractions interactions;
+	
+	/**
+	 * An Inventory object keeps all the Actors within this Actor.
+	 */
+	protected Inventory inventory;
 	
 	protected Location currentLocation;
 	protected World currentWorld;
@@ -28,11 +35,27 @@ public abstract class Actor {
 	protected String description;
 	
 	protected String name;
+	
+	/**
+	 * The typeName is the underlying type of thing: "sword" is the typeName for "rusty sword" and "magic sword of death."
+	 * 
+	 * The typeName should be set in the class extending Actor.
+	 */
+	protected String typeName;
+
+	/**
+	 * Helps with creating collections: e.g., "two knives", "four mice"
+	 */
+	protected String typeNamePlural;
+	
 	protected int health;
 	protected int maxHealth;
 	
-	protected boolean alive;
+	protected boolean alive = false;
 	
+	protected boolean traversable = false;
+	protected boolean visible;
+
 	/**
 	 * An Actor can handle commands and send commands to other Actors. It also keeps an inventory of items, has a current location,
 	 * and has health. It is, by default, not alive. Override this setting to produce a creature.
@@ -42,11 +65,25 @@ public abstract class Actor {
 	public Actor(String name, String description) {
 		super();
 		commands = new HashMap<String, Command>();
-		inventory = new HashMap<String, Stack<Actor>>();
+		inventory = new Inventory();
 		this.description = description;
 		this.name = name;
-		//We begin by assuming that interactive objects are not alive.
-		this.alive = false;
+	}
+
+	public boolean isTraversable() {
+		return traversable;
+	}
+
+	public void setTraversable(boolean traversable) {
+		this.traversable = traversable;
+	}
+	
+	/**
+	 * Use this command to rebuild the Actor's table of available interactions.
+	 */
+	public void Refresh() {
+		//First we send the items in the inventory to be enrolled.
+		
 	}
 
 	/**
@@ -57,6 +94,16 @@ public abstract class Actor {
 	public void enrollCommand(Command c) {
 		for (String s : c.getKeywords()) {
 			commands.put(s, c);
+		}
+	}
+	
+	/**
+	 * Use this method to enroll more than one command at once, or an array of commands.
+	 * @param commands
+	 */
+	public void enrollCommands(Command... commands) {
+		for (Command c : commands) {
+			enrollCommand(c);
 		}
 	}
 	
@@ -83,8 +130,12 @@ public abstract class Actor {
 		if (commands.containsKey(verb)) {
 			return commands.get(verb).execute(this, req.getFrom());
 		} else {
-			return new Response("I don't know how to " + verb + " a " + this.name + ".");
+			return new Response(defaultResponse(verb));
 		}
+	}
+	
+	protected String defaultResponse(String verb) {
+		return "I don't know how to " + verb + " a " + this.name + ".";
 	}
 	
 	public void setName(String s) {
@@ -95,6 +146,22 @@ public abstract class Actor {
 		return this.name;
 	}
 	
+	public String getTypeName() {
+		return typeName;
+	}
+
+	public void setTypeName(String typeName) {
+		this.typeName = typeName;
+	}
+
+	public String getTypeNamePlural() {
+		return typeNamePlural;
+	}
+
+	public void setTypeNamePlural(String typeNamePlural) {
+		this.typeNamePlural = typeNamePlural;
+	}
+	
 	public String getDescription() {
 		return this.description;
 	}
@@ -103,26 +170,34 @@ public abstract class Actor {
 		this.description = s;
 	}
 	
-	public abstract void changeHealth(int n);
+	public void changeHealth(int n) {
+		this.health += n;
+		checkHealth();
+	}
+	
+	protected void checkHealth() {
+		if (health < 0) {
+			setAlive(false);
+		}
+		if (health > maxHealth) {
+			health = maxHealth;
+		}
+	}
 	
 	public boolean isAlive() {
 		return this.alive;
 	}
 	
-	public void addToInventory(Actor i) {
-		String key = i.getName();
-		if (!(inventory.containsKey(key))) {
-			inventory.put(key, new Stack<Actor>());
-		}
-		inventory.get(key).push(i);
+	public Inventory getInventory() {
+		return this.inventory;
+	}
+	
+	public void addToInventory(Actor a) {
+		this.inventory.addActor(a);
 	}
 	
 	public Actor getFromInventory(String name) {
-		if ((inventory.containsKey(name)) && !(inventory.get(name).isEmpty())) {
-			return inventory.get(name).pop();
-		} else {
-			return null;
-		}
+		return this.inventory.getActor(name);
 	}
 	
 	public Location getLocation() {
@@ -131,14 +206,6 @@ public abstract class Actor {
 	
 	public void setLocation(Location loc) {
 		this.currentLocation = loc;
-	}
-
-	public HashMap<String, Stack<Actor>> getInventory() {
-		return inventory;
-	}
-
-	public void setInventory(HashMap<String, Stack<Actor>> inventory) {
-		this.inventory = inventory;
 	}
 
 	public Location getCurrentLocation() {
@@ -177,5 +244,11 @@ public abstract class Actor {
 		this.alive = alive;
 	}
 	
-	
+	public boolean isVisible() {
+		return visible;
+	}
+
+	public void setVisible(boolean visible) {
+		this.visible = visible;
+	}
 }

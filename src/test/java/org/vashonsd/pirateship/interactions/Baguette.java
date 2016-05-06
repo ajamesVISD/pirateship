@@ -6,8 +6,19 @@ public class Baguette extends Actor {
 	
 	public Baguette() {
 		super("baguette", "A delicious baguette");
+		setUp();
+	}
+	
+	public Baguette(String name, String description) {
+		super(name, description);
+		setUp();
+	}
+	
+	protected void setUp() {
 		this.maxHealth = 20;
 		this.health = maxHealth;
+		this.setTypeName("baguette");
+		this.setTypeNamePlural("baguettes");
 		enrollCommand(new Examine());
 		enrollCommand(new Harm());
 	}

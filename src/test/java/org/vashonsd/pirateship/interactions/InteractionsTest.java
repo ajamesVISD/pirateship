@@ -24,7 +24,9 @@ public class InteractionsTest {
 				"look at baguette",
 				"murf baguette",
 				"examine doodlesquat",
-				"harm baguette"
+				"harm baguette",
+				"jump",
+				"leap"
 		};
 		for (int i = 0; i < commands.length; i++)
 		{

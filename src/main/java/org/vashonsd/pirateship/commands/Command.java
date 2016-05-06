@@ -15,11 +15,17 @@ import org.vashonsd.pirateship.interactions.Response;
  *
  */
 public abstract class Command {
-	private ArrayList<String> keywords;
-	
+	protected ArrayList<String> keywords;
+	protected boolean keepAlive = false;
+	protected enum VisibilityLevel {
+		NEVER, HELP, ALWAYS
+	}
+	protected VisibilityLevel visibility;
+
 	public Command() {
 		super();
 		keywords = new ArrayList<String>();
+		visibility = VisibilityLevel.HELP;
 	}
 
 	/**
@@ -34,7 +40,21 @@ public abstract class Command {
 		return keywords;
 	}
 	
+	public void addKeywords(String... keywords) {
+		for (String k : keywords) {
+			addKeyword(k);
+		}
+	}
+	
 	public void addKeyword(String s) {
 		this.keywords.add(s);
+	}
+
+	public boolean isKeepAlive() {
+		return keepAlive;
+	}
+
+	public void setKeepAlive(boolean keepAlive) {
+		this.keepAlive = keepAlive;
 	}
 }
