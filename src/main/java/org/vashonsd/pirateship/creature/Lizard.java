@@ -4,6 +4,8 @@ public class Lizard extends Creature {
 
 	public Lizard(String name, String description, String splash) {
 		super(name, description, splash);
+		this.setMaxHealth(14);
+		this.setHealth(14);
 	}
 
 }

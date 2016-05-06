@@ -7,7 +7,7 @@ public class CreatureFactory {
 			return new Lizard("Bob", "It is sleek and green", "There is a lizard here.");
 		}
 		else if(which.equals("eagle")) {
-			return new Eagle("Dom the Eagle");
+			return new Eagle("eagle");
 		}
 		else if(which.equals("kraken")) {
 			return new Kraken("The Kraken", "Ships Beware!", "You hear the ominous sounds of a Kraken!");

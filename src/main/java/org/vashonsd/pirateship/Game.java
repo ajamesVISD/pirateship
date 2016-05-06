@@ -49,7 +49,7 @@ public class Game {
 		//For now we are just going to take the first Player off the registry.
 		//Later we will want to be able to enroll players on the fly.
 		Player p = players.get("Demo");
-		writer.write(p.handle("look").getText());
+		writer.write(p.handle("look").getText() + "\n");
 		while(true) {
         	String command = reader.read();
         	writer.write(p.handle(command).getText());;

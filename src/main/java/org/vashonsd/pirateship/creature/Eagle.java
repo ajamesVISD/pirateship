@@ -4,6 +4,8 @@ public class Eagle extends Creature {
 
 	public Eagle(String name) {
 		super(name, "It is an eagle with sharp talons", "An eagle soars above");
+		this.setMaxHealth(50);
+		this.setHealth(40);
 	}
 	
 

@@ -1,6 +1,8 @@
 package org.vashonsd.pirateship.structure;
 
 import java.io.IOException;
+
+import org.vashonsd.pirateship.creature.CreatureFactory;
 import org.vashonsd.pirateship.minigame.*;
 
 /**
@@ -65,6 +67,8 @@ public class WorldBuilder {
 		gameRoom.addRoute("It's the way back", "back", "You could go back to City Hall.", main);
 		prison.addRoute("Escape!", "escape", "You must type \"escape\" to escape!",main);
 		//casino.addRoute("Back to City Hall", "back", main);
+		
+		main.addToInventory(CreatureFactory.newCreature("eagle"));
 		
 		w.addLocation(main);
 		w.addLocation(chat);

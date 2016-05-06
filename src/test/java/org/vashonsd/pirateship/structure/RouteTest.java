@@ -18,7 +18,7 @@ public class RouteTest {
 
 	@Test
 	public void testRouteGoesToDestination() {
-		here.addRoute("a winding staircase", "up", there);
+		here.addRoute("a winding staircase", "up", "you see a winding staircase", there);
 	}
 
 }
