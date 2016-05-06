@@ -12,7 +12,7 @@ public class LocationTest {
 
 	@Before
 	public void setUp() throws Exception {
-		testLoc = new Location("test location", "in a testing place");
+		testLoc = new Location("test location", "in a testing place", "here comes the test");
 	}
 
 	@After

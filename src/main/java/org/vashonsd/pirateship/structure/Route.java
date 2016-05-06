@@ -19,8 +19,8 @@ public class Route extends Actor {
 	private Location destination;
 	private String id;
 	
-	public Route(String name, String description, Location whereIs, Location dest) {
-		super(name, description);
+	public Route(String name, String description, String splash, Location whereIs, Location dest) {
+		super(name, description, splash);
 		this.currentLocation = whereIs;
 		this.destination = dest;
 		this.id = currentLocation.getName() + " - " + dest.getName();

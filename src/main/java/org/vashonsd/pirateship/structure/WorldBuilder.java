@@ -21,9 +21,10 @@ public class WorldBuilder {
 	{
 		if (s.equals("BBS"))
 		{
-			return BBSWorld();
+			//return BBSWorld();
+			return null;
 		}
-		else if (s.equals("BUSYWORLD"))
+		else if (s.equals("Busytown"))
 		{
 			return busyWorld();
 		}
@@ -43,27 +44,27 @@ public class WorldBuilder {
 	public static World busyWorld()
 	{
 		World w = new World("Busytown");
-		Location main = new Location("City Hall", "You stand before a brick building with Greek gods painted on it");
-		Location chat = new Location("City Hall Lobby", "Giant columns rise up 100 feet.");
-		Location soft = new Location("Happy Park", "This happy place has birds singing, people playing.");
-		Location news = new Location("Dead End Street", "This place is miserable.");
-		Location gameRoom = new Location("Game Room", "Play minigames!");
-		Location prison = new Location("Pig Prison", "You done it now sonny");
-		Location casino = new Location("Casino", "Play Cards");
+		Location main = new Location("City Hall", "It's a brick building", "You stand before a brick building with Greek gods painted on it");
+		Location chat = new Location("City Hall Lobby", "Giant columns rise up 100 feet.", "You are in the City Hall Lobby. It is majestic.");
+		Location soft = new Location("Happy Park", "This happy place has birds singing, people playing.", "Welcome to Happy Park! What a happy place.");
+		Location news = new Location("Dead End Street", "This place is miserable.", "Uh oh! Dead end.");
+		Location gameRoom = new Location("Game Room", "Play minigames!", "You are in the Game Room. Bells ring and machines whir.");
+		Location prison = new Location("Pig Prison", "You done it now sonny", "It's Pig Prison, the worst place ever.");
+		Location casino = new Location("Casino", "Play Cards", "Welcome to the Casino!");
 		
-		main.addRoute("You see a heavy door with a brass handle", "open", "City Hall", chat);
-		main.addRoute("A gravel walkway leads to a park", "east", "City Hall", soft);
-		main.addRoute("You can just barely spot a dark alley", "north", "City Hall", news);
-		main.addRoute("Have fun in the Game Room", "games", "back", gameRoom);
-		main.addRoute("Go straight to jail", "prison", "back", prison);
-		main.addRoute("Enter the Casino", "casino", "back", casino);
+		main.addRoute("This door has a brass handle. You could open it.", "open", "You see a heavy door with a brass handle", chat);
+		main.addRoute("You can see a park off to the east", "east", "A gravel walkway leads east",soft);
+		main.addRoute("You can't see very far into the alley", "north", "A dark alley leads to the north", news);
+		main.addRoute("The sign says type \"games\" for some games!", "games", "A sign says type \"games\" for some games!", gameRoom);
+		main.addRoute("Go straight to jail", "prison", "You can also go to prison if you want.", prison);
+		//main.addRoute("Enter the Casino", "casino", casino);
 		
-		news.addRoute("You can return to City Hall", "south", "Dead End Street", main);
-		soft.addRoute("The gravel walkway leads back to City Hall", "west", "Happy Park", main);
-		chat.addRoute("It's time to head back outside", "open", "City Hall Lobby", main);
-		gameRoom.addRoute("Back to City Hall", "main", "Game Room", main);
-		prison.addRoute("Escape!", "back", "prison", main);
-		casino.addRoute("Back to City Hall", "back", "casino", main);
+		news.addRoute("You can return to City Hall", "south", "City Hall is to the south", main);
+		soft.addRoute("The gravel walkway leads back to City Hall", "west", "Head west to go back to City Hall", main);
+		chat.addRoute("It looks nice out there", "outside", "You could go back outside", main);
+		gameRoom.addRoute("It's the way back", "back", "You could go back to City Hall.", main);
+		prison.addRoute("Escape!", "escape", "You must type \"escape\" to escape!",main);
+		//casino.addRoute("Back to City Hall", "back", main);
 		
 		w.addLocation(main);
 		w.addLocation(chat);
@@ -71,25 +72,26 @@ public class WorldBuilder {
 		w.addLocation(news);
 		w.addLocation(gameRoom);
 		w.addLocation(prison);
-		w.addLocation(casino);
+		//w.addLocation(casino);
 		
-		gameRoom.addGame(new TwentyQuestionsFactory());
-		gameRoom.addGame(new CookieClickerFactory());
-		gameRoom.addGame(new MathFactory());
-		gameRoom.addGame(new GuessingCalculatorFactory());
-		gameRoom.addGame(new TicTacToeFactory());
-		gameRoom.addGame(new MinigameTwitterFactory());
-		gameRoom.addGame(new ShotgunFactory());
+//		gameRoom.addGame(new TwentyQuestionsFactory());
+//		gameRoom.addGame(new CookieClickerFactory());
+//		gameRoom.addGame(new MathFactory());
+//		gameRoom.addGame(new GuessingCalculatorFactory());
+//		gameRoom.addGame(new TicTacToeFactory());
+//		gameRoom.addGame(new MinigameTwitterFactory());
+//		gameRoom.addGame(new ShotgunFactory());
 		
-		casino.addGame(new GoFishFactory());
+//		casino.addGame(new GoFishFactory());
 		
 		//prison.addGame(new PrisonEscapeFactory());
 		
-		w.setPointer(main);
+		w.setStartingLocation(main);
 		
 		return w;
 	}
 	
+	/*
 	public static World BBSWorld()
 	{
 		World w = new World("BBS");
@@ -99,15 +101,15 @@ public class WorldBuilder {
 		Location news = new Location("News room", "This place is miserable.");
 		Location gameRoom = new Location("Game Room", "Play minigames!");
 		
-		main.addRoute("Visit the chat room -->", "chat", "Main board", chat);
-		main.addRoute("Shareware library -->", "soft", "Main board", soft);
-		main.addRoute("Latest news", "news", "Main board", news);
-		main.addRoute("Have fun in the Game Room", "games", "Main board", gameRoom);
+		main.addRoute("Visit the chat room -->", "chat", chat);
+		main.addRoute("Shareware library -->", "soft", soft);
+		main.addRoute("Latest news", "news", news);
+		main.addRoute("Have fun in the Game Room", "games", gameRoom);
 		
-		news.addRoute("Back to the main board", "main", "News room", main);
-		soft.addRoute("Back to the main board", "main", "Software Exchange", main);
-		chat.addRoute("Back to the main board", "main", "Chat Room", main);
-		gameRoom.addRoute("Back to the main board", "main", "Game Room", main);
+		news.addRoute("Back to the main board", "main", main);
+		soft.addRoute("Back to the main board", "main", main);
+		chat.addRoute("Back to the main board", "main", main);
+		gameRoom.addRoute("Back to the main board", "main", main);
 		
 		w.addLocation(main);
 		w.addLocation(chat);
@@ -115,26 +117,27 @@ public class WorldBuilder {
 		w.addLocation(news);
 		w.addLocation(gameRoom);
 		
-		gameRoom.addGame(new TwentyQuestionsFactory());
-		gameRoom.addGame(new CookieClickerFactory());
-		gameRoom.addGame(new MathFactory());
-		gameRoom.addGame(new GuessingCalculatorFactory());
-		gameRoom.addGame(new TicTacToeFactory());
-		gameRoom.addGame(new MinigameTwitterFactory());
-		gameRoom.addGame(new ShotgunFactory());
+//		gameRoom.addGame(new TwentyQuestionsFactory());
+//		gameRoom.addGame(new CookieClickerFactory());
+//		gameRoom.addGame(new MathFactory());
+//		gameRoom.addGame(new GuessingCalculatorFactory());
+//		gameRoom.addGame(new TicTacToeFactory());
+//		gameRoom.addGame(new MinigameTwitterFactory());
+//		gameRoom.addGame(new ShotgunFactory());
 		
 		w.setPointer(main);
 		
-		gameRoom.addGame(new TwentyQuestionsFactory());
-		gameRoom.addGame(new CookieClickerFactory());
-		gameRoom.addGame(new MathFactory());
-		gameRoom.addGame(new GuessingCalculatorFactory());
-		gameRoom.addGame(new TicTacToeFactory());
-		gameRoom.addGame(new MinigameTwitterFactory());
-		gameRoom.addGame(new ShotgunFactory());
+//		gameRoom.addGame(new TwentyQuestionsFactory());
+//		gameRoom.addGame(new CookieClickerFactory());
+//		gameRoom.addGame(new MathFactory());
+//		gameRoom.addGame(new GuessingCalculatorFactory());
+//		gameRoom.addGame(new TicTacToeFactory());
+//		gameRoom.addGame(new MinigameTwitterFactory());
+//		gameRoom.addGame(new ShotgunFactory());
 		
 		return w;
 	}
+	*/
 
 	/*
 	public static World littleTown() {

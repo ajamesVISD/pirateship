@@ -1,12 +1,8 @@
 package org.vashonsd.pirateship.interactions;
 
+import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Set;
-import java.util.Stack;
-
 import org.vashonsd.pirateship.commands.Command;
-import org.vashonsd.pirateship.structure.Location;
-import org.vashonsd.pirateship.structure.World;
 
 /**
  * An Actor is anything that can interact in the World.
@@ -17,75 +13,14 @@ import org.vashonsd.pirateship.structure.World;
  *
  */
 public abstract class Actor {
+	/**
+	 * Represents all the commands that can be performed on this Actor.
+	 * 
+	 * Once a key (e.g., "examine" or "destroy") is used to find its matching Command, that command can have
+	 * its handle() method called with this actor as a parameter.
+	 */
 	protected HashMap<String, Command> commands;
 	
-	/**
-	 * An object representing the commands which the Actor may invoke.
-	 */
-	protected AvailableInteractions interactions;
-	
-	/**
-	 * An Inventory object keeps all the Actors within this Actor.
-	 */
-	protected Inventory inventory;
-	
-	protected Location currentLocation;
-	protected World currentWorld;
-	
-	protected String description;
-	
-	protected String name;
-	
-	/**
-	 * The typeName is the underlying type of thing: "sword" is the typeName for "rusty sword" and "magic sword of death."
-	 * 
-	 * The typeName should be set in the class extending Actor.
-	 */
-	protected String typeName;
-
-	/**
-	 * Helps with creating collections: e.g., "two knives", "four mice"
-	 */
-	protected String typeNamePlural;
-	
-	protected int health;
-	protected int maxHealth;
-	
-	protected boolean alive = false;
-	
-	protected boolean traversable = false;
-	protected boolean visible;
-
-	/**
-	 * An Actor can handle commands and send commands to other Actors. It also keeps an inventory of items, has a current location,
-	 * and has health. It is, by default, not alive. Override this setting to produce a creature.
-	 * @param name
-	 * @param description
-	 */
-	public Actor(String name, String description) {
-		super();
-		commands = new HashMap<String, Command>();
-		inventory = new Inventory();
-		this.description = description;
-		this.name = name;
-	}
-
-	public boolean isTraversable() {
-		return traversable;
-	}
-
-	public void setTraversable(boolean traversable) {
-		this.traversable = traversable;
-	}
-	
-	/**
-	 * Use this command to rebuild the Actor's table of available interactions.
-	 */
-	public void Refresh() {
-		//First we send the items in the inventory to be enrolled.
-		
-	}
-
 	/**
 	 * Use this method to enroll a Command with this object. 
 	 * Commands come with their own ArrayList of accessors, for example: ["eat","devour","consume"].
@@ -116,6 +51,263 @@ public abstract class Actor {
 	public void enrollCommand(Command c, String access) {
 		commands.put(access, c);
 	}
+	
+	public HashMap<String, Command> getCommands() {
+		return commands;
+	}
+
+	public void setCommands(HashMap<String, Command> commands) {
+		this.commands = commands;
+	}
+	
+	/**
+	 * An Inventory object keeps all the Actors within this Actor.
+	 */
+	protected Inventory inventory;
+	
+	public Inventory getInventory() {
+		return this.inventory;
+	}
+	
+	public void addToInventory(Actor a) {
+		a.setLocation(this);
+		this.inventory.addActor(a);
+	}
+	
+	public Actor getFromInventory(String name) {
+		return this.inventory.getActor(name);
+	}
+	
+	public Actor removeFromInventory(String name) {
+		return this.inventory.remove(name);
+	}
+	
+	public Actor removeFromInventory(Actor a) {
+		return this.inventory.remove(a);
+	}
+	
+	/**
+	 * Gets all items out of the inventory.
+	 * @return
+	 */
+	public ArrayList<Actor> getAllItems() {
+		return inventory.getAllItems();
+	}
+	
+	/**
+	 * Returns all items above a certain VisibilityLevel.
+	 * @param v
+	 * @return
+	 */
+	public ArrayList<Actor> getAllItems(VisibilityLevel v) {
+		return inventory.getAllItems(v);
+	}
+	
+	/**
+	 * The current location of this Actor.
+	 * 
+	 * Notice that the Location is ... an actor. This means that orange seeds can be in an orange, a Player
+	 * can be in a bed, and so on.
+	 */
+	protected Actor currentLocation;
+
+	public Actor getLocation() {
+		return currentLocation;
+	}
+
+	public void setLocation(Actor currentLocation) {
+		this.currentLocation = currentLocation;
+	}
+
+	/**
+	 * The name, representing this Actor, which will be displayed.
+	 */
+	protected String name;
+	
+	public String getName() {
+		return this.name;
+	}
+	
+	public void setName(String s) {
+		this.name = s;
+	}
+	
+	/**
+	 * A descriptive text for this Actor.
+	 */
+	protected String description;
+	
+	public String getDescription() {
+		return this.description;
+	}
+	
+	public void setDescription(String s) {
+		this.description = s;
+	}
+	
+	/**
+	 * The text that will be "splashed" when the Actor is encountered, or when the Player "look"s the Location.
+	 */
+	protected String splashText;
+	
+	public String getSplashText() {
+		return splashText;
+	}
+
+	public void setSplashText(String splashText) {
+		this.splashText = splashText;
+	}
+
+	/**
+	 * It is very likely the game will need to refer to this entity by a unique identifier. Here it is.
+	 */
+	protected String id;
+	
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
+	
+	/**
+	 * The typeName is the underlying type of thing: "sword" is the typeName for "rusty sword" and "magic sword of death."
+	 * 
+	 * The typeName should be set in the class extending Actor.
+	 */
+	protected String typeName;
+	
+	public String getTypeName() {
+		return typeName;
+	}
+
+	public void setTypeName(String typeName) {
+		this.typeName = typeName;
+	}
+
+	
+	/**
+	 * Helps with creating collections: e.g., "two knives", "four mice"
+	 */
+	protected String typeNamePlural;
+	
+	public String getTypeNamePlural() {
+		return typeNamePlural;
+	}
+
+	public void setTypeNamePlural(String typeNamePlural) {
+		this.typeNamePlural = typeNamePlural;
+	}
+	
+	
+	
+	/**
+	 * An integer representing the health of this Actor. Useful for some living creatures.
+	 */
+	protected int health;
+	
+	public int getHealth() {
+		return health;
+	}
+
+	public void setHealth(int health) {
+		this.health = health;
+	}
+	
+	/**
+	 * This is the proper way to change the health of the Actor, since it checks against maxHealth and 0.
+	 * 
+	 * If you want a dramatic death, override the setAlive() method to so something with a false value.
+	 * @param n
+	 */
+	public void changeHealth(int n) {
+		this.health += n;
+		checkHealth();
+	}
+	
+	protected void checkHealth() {
+		if (health < 0) {
+			setAlive(false);
+		}
+		if (health > maxHealth) {
+			health = maxHealth;
+		}
+	}
+	
+	/**
+	 * The maximum health of this Actor. 
+	 * 
+	 * Use getter and setter methods on health to be sure it does not go over this maximum.
+	 */
+	protected int maxHealth;
+	
+	public int getMaxHealth() {
+		return maxHealth;
+	}
+
+	public void setMaxHealth(int maxHealth) {
+		this.maxHealth = maxHealth;
+	}
+	
+	/**
+	 * Actors are, by default, not alive. "Alive" is simply a boolean; make of it what you will.
+	 */
+	protected boolean alive = false;
+
+	public boolean isAlive() {
+		return this.alive;
+	}
+	
+	public void setAlive(boolean alive) {
+		this.alive = alive;
+	}
+	
+	/**
+	 * Traversable objects can take us to another location. Again, another boolean for your use.
+	 */
+	protected boolean traversable = false;
+	
+	public boolean isTraversable() {
+		return traversable;
+	}
+
+	public void setTraversable(boolean traversable) {
+		this.traversable = traversable;
+	}
+	
+	/**
+	 * An enum representing how visible an object in. Objects in plain sight are at EXAMINE.
+	 * 
+	 * As with many things, this is what you make of it. Until this is implemented, this is just four constants
+	 * in a sequence.
+	 */
+	protected VisibilityLevel visibility = VisibilityLevel.EXAMINE;
+	
+	public VisibilityLevel getVisibility() {
+		return visibility;
+	}
+
+	public void setVisibility(VisibilityLevel visibility) {
+		this.visibility = visibility;
+	}
+
+	/**
+	 * An Actor can handle commands and send commands to other Actors. It also keeps an inventory of items, has a current location,
+	 * and has health. It is, by default, not alive. Override this setting to produce a creature.
+	 * @param name -- the short name of the Actor, e.g., "kitten"
+	 * @param description -- a description of the Actor, e.g., "the lustrous fur of this kitten entrances the eye"
+	 * @param splash -- the text we get to announce the Actor, e.g., "You see a tiny kitten"
+	 */
+	public Actor(String name, String description, String splash) {
+		super();
+		commands = new HashMap<String, Command>();
+		inventory = new Inventory();
+		this.description = description;
+		this.splashText = splash;
+		this.name = name;
+		this.id = name;
+	}
 
 	/**
 	 * The Actor receives a String for the predicate (or verb), and the Request object.
@@ -136,119 +328,5 @@ public abstract class Actor {
 	
 	protected String defaultResponse(String verb) {
 		return "I don't know how to " + verb + " a " + this.name + ".";
-	}
-	
-	public void setName(String s) {
-		this.name = s;
-	}
-	
-	public String getName() {
-		return this.name;
-	}
-	
-	public String getTypeName() {
-		return typeName;
-	}
-
-	public void setTypeName(String typeName) {
-		this.typeName = typeName;
-	}
-
-	public String getTypeNamePlural() {
-		return typeNamePlural;
-	}
-
-	public void setTypeNamePlural(String typeNamePlural) {
-		this.typeNamePlural = typeNamePlural;
-	}
-	
-	public String getDescription() {
-		return this.description;
-	}
-	
-	public void setDescription(String s) {
-		this.description = s;
-	}
-	
-	public void changeHealth(int n) {
-		this.health += n;
-		checkHealth();
-	}
-	
-	protected void checkHealth() {
-		if (health < 0) {
-			setAlive(false);
-		}
-		if (health > maxHealth) {
-			health = maxHealth;
-		}
-	}
-	
-	public boolean isAlive() {
-		return this.alive;
-	}
-	
-	public Inventory getInventory() {
-		return this.inventory;
-	}
-	
-	public void addToInventory(Actor a) {
-		this.inventory.addActor(a);
-	}
-	
-	public Actor getFromInventory(String name) {
-		return this.inventory.getActor(name);
-	}
-	
-	public Location getLocation() {
-		return this.currentLocation;
-	}
-	
-	public void setLocation(Location loc) {
-		this.currentLocation = loc;
-	}
-
-	public Location getCurrentLocation() {
-		return currentLocation;
-	}
-
-	public void setCurrentLocation(Location currentLocation) {
-		this.currentLocation = currentLocation;
-	}
-
-	public World getCurrentWorld() {
-		return currentWorld;
-	}
-
-	public void setCurrentWorld(World currentWorld) {
-		this.currentWorld = currentWorld;
-	}
-
-	public int getHealth() {
-		return health;
-	}
-
-	public void setHealth(int health) {
-		this.health = health;
-	}
-
-	public int getMaxHealth() {
-		return maxHealth;
-	}
-
-	public void setMaxHealth(int maxHealth) {
-		this.maxHealth = maxHealth;
-	}
-
-	public void setAlive(boolean alive) {
-		this.alive = alive;
-	}
-	
-	public boolean isVisible() {
-		return visible;
-	}
-
-	public void setVisible(boolean visible) {
-		this.visible = visible;
 	}
 }

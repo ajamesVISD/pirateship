@@ -5,12 +5,12 @@ import org.vashonsd.pirateship.commands.*;
 public class Baguette extends Actor {
 	
 	public Baguette() {
-		super("baguette", "A delicious baguette");
+		super("baguette", "This baguette looks delicious.", "You see a baguette.");
 		setUp();
 	}
 	
-	public Baguette(String name, String description) {
-		super(name, description);
+	public Baguette(String name, String description, String splash) {
+		super(name, description, splash);
 		setUp();
 	}
 	
@@ -21,6 +21,7 @@ public class Baguette extends Actor {
 		this.setTypeNamePlural("baguettes");
 		enrollCommand(new Examine());
 		enrollCommand(new Harm());
+		enrollCommand(new Take());
 	}
 
 	@Override

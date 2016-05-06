@@ -1,8 +1,10 @@
 package org.vashonsd.pirateship.interactions;
 
+import org.vashonsd.pirateship.Player;
+
 public class Request {
 	private String text;
-	private Actor from;
+	private Player from;
 	
 	//When the parser is done parsing this request for its verb, it will store it here, leaving the text
 	//of the original command in place.
@@ -13,7 +15,7 @@ public class Request {
 		this.text = text;
 	}
 	
-	public Request(String text, Actor requestor) {
+	public Request(String text, Player requestor) {
 		super();
 		this.text = text;
 		this.setFrom(requestor);
@@ -39,11 +41,11 @@ public class Request {
 		return verb;
 	}
 
-	public Actor getFrom() {
+	public Player getFrom() {
 		return from;
 	}
 
-	public void setFrom(Actor from) {
+	public void setFrom(Player from) {
 		this.from = from;
 	}
 }

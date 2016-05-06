@@ -3,8 +3,10 @@ package org.vashonsd.pirateship.commands;
 
 import java.util.ArrayList;
 
+import org.vashonsd.pirateship.Player;
 import org.vashonsd.pirateship.interactions.Actor;
 import org.vashonsd.pirateship.interactions.Response;
+import org.vashonsd.pirateship.interactions.VisibilityLevel;
 
 /**
  * A Command represents potential action to take, given an accessor word.
@@ -17,9 +19,7 @@ import org.vashonsd.pirateship.interactions.Response;
 public abstract class Command {
 	protected ArrayList<String> keywords;
 	protected boolean keepAlive = false;
-	protected enum VisibilityLevel {
-		NEVER, HELP, ALWAYS
-	}
+
 	protected VisibilityLevel visibility;
 
 	public Command() {
@@ -31,10 +31,10 @@ public abstract class Command {
 	/**
 	 * 
 	 * @param obj -- the Actor that is the target of this execution.
-	 * @param from -- the Actor (usually the Player) that issued the command.
+	 * @param from -- the Player that issued the command.
 	 * @return -- a Response. Most crucial: swap in the new PlayerState, formulate a text response, and set the KeepAlive to true or false.
 	 */
-	public abstract Response execute(Actor obj, Actor from);
+	public abstract Response execute(Actor obj, Player from);
 	
 	public ArrayList<String> getKeywords() {
 		return keywords;
@@ -57,4 +57,13 @@ public abstract class Command {
 	public void setKeepAlive(boolean keepAlive) {
 		this.keepAlive = keepAlive;
 	}
+
+	public VisibilityLevel getVisibility() {
+		return visibility;
+	}
+
+	public void setVisibility(VisibilityLevel visibility) {
+		this.visibility = visibility;
+	}
+	
 }

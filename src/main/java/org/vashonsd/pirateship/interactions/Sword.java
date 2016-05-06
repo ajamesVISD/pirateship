@@ -5,17 +5,17 @@ import org.vashonsd.pirateship.commands.Examine;
 public class Sword extends Actor {
 
 	public Sword() {
-		super("sword", "It's a little rusty, but usable.");
+		super("sword", "It's a little rusty, but usable.", "There is a sword here.");
 		setUp();
 	}
 	
 	public Sword(String description) {
-		super("sword", description);
+		super("sword", description, "There is a sword here.");
 		setUp();
 	}
 	
 	public Sword(String name, String description) {
-		super(name, description);
+		super(name, description, "There is a sword here.");
 		setUp();
 	}
 	

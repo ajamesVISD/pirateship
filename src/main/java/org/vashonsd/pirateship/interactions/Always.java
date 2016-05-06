@@ -16,10 +16,12 @@ import org.vashonsd.pirateship.commands.*;
 public class Always extends Actor {
 	
 	public Always() {
-		super("always", "");
-		this.setVisible(false);
+		super("always", "", "");
 		this.enrollCommand(new Inventory());
 		this.enrollCommand(new Jump());
+		this.enrollCommand(new Help());
+		this.enrollCommand(new Look());
+		this.setVisibility(VisibilityLevel.NEVER);
 	}
 
 	@Override

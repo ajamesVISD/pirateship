@@ -3,18 +3,18 @@ package org.vashonsd.pirateship.commands;
 import org.vashonsd.pirateship.Player;
 import org.vashonsd.pirateship.interactions.Actor;
 import org.vashonsd.pirateship.interactions.Response;
+import org.vashonsd.pirateship.interactions.VisibilityLevel;
 
-public class Inventory extends Command {
-	
-	public Inventory() {
+public class Help extends Command {
+
+	public Help() {
 		super();
-		addKeyword("inventory");
+		addKeyword("help");
 	}
 	
 	@Override
 	public Response execute(Actor obj, Player from) {
-		 return new Response(from.getInventory().toString());
+		return new Response(from.displayCommands(VisibilityLevel.EXAMINE));
 	}
-	
-	
+
 }

@@ -1,7 +1,12 @@
 package org.vashonsd.pirateship.interactions;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
+import java.util.EnumMap;
 import java.util.HashMap;
+
+import org.vashonsd.pirateship.commands.Command;
 
 /**
  * The AvailableInteractions class is a managed HashMap of all the commands available to an Actor at a given moment.
@@ -12,13 +17,36 @@ import java.util.HashMap;
  */
 public class AvailableInteractions 
 {
+	/**
+	 * A map of available interactions, ordered by visibility, using the enum VisibilityLevel as a key.
+	 * 
+	 * Some commands are available but hidden (easter eggs). Some must always be displayed (routes, for example).
+	 */
+	private EnumMap<VisibilityLevel, HashMap<String,Actor>> availableActors;
+	
 	private HashMap<String, Actor> responders;
 	
 	public AvailableInteractions() 
 	{
 		super();
+		this.availableActors = new EnumMap<VisibilityLevel, HashMap<String,Actor>>(VisibilityLevel.class);
+		for (VisibilityLevel v : VisibilityLevel.values()) {
+			availableActors.put(v, new HashMap<String, Actor>());
+		}
 		this.responders = new HashMap<String, Actor>();
 		this.addActor(new Always());
+	}
+	
+	public HashMap<String, Actor> getAllActors() {
+		HashMap<String, Actor> result = new HashMap<String, Actor>();
+		for (VisibilityLevel v : VisibilityLevel.values()) {
+			//loop through the embedded HashMap, adding values to the result
+			HashMap<String, Actor> inner = availableActors.get(v);
+			for (String s : inner.keySet()) {
+				result.put(s, inner.get(s));
+			}
+		}
+		return result;
 	}
 
 	/**
@@ -76,6 +104,7 @@ public class AvailableInteractions
 	 */
 	public Response handle(Request r)
 	{
+		responders = getAllActors();
 		//our example is "read book"
 		//we split this to get "read" and "book"
 		String[] parsed = parse(r.getText());
@@ -90,7 +119,8 @@ public class AvailableInteractions
 	}
 	
 	public void addActor(Actor t) {
-		responders.put(t.getName(), t);
+		//We place the Actor in its visibility level
+		availableActors.get(t.getVisibility()).put(t.getName(), t);
 	}
 	
 	public void addActors(Actor... actors) {
@@ -99,9 +129,21 @@ public class AvailableInteractions
 		}
 	}
 	
+	public void Clear() {
+		responders.clear();
+	}
+	
 	public void removeActor(Actor t) {
 		responders.remove(t.getName());
 	}
-	
-	
+
+	public ArrayList<Actor> getActorsByVisibility(VisibilityLevel v) {
+		ArrayList<Actor> result = new ArrayList<Actor>();
+		for (VisibilityLevel lev : availableActors.keySet()) {
+			if (lev.compareTo(v) >= 0) {
+				result.addAll(availableActors.get(lev).values());
+			}
+		}
+		return result;
+	}
 }

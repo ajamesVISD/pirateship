@@ -1,5 +1,6 @@
 package org.vashonsd.pirateship.interactions;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Set;
 import java.util.Stack;
@@ -46,5 +47,28 @@ public class Inventory {
 			}
 		}
 		return result;
+	}
+	
+	public ArrayList<Actor> getAllItems(VisibilityLevel v) {
+		ArrayList<Actor> result = new ArrayList<Actor>();
+		for (String k : inv.keySet()) {
+			Actor a = inv.get(k).peek();
+			if (v.compareTo(a.getVisibility()) <= 0) {
+				result.add(inv.get(k).peek());
+			}
+		}
+		return result;
+	}
+	
+	public ArrayList<Actor> getAllItems() {
+		return this.getAllItems(VisibilityLevel.HELP);
+	}
+	
+	public Actor remove(String name) {
+		return inv.get(name).pop();
+	}
+	
+	public Actor remove(Actor a) {
+		return inv.get(a.getName()).pop();
 	}
 }
