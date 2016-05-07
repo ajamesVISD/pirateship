@@ -6,6 +6,8 @@ public class Lizard extends Creature {
 		super(name, description, splash);
 		this.setMaxHealth(14);
 		this.setHealth(14);
+		this.setTypeName("lizard");
+		this.setTypeNamePlural("lizard");
 	}
 
 }

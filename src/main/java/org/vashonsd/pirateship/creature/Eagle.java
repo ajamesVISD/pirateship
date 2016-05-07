@@ -6,6 +6,8 @@ public class Eagle extends Creature {
 		super(name, "It is an eagle with sharp talons", "An eagle soars above");
 		this.setMaxHealth(50);
 		this.setHealth(40);
+		this.setTypeName("eagle");
+		this.setTypeNamePlural("eagles");
 	}
 	
 

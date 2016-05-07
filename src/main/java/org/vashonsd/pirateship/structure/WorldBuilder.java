@@ -3,6 +3,7 @@ package org.vashonsd.pirateship.structure;
 import java.io.IOException;
 
 import org.vashonsd.pirateship.creature.CreatureFactory;
+import org.vashonsd.pirateship.interactions.Baguette;
 import org.vashonsd.pirateship.minigame.*;
 
 /**
@@ -69,6 +70,8 @@ public class WorldBuilder {
 		//casino.addRoute("Back to City Hall", "back", main);
 		
 		main.addToInventory(CreatureFactory.newCreature("eagle"));
+		//main.addToInventory(new Baguette());
+		main.addToInventory(CreatureFactory.newCreature("lizard"));
 		
 		w.addLocation(main);
 		w.addLocation(chat);

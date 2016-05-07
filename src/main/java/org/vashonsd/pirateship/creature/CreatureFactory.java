@@ -4,7 +4,7 @@ public class CreatureFactory {
 	
 	public static Creature newCreature(String which) {
 		if (which.equals("lizard")) {
-			return new Lizard("Bob", "It is sleek and green", "There is a lizard here.");
+			return new Lizard("lizard", "It is sleek and green", "There is a lizard here.");
 		}
 		else if(which.equals("eagle")) {
 			return new Eagle("eagle");

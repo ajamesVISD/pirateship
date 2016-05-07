@@ -6,6 +6,8 @@ public class Kraken extends Creature {
 		super(name, description, splash);
 		this.setMaxHealth(120);
 		this.setHealth(40);
+		this.setTypeName("kraken");
+		this.setTypeNamePlural("krakens");
 	}
 
 }

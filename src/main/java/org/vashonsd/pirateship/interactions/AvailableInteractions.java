@@ -37,6 +37,10 @@ public class AvailableInteractions
 		this.addActor(new Always());
 	}
 	
+	/**
+	 * Steps through each HashMap per visibility level and parses them into one giant hash map.
+	 * @return A HashMap of all Actors with which this Player can interact.
+	 */
 	public HashMap<String, Actor> getAllActors() {
 		HashMap<String, Actor> result = new HashMap<String, Actor>();
 		for (VisibilityLevel v : VisibilityLevel.values()) {
@@ -137,6 +141,11 @@ public class AvailableInteractions
 		responders.remove(t.getName());
 	}
 
+	/**
+	 * Returns all Actors at or above the given level of visibility.
+	 * @param v
+	 * @return
+	 */
 	public ArrayList<Actor> getActorsByVisibility(VisibilityLevel v) {
 		ArrayList<Actor> result = new ArrayList<Actor>();
 		for (VisibilityLevel lev : availableActors.keySet()) {

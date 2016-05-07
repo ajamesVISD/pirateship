@@ -1,5 +1,8 @@
 package org.vashonsd.pirateship;
 
+import java.util.ArrayList;
+
+import org.vashonsd.pirateship.commands.Command;
 import org.vashonsd.pirateship.interactions.*;
 
 
@@ -25,6 +28,18 @@ public class Player extends Actor {
 		interactions = new AvailableInteractions();
 	}
 	
+	/** 
+	 * Returns a view of the current environment, in the form of a string.
+	 * By default, for any objects in the current environment (except the Player itself), return their splash text.
+	 * Example: An eagle soars overhead.
+	 * If the object is traversable (i.e., is a route to somewhere else), it pulls its name and adds it to the end in brackets.
+	 * A winding staircase leads upward. [up]
+	 * @return
+	 */
+	public String look() {
+		return null;
+	}
+	
 	/**
 	 * Rebuilds the interactions available to the Player.
 	 * This is the big algorithm for figuring out all the commands available.
@@ -42,11 +57,6 @@ public class Player extends Actor {
 		interactions.addActor(new Always());
 	}
 	
-	@Override
-	public void addToInventory(Actor a) {
-		super.addToInventory(a);
-	}
-	
 	public Response handle(String text) {
 		refresh();
 		Request req = new Request(text);
@@ -57,7 +67,20 @@ public class Player extends Actor {
 	public String displayCommands(VisibilityLevel v) {
 		String result = "";
 		for (Actor a : interactions.getActorsByVisibility(v)) {
-			result += a.getSplashText() + "\n";
+			//We do not want to display ourselves.
+			if (a != this) {
+				result += a.getSplashText();
+				ArrayList<String> prompts = new ArrayList<String>();
+				for (Command c : a.getCommands().values()) {
+					if (c.getVisibility().compareTo(v) >= 0) {
+						prompts.addAll(c.getKeywords());
+					}
+				}
+				if (prompts.size() > 0) {
+					result += " [" + String.join(", ", prompts) + "]";
+				}
+				result += "\n";
+			}
 		}
 		return result;
 	}
