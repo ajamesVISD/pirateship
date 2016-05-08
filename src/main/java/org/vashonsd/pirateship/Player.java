@@ -37,7 +37,10 @@ public class Player extends Actor {
 	 * @return
 	 */
 	public String look() {
-		return null;
+		refresh();
+		String result = getLocation().getSplashText() + "\n";
+		result += displayCommands(VisibilityLevel.EXAMINE);
+		return result;
 	}
 	
 	/**
@@ -45,6 +48,7 @@ public class Player extends Actor {
 	 * This is the big algorithm for figuring out all the commands available.
 	 */
 	public void refresh() {
+		interactions.Clear();
 		//Add all the actors that are above Help visibility in the Location's inventory.
 		for (Actor a : this.getLocation().getAllItems()) {
 			interactions.addActor(a);
@@ -59,8 +63,7 @@ public class Player extends Actor {
 	
 	public Response handle(String text) {
 		refresh();
-		Request req = new Request(text);
-		req.setFrom(this);
+		Request req = new Request(text, this);
 		return interactions.handle(req);
 	}
 
@@ -75,6 +78,9 @@ public class Player extends Actor {
 					if (c.getVisibility().compareTo(v) >= 0) {
 						prompts.addAll(c.getKeywords());
 					}
+				}
+				if (a.isTraversable()) {
+					prompts.add(a.getName());
 				}
 				if (prompts.size() > 0) {
 					result += " [" + String.join(", ", prompts) + "]";

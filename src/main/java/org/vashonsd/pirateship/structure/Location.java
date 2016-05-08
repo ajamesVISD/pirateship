@@ -25,7 +25,7 @@ public class Location extends Actor {
 	}
 	
 	public void addRoute(String description, String accessor, String splash, Location dest) {
-		Route r = new Route(accessor, description, splash, dest, this);
+		Route r = new Route(accessor, description, splash, this, dest);
 		r.enrollCommand(new TravelCommand(accessor, dest));
 		addToInventory(r);
 	}

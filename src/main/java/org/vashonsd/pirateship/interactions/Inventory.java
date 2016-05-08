@@ -24,9 +24,14 @@ public class Inventory {
 		inv.get(key).push(a);
 	}
 	
+	/**
+	 * Gets the actor answering to the name without removing it from the stack.
+	 * @param name of Actor in question
+	 * @return
+	 */
 	public Actor getActor(String name) {
 		if ((inv.containsKey(name)) && !(inv.get(name).isEmpty())) {
-			return inv.get(name).pop();
+			return inv.get(name).peek();
 		} else {
 			return null;
 		}

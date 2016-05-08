@@ -11,12 +11,13 @@ public class Go extends Command {
 	
 	public Go(Location loc) {
 		this.loc = loc;
+		this.addKeyword("go");
 	}
 	
 	@Override
-	public Response execute(Actor obj, Player from) {
-		from.setLocation(loc);
-		return new Response(from.getDescription());
+	public Response execute(Actor obj, Player player) {
+		player.setLocation(loc);
+		return new Response(player.look());
 	}
 
 }

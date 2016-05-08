@@ -12,11 +12,11 @@ public class Take extends Command {
 	}
 
 	@Override
-	public Response execute(Actor obj, Player from) {
+	public Response execute(Actor obj, Player player) {
 		//Remove this object from the inventory of the object's parent.
 		Actor taken = obj.getLocation().removeFromInventory(obj);
 		//Put it in the inventory of the Player.
-		from.addToInventory(taken);
+		player.addToInventory(taken);
 		return new Response("You have taken " + taken.getName() + ".");
 	}
 }

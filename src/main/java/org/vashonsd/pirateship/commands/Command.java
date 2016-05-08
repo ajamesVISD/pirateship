@@ -31,10 +31,10 @@ public abstract class Command {
 	/**
 	 * 
 	 * @param obj -- the Actor that is the target of this execution.
-	 * @param from -- the Player that issued the command.
+	 * @param player -- the Player that issued the command.
 	 * @return -- a Response. Most crucial: swap in the new PlayerState, formulate a text response, and set the KeepAlive to true or false.
 	 */
-	public abstract Response execute(Actor obj, Player from);
+	public abstract Response execute(Actor obj, Player player);
 	
 	public ArrayList<String> getKeywords() {
 		return keywords;

@@ -13,11 +13,8 @@ public class Look extends Command {
 	}
 	
 	@Override
-	public Response execute(Actor obj, Player from) {
-		String result = "";
-		result += from.getLocation().getSplashText() + "\n";
-		result += from.displayCommands(VisibilityLevel.EXAMINE);
-		return new Response(result);
+	public Response execute(Actor obj, Player player) {
+		return new Response(player.look());
 	}
 
 }

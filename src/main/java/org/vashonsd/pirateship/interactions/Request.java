@@ -10,14 +10,29 @@ public class Request {
 	//of the original command in place.
 	private String verb;
 	
+	/**
+	 * It is possible to create a Request with text only. Not advised outside of the test environment.
+	 * @param text
+	 */
 	public Request(String text) {
-		super();
 		this.text = text;
 	}
 	
+	/**
+	 * A full request with text and Player doing the requesting.
+	 * @param text
+	 * @param requestor
+	 */
 	public Request(String text, Player requestor) {
-		super();
 		this.text = text;
+		this.setFrom(requestor);
+	}
+	
+	/**
+	 * A Request with only the Player set. Set the text of this request before using it.
+	 * @param requestor
+	 */
+	public Request(Player requestor) {
 		this.setFrom(requestor);
 	}
 

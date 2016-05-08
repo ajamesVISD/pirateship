@@ -318,7 +318,8 @@ public abstract class Actor {
 	 * @param req -- the Request object
 	 * @return A response to the request. Side effects to the object have already happened.
 	 */
-	public Response handle(String verb, Request req) {
+	public Response handle(Request req) {
+		String verb = req.getVerb();
 		if (commands.containsKey(verb)) {
 			return commands.get(verb).execute(this, req.getFrom());
 		} else {

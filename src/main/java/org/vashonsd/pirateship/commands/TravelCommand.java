@@ -18,7 +18,7 @@ public class TravelCommand extends Command {
 		super();
 		addKeyword(direction);
 		this.destination = destination;
-		this.setVisibility(VisibilityLevel.EXAMINE);
+		this.setVisibility(VisibilityLevel.HELP);
 	}
 	
 	@Override

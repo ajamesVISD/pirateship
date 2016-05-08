@@ -69,7 +69,7 @@ public class AvailableInteractions
 	 * 
 	 */
 	private String[] parse(String s) {
-		String[] options = {s, "go " + s, s + " always"};
+		String[] options = {s, s + " always"};
 		for (String o : options) {
 			String[] result = searchWith(o.split(" "));
 			if (result != null) {
@@ -118,8 +118,11 @@ public class AvailableInteractions
 		
 		Actor theThing = responders.get(parsed[1]);
 		
+		if (parsed[0].isEmpty()) {
+			parsed[0] = "go";
+		}
 		r.setVerb(parsed[0]);
-		return theThing.handle(parsed[0], r);
+		return theThing.handle(r);
 	}
 	
 	public void addActor(Actor t) {
@@ -134,7 +137,9 @@ public class AvailableInteractions
 	}
 	
 	public void Clear() {
-		responders.clear();
+		for (VisibilityLevel lev : availableActors.keySet()) {
+			availableActors.get(lev).clear();
+		}
 	}
 	
 	public void removeActor(Actor t) {
