@@ -1,7 +1,5 @@
 package org.vashonsd.pirateship.interactions;
 
-import org.vashonsd.pirateship.Player;
-
 public class Request {
 	private String text;
 	private Player from;

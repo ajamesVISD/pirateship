@@ -1,6 +1,5 @@
 package org.vashonsd.pirateship.interactions;
 
-import org.vashonsd.pirateship.Player;
 import org.vashonsd.pirateship.commands.Command;
 
 public class Play extends Command {

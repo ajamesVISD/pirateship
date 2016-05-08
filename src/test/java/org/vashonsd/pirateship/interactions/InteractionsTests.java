@@ -6,7 +6,6 @@ import java.util.ArrayList;
 
 import org.junit.Before;
 import org.junit.Test;
-import org.vashonsd.pirateship.Player;
 import org.vashonsd.pirateship.commands.Command;
 import org.vashonsd.pirateship.commands.Examine;
 import org.vashonsd.pirateship.commands.Go;

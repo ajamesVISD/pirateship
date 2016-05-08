@@ -2,6 +2,7 @@ package org.vashonsd.pirateship;
 
 import java.util.HashMap;
 
+import org.vashonsd.pirateship.interactions.Player;
 import org.vashonsd.pirateship.structure.Location;
 
 public class PlayerRegistry {

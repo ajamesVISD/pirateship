@@ -3,6 +3,7 @@ package org.vashonsd.pirateship;
 import java.io.IOException;
 import java.util.HashMap;
 
+import org.vashonsd.pirateship.interactions.Player;
 import org.vashonsd.pirateship.interactions.Request;
 import org.vashonsd.pirateship.io.*;
 import org.vashonsd.pirateship.structure.*;
@@ -52,7 +53,11 @@ public class Game {
 		writer.write(p.handle("look").getText() + "\n");
 		while(true) {
         	String command = reader.read();
+        	if (command.equals(quitWord)) {
+        		break;
+        	}
         	writer.write(p.handle(command).getText());;
 		}
+		writer.write("Thanks for playing!");
 	}
 }

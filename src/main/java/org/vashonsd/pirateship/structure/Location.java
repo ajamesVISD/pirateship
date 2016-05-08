@@ -2,9 +2,9 @@ package org.vashonsd.pirateship.structure;
 
 import java.util.*;
 
-import org.vashonsd.pirateship.Player;
 import org.vashonsd.pirateship.commands.TravelCommand;
 import org.vashonsd.pirateship.interactions.Actor;
+import org.vashonsd.pirateship.interactions.Player;
 import org.vashonsd.pirateship.minigame.*;
 
 /**

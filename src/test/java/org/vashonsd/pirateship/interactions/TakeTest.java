@@ -4,7 +4,6 @@ import static org.junit.Assert.*;
 
 import org.junit.Before;
 import org.junit.Test;
-import org.vashonsd.pirateship.Player;
 import org.vashonsd.pirateship.structure.Location;
 
 public class TakeTest {

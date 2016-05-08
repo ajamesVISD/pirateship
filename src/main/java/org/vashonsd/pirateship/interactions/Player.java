@@ -1,4 +1,4 @@
-package org.vashonsd.pirateship;
+package org.vashonsd.pirateship.interactions;
 
 import java.util.ArrayList;
 
