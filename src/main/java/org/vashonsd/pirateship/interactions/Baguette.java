@@ -23,6 +23,7 @@ public class Baguette extends Actor {
 			enrollCommand(new Examine());
 			enrollCommand(new Harm());
 			enrollCommand(new Take());
+			enrollCommand(new Eat());
 		}
 
 	@Override

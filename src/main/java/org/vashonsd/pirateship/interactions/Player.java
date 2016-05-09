@@ -19,6 +19,11 @@ public class Player extends Actor {
 	protected AvailableInteractions interactions;
 	
 	/**
+	 * The object of the Player's attention. Null by default.
+	 */
+	Actor target;
+	
+	/**
 	 * Pass a string for an id, a string for a name.
 	 * @param id a unique identifier for this Player. Please look first in the PlayerRegistry to be sure this id is unique.
 	 * @param name a name for the player. Does not have to be unique.
@@ -62,9 +67,18 @@ public class Player extends Actor {
 	}
 	
 	public Response handle(String text) {
-		refresh();
 		Request req = new Request(text, this);
-		return interactions.handle(req);
+		Response resp;
+		if (this.target != null) {
+			resp = this.target.handle(req);
+		} else {
+			refresh();
+			resp = interactions.handle(req);
+		}
+		if (resp.getKeepAlive()) {
+			this.target = resp.getTarget();
+		}
+		return resp;
 	}
 
 	public String displayCommands(VisibilityLevel v) {

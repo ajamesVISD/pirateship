@@ -2,7 +2,7 @@ package org.vashonsd.pirateship.interactions;
 
 public class Request {
 	private String text;
-	private Player from;
+	private Player players;
 	
 	//When the parser is done parsing this request for its verb, it will store it here, leaving the text
 	//of the original command in place.
@@ -54,11 +54,11 @@ public class Request {
 		return verb;
 	}
 
-	public Player getFrom() {
-		return from;
+	public Player getPlayer() {
+		return players;
 	}
 
 	public void setFrom(Player from) {
-		this.from = from;
+		this.players = from;
 	}
 }

@@ -322,13 +322,13 @@ public abstract class Actor {
 	public Response handle(Request req) {
 		String verb = req.getVerb();
 		if (commands.containsKey(verb)) {
-			return commands.get(verb).execute(this, req.getFrom());
+			return commands.get(verb).execute(this, req.getPlayer());
 		} else {
 			return new Response(handleOtherwise(verb));
 		}
 	}
 	
 	protected String handleOtherwise(String verb) {
-		return "I don't know how to " + verb + " a " + this.name + ".";
+		return "I don't know how to " + verb + " a " + this.getTypeName() + ".";
 	}
 }

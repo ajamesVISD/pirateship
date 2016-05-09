@@ -14,17 +14,14 @@ public class Eat extends Command {
 	public Response execute(Actor obj, Player player) {
 		Response r = new Response();
 		String result = "";
+		obj.changeHealth(-5);
+		player.changeHealth(5);
+		result = "You eat the " + obj.getTypeName();
 		if (obj.isAlive()) {
-			obj.changeHealth(-5);
-			player.changeHealth(5);
-			result = "You eat the " + obj.getTypeName();
-			if (obj.isAlive()) {
-				result += ". There is more to eat";
-			} else {
-				result += ". There is no more to eat.";
-			}
+			result += ". There is more to eat";
 		} else {
-			result += "It's all gone. No more.";
+			result += ". It's gone now.";
+			obj.getLocation().removeFromInventory(obj);
 		}
 		r.setText(result);
 		return r;

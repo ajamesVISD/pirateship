@@ -76,7 +76,7 @@ public class DatabaseParser {
 						}
 						else if(name.equals("from")) {
 							current.setFrom(reader.nextString());
-							locations.get(current.getFrom()).addRoute(current);
+							locations.get(current.getPlayer()).addRoute(current);
 						}
 						else if(name.equals("destination")) {
 							current.setDestination(locations.get(reader.nextString()));

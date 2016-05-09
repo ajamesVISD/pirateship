@@ -14,6 +14,16 @@ public class Response
 	//The keepAlive flag alerts the game engine to send subsequent commands directly to this instance instead of to the Location.
 	//This is used to keep dialogues going between the user and the interactive object.
 	private boolean keepAlive;
+	
+	Actor target;
+
+	public Actor getTarget() {
+		return target;
+	}
+
+	public void setTarget(Actor target) {
+		this.target = target;
+	}
 
 	public Response() {
 		super();

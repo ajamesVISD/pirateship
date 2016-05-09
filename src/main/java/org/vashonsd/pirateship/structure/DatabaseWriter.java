@@ -51,7 +51,7 @@ public class DatabaseWriter {
 						writer.name("id").value(r.getId());
 						writer.name("description").value(r.getDescriptionNA());
 						writer.name("accessor").value(r.getAccessor());
-						writer.name("from").value(r.getFrom());
+						writer.name("from").value(r.getPlayer());
 						writer.name("destination").value(r.getDestination().getName());
 						writer.endObject();
 					}

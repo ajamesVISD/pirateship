@@ -6,13 +6,16 @@ package org.vashonsd.pirateship.minigame;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 
+import org.vashonsd.pirateship.minigame.text.Registry;
+import org.vashonsd.pirateship.minigame.text.TextMinigame;
+
 /**
  * @author andy
  * This makes a runtime in which to test out minigames. This avoids the chore of handling static methods
  * and, if we like, allows us to pass different I/O environments to the runtime.
  */
 public class MinigameRuntime {
-	private Minigame receiver;
+	private TextMinigame receiver;
 	private Registry r;
 	
 	public MinigameRuntime() {
@@ -52,7 +55,7 @@ public class MinigameRuntime {
 			}
 		}
 		
-		//Now we know we hava a Minigame set as a receiver for commands.
+		//Now we know we hava a TextMinigame set as a receiver for commands.
 		//First, if the minigame gets the signal "exit," it's time to quit.
 		if (input.equals("exit")) {
 			String result = prompted(receiver.Exit());

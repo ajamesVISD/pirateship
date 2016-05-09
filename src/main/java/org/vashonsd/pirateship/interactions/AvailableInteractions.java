@@ -63,11 +63,18 @@ public class AvailableInteractions
 		for (VisibilityLevel v : VisibilityLevel.values()) {
 			ArrayList<Actor> inner = availableActors.get(v);
 			for (Actor a : inner) {
-				String type = a.getTypeName();
-				if (!result.containsKey(type)) {
-					result.put(type, new ArrayList<Actor>());
+				ArrayList<String> ks = new ArrayList<String>();
+				ks.add(a.getTypeName());
+				//We might need to add the name as a key, too.
+				if (a.getTypeName() != a.getName()) {
+					ks.add(a.getName());
 				}
-				result.get(type).add(a);
+				for (String k : ks) {
+					if (!result.containsKey(k)) {
+						result.put(k, new ArrayList<Actor>());
+					}
+					result.get(k).add(a);
+				}
 			}
 		}
 		return result;

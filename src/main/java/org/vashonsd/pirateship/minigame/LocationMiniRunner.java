@@ -1,5 +1,7 @@
 package org.vashonsd.pirateship.minigame;
 
+import org.vashonsd.pirateship.minigame.text.Registry;
+
 public class LocationMiniRunner 
 {
 	private Registry r;
