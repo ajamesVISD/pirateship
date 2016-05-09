@@ -2,6 +2,8 @@ package org.vashonsd.pirateship.interactions;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.UUID;
+
 import org.vashonsd.pirateship.commands.Command;
 
 /**
@@ -305,7 +307,7 @@ public abstract class Actor {
 		this.name = name;
 		this.typeName = typeName;
 		this.typeNamePlural = typeName + "s";
-		this.id = name;
+		this.id = UUID.randomUUID().toString();
 	}
 
 	/**

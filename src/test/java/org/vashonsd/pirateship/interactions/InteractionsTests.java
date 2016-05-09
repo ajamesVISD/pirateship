@@ -18,7 +18,8 @@ public class InteractionsTests {
 	Location here;
 	Location there;
 	
-	Actor yoyo;
+	Actor yoyo1;
+	Actor yoyo2;
 	Creature cricket;
 	
 	Command play;
@@ -45,7 +46,8 @@ public class InteractionsTests {
 		
 		here.addToInventory(route);
 		
-		yoyo = new Yoyo("yoyo", "It is green, and looks snazzy.", "There is a yoyo here.");
+		yoyo1 = new Yoyo("Charley", "It is green, and looks snazzy.", "There is a yoyo here.");
+		yoyo2 = new Yoyo("Eliza", "Eliza Jane", "There is a yoyo here.");
 		cricket = new Cricket("cricket", "What a lovely cricket.", "You hear a cricket chirp.");
 		
 		play = new Play();
@@ -67,6 +69,14 @@ public class InteractionsTests {
 		assertEquals(ai.getAllActors().size(), a + 1);
 	}
 	
+	@Test
+	public void shouldReturnActorsGroupedByType() {
+		ai.addActor(yoyo1);
+		ai.addActor(yoyo2);
+		System.out.println(ai.getAllActorsByType());
+		assertEquals(ai.getAllActorsByType().get("yoyo").size(), 2);
+	}
+	
 	/**
 	 * Location tests
 	 */
@@ -80,7 +90,7 @@ public class InteractionsTests {
 	 */
 	@Test
 	public void actorShouldReturnSplash() {
-		assertEquals(yoyo.getSplashText(), "There is a yoyo here.");
+		assertEquals(yoyo1.getSplashText(), "There is a yoyo here.");
 	}
 	
 	/**
@@ -128,7 +138,7 @@ public class InteractionsTests {
 	@Test
 	public void inventoryShouldAddItems() {
 		int a = inventory.getAllItems().size();
-		inventory.addActor(yoyo);
+		inventory.addActor(yoyo1);
 		assertEquals(inventory.getAllItems().size() - a, 1);
 	}
 	
@@ -138,6 +148,17 @@ public class InteractionsTests {
 		request = new Request("east", nina);
 		System.out.println(nina.handle(request.getText()).getText());
 		assertEquals(nina.getLocation().getName(), "there");
+	}
+	
+	/**
+	 * Clarifier test
+	 */
+	@Test
+	public void clarifierShouldAskNames() {
+		Clarifier c = new Clarifier("paste");
+		c.addActors(yoyo1);
+		c.addActors(yoyo2);
+		System.out.println("Clarification: " + c.clarify().getText());
 	}
 	
 	
