@@ -21,16 +21,6 @@ public class AvailableInteractions
 	 */
 	private EnumMap<VisibilityLevel, ArrayList<Actor>> availableActors;
 	
-	/**
-	 * responders is the big list the handle() method looks through in search of a target.
-	 * 
-	 * It cannot be as simple as a key/value pair. In our world, many objects might answer to the word "book."
-	 * In this case, we might need to send off for clarification: Which book do you want?
-	 * 
-	 * So we group by <String, ArrayList<Actor>> instead and peel those results apart.
-	 */
-	private HashMap<String, ArrayList<Actor>> responders;
-	
 	public AvailableInteractions() 
 	{
 		super();
@@ -38,7 +28,6 @@ public class AvailableInteractions
 		for (VisibilityLevel v : VisibilityLevel.values()) {
 			availableActors.put(v, new ArrayList<Actor>());
 		}
-		this.responders = new HashMap<String, ArrayList<Actor>>();
 		this.addActor(new Always());
 	}
 	
@@ -95,10 +84,10 @@ public class AvailableInteractions
 	 * @param s — the string to be parsed
 	 * 
 	 */
-	private String[] parse(String s) {
+	private String[] parse(String s, HashMap<String, ArrayList<Actor>> responders) {
 		String[] options = {s, s + " always"};
 		for (String o : options) {
-			String[] result = searchWith(o.split(" "));
+			String[] result = searchWith(o.split(" "), responders);
 			if (result != null) {
 				return result;
 			}
@@ -106,27 +95,18 @@ public class AvailableInteractions
 		return null;
 	}
 	
-	private String[] searchWith(String[] words) {
+	private String[] searchWith(String[] words, HashMap<String, ArrayList<Actor>> responders) {
 		String[] res = new String[2];
 		for (int i = 0; i < words.length; i++) {
-			String directObject = concat(Arrays.copyOfRange(words, i, words.length));
+			String directObject = String.join(" ", Arrays.copyOfRange(words, i, words.length));
 			if (responders.containsKey(directObject)){
-				res[0] = concat(Arrays.copyOfRange(words, 0, i));
+				res[0] = String.join(" ", Arrays.copyOfRange(words, 0, i));
+				//res[0] = concat(Arrays.copyOfRange(words, 0, i));
 				res[1] = directObject;
 				return res;
 			}
 		}
 		return null;
-	}
-	
-	private String concat(String[] arr) {
-		String sep = "";
-		String res = "";
-		for (int i = 0; i < arr.length; i++) {
-			res += sep + arr[i];
-			sep = " ";
-		}
-		return res;
 	}
 	
 	/*
@@ -138,10 +118,10 @@ public class AvailableInteractions
 	 */
 	public Response handle(Request r)
 	{
-		responders = getAllActorsByType();
+		HashMap<String, ArrayList<Actor>> responders = getAllActorsByType();
 		//our example is "read book"
 		//we split this to get "read" and "book"
-		String[] parsed = parse(r.getText());
+		String[] parsed = parse(r.getText(), responders);
 		if (parsed == null) {
 			return new Response("I'm sorry, could you say that again?");
 		}
@@ -172,6 +152,15 @@ public class AvailableInteractions
 		availableActors.get(t.getVisibility()).add(t);
 	}
 	
+	/**
+	 * Allows us to set the incoming actor at a given visibility level.
+	 * @param t
+	 * @param v
+	 */
+	public void addActor(Actor t, VisibilityLevel v) {
+		availableActors.get(v).add(t);
+	}
+	
 	public void addActors(Actor... actors) {
 		for (Actor a : actors) {
 			addActor(a);
@@ -185,7 +174,11 @@ public class AvailableInteractions
 	}
 	
 	public void removeActor(Actor t) {
-		responders.remove(t.getName());
+		for (VisibilityLevel lev : availableActors.keySet()) {
+			if (availableActors.get(lev).remove(t)) {
+				break;
+			}
+		}
 	}
 
 	/**

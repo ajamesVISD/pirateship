@@ -6,49 +6,36 @@ import java.util.Set;
 import java.util.Stack;
 
 public class Inventory {
-	/** A dictionary connecting a key (String) to a Stack of Actors answering to that key. 
-	 * 
-	 * Example: The String "arrow" might retrieve a Stack of three Arrow objects.
-	 * */
-	protected HashMap<String, Stack<Actor>> inv;
+	/** 
+	 * A simple ArrayList of items. To group then in the manner of your choosing, write a method to group them.
+	 **/
+	protected ArrayList<Actor> inv;
 	
 	public Inventory() {
-		inv = new HashMap<String, Stack<Actor>>();
+		inv = new ArrayList<Actor>();
 	}
 	
 	public void addActor(Actor a) {
-		String key = a.getName();
-		if (!(inv.containsKey(key))) {
-			inv.put(key, new Stack<Actor>());
-		}
-		inv.get(key).push(a);
+		inv.add(a);
 	}
 	
-	/**
-	 * Gets the actor answering to the name without removing it from the stack.
-	 * @param name of Actor in question
-	 * @return
-	 */
-	public Actor getActor(String name) {
-		if ((inv.containsKey(name)) && !(inv.get(name).isEmpty())) {
-			return inv.get(name).peek();
-		} else {
-			return null;
-		}
+	public boolean hasActor(Actor a) {
+		return (inv.contains(a));
 	}
 	
 	public String toString() {
 		String result = "";
-		Set<String> keylist = inv.keySet();
-		for (String s : keylist) {
-			Stack<Actor> actors = inv.get(s);
-			if (actors.size() > 0) {
-				if (actors.size() > 1) {
-					result += actors.size() + " " + actors.peek().getTypeNamePlural();
-				} else {
-					result += actors.peek().getName();
-				}
-				result += "\n";
+		HashMap<String, Stack<Actor>> byType = new HashMap<String, Stack<Actor>>();
+		for (Actor a : inv) {
+			String type = a.getTypeName();
+			byType.putIfAbsent(type, new Stack<Actor>());
+			byType.get(type).push(a);
+		}
+		for (Stack<Actor> actors : byType.values()) {
+			if (actors.size() > 1) {
+				result += actors.size() + " " + actors.peek().getTypeNamePlural() + "\n";
+			} else {
+				result += actors.peek().getTypeName();
 			}
 		}
 		return result;
@@ -56,10 +43,9 @@ public class Inventory {
 	
 	public ArrayList<Actor> getAllItems(VisibilityLevel v) {
 		ArrayList<Actor> result = new ArrayList<Actor>();
-		for (String k : inv.keySet()) {
-			Actor a = inv.get(k).peek();
+		for (Actor a : inv) {
 			if (v.compareTo(a.getVisibility()) <= 0) {
-				result.add(inv.get(k).peek());
+				result.add(a);
 			}
 		}
 		return result;
@@ -69,11 +55,7 @@ public class Inventory {
 		return this.getAllItems(VisibilityLevel.HELP);
 	}
 	
-	public Actor remove(String name) {
-		return inv.get(name).pop();
-	}
-	
-	public Actor remove(Actor a) {
-		return inv.get(a.getName()).pop();
+	public boolean remove(Actor a) {
+		return inv.remove(a);
 	}
 }

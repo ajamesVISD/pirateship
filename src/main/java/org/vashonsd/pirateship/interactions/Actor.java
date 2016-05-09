@@ -76,15 +76,7 @@ public abstract class Actor {
 		this.inventory.addActor(a);
 	}
 	
-	public Actor getFromInventory(String name) {
-		return this.inventory.getActor(name);
-	}
-	
-	public Actor removeFromInventory(String name) {
-		return this.inventory.remove(name);
-	}
-	
-	public Actor removeFromInventory(Actor a) {
+	public boolean removeFromInventory(Actor a) {
 		return this.inventory.remove(a);
 	}
 	

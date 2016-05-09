@@ -1,6 +1,6 @@
 package org.vashonsd.pirateship.creature;
 
-import org.vashonsd.pirateship.commands.Eat;
+import org.vashonsd.pirateship.commands.*;
 
 public class Lizard extends Creature {
 
@@ -11,6 +11,7 @@ public class Lizard extends Creature {
 		this.setTypeName("lizard");
 		this.setTypeNamePlural("lizard");
 		this.enrollCommand(new Eat());
+		this.enrollCommand(new Take());
 	}
 
 }
