@@ -1,11 +1,7 @@
 package org.vashonsd.pirateship.structure;
 
-import java.util.*;
-
 import org.vashonsd.pirateship.commands.TravelCommand;
 import org.vashonsd.pirateship.interactions.Actor;
-import org.vashonsd.pirateship.interactions.Player;
-import org.vashonsd.pirateship.minigame.*;
 
 /**
  * @author andy
@@ -18,7 +14,7 @@ public class Location extends Actor {
 
 	public Location(String name, String description, String splash)
 	{
-	   super(name, description, splash);
+	   super(name, "here", description, splash);
 	   this.name = name;
 	   this.description = description;
 	   this.setTraversable(true);

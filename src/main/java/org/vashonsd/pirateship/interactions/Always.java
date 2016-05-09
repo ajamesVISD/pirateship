@@ -16,7 +16,7 @@ import org.vashonsd.pirateship.commands.*;
 public class Always extends Actor {
 	
 	public Always() {
-		super("always", "", "");
+		super("", "always", "", "");
 		this.enrollCommand(new Inventory());
 		this.enrollCommand(new Jump());
 		this.enrollCommand(new Help());
@@ -25,7 +25,7 @@ public class Always extends Actor {
 	}
 
 	@Override
-	protected String defaultResponse(String verb) {
+	protected String handleOtherwise(String verb) {
 		return "I'm sorry, I don't understand that command.";
 	}
 }

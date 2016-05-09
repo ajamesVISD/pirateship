@@ -23,7 +23,6 @@ public abstract class Command {
 	protected VisibilityLevel visibility;
 
 	public Command() {
-		super();
 		keywords = new ArrayList<String>();
 		visibility = VisibilityLevel.HELP;
 	}

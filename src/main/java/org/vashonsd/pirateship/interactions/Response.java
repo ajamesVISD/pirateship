@@ -2,7 +2,8 @@ package org.vashonsd.pirateship.interactions;
 
 /**
  * A Response should be returned by any interactive object that is sent a Request.
- * We do not manipulate the state of the Player directly, but instead package all the state changes into a new PlayerState.
+ * Changes to the Player happen as a side effect. The Response is merely a container for the textual response,
+ * with room for future expansions as needed.
  * The target Player will accept these changes and effect them all at once.
  * @author andy
  *

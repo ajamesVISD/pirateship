@@ -185,7 +185,6 @@ public abstract class Actor {
 	public void setTypeName(String typeName) {
 		this.typeName = typeName;
 	}
-
 	
 	/**
 	 * Helps with creating collections: e.g., "two knives", "four mice"
@@ -199,8 +198,6 @@ public abstract class Actor {
 	public void setTypeNamePlural(String typeNamePlural) {
 		this.typeNamePlural = typeNamePlural;
 	}
-	
-	
 	
 	/**
 	 * An integer representing the health of this Actor. Useful for some living creatures.
@@ -296,16 +293,18 @@ public abstract class Actor {
 	 * An Actor can handle commands and send commands to other Actors. It also keeps an inventory of items, has a current location,
 	 * and has health. It is, by default, not alive. Override this setting to produce a creature.
 	 * @param name -- the short name of the Actor, e.g., "kitten"
+	 * @param typeName -- the name of the underlying type of object. "Ruffles the kitten" is still a "kitten."
 	 * @param description -- a description of the Actor, e.g., "the lustrous fur of this kitten entrances the eye"
 	 * @param splash -- the text we get to announce the Actor, e.g., "You see a tiny kitten"
 	 */
-	public Actor(String name, String description, String splash) {
-		super();
+	public Actor(String name, String typeName, String description, String splash) {
 		commands = new HashMap<String, Command>();
 		inventory = new Inventory();
 		this.description = description;
 		this.splashText = splash;
 		this.name = name;
+		this.typeName = typeName;
+		this.typeNamePlural = typeName + "s";
 		this.id = name;
 	}
 
@@ -323,11 +322,11 @@ public abstract class Actor {
 		if (commands.containsKey(verb)) {
 			return commands.get(verb).execute(this, req.getFrom());
 		} else {
-			return new Response(defaultResponse(verb));
+			return new Response(handleOtherwise(verb));
 		}
 	}
 	
-	protected String defaultResponse(String verb) {
+	protected String handleOtherwise(String verb) {
 		return "I don't know how to " + verb + " a " + this.name + ".";
 	}
 }

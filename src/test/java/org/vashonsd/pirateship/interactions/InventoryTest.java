@@ -19,7 +19,7 @@ public class InventoryTest {
 		player.addToInventory(new Baguette());
 		player.addToInventory(new Baguette());
 		player.addToInventory(new Sword("What a sword!"));
-		player.addToInventory(new Sword("Gleaming Sword", "My, it gleams."));
+		player.addToInventory(new Sword("Gleaming Sword", "My, it gleams.", "A gleaming sword is here."));
 		player.addToInventory(new Sword());
 	}
 

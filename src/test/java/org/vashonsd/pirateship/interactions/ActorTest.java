@@ -25,7 +25,7 @@ public class ActorTest {
 
 	@Test
 	public void baguetteShouldBeExaminable() {
-		response = baguette.handle("examine", request);
+		response = baguette.handle(request);
 		assertFalse(response.getText().isEmpty());
 		assertTrue(response.getText().equals("A delicious baguette"));
 	}

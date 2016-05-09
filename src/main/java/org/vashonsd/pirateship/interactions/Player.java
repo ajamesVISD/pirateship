@@ -24,7 +24,7 @@ public class Player extends Actor {
 	 * @param name a name for the player. Does not have to be unique.
 	 */
 	public Player(String name, String description) {
-		super(name, description, name + " is here!");
+		super(name, name, description, name + " is here!");
 		interactions = new AvailableInteractions();
 	}
 	

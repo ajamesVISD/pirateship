@@ -1,19 +1,19 @@
-package org.vashonsd.pirateship.commands;
+package org.vashonsd.pirateship.minigame;
 
+import org.vashonsd.pirateship.commands.Command;
 import org.vashonsd.pirateship.interactions.Actor;
 import org.vashonsd.pirateship.interactions.Player;
 import org.vashonsd.pirateship.interactions.Response;
 
-public class Look extends Command {
+public class PlayMinigame extends Command {
 
-	public Look() {
-		super();
-		this.addKeywords("look", "look around");
+	public PlayMinigame() {
 	}
-	
+
 	@Override
 	public Response execute(Actor obj, Player player) {
-		return new Response(player.look());
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

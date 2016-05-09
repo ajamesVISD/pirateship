@@ -22,7 +22,7 @@ public class Route extends Actor {
 	 * @param dest Where the route goes to.
 	 */
 	public Route(String name, String description, String splash, Location whereIs, Location dest) {
-		super(name, description, splash);
+		super(name, name, description, splash);
 		this.currentLocation = whereIs;
 		this.destination = dest;
 		this.id = currentLocation.getName() + " - " + dest.getName();
