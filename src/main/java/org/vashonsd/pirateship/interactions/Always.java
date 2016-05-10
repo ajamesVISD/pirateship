@@ -25,7 +25,7 @@ public class Always extends Actor {
 	}
 
 	@Override
-	protected String handleOtherwise(String verb) {
-		return "I'm sorry, I don't understand that command.";
+	protected Response handleOtherwise(Request req) {
+		return new Response("I'm sorry, I don't understand that command.");
 	}
 }

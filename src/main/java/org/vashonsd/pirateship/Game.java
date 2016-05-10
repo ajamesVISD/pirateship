@@ -26,7 +26,6 @@ public class Game {
 	
 	//private HashMap<String, Player> players;
 	
-	private LocationMiniRunner runner;
 	private String quitWord;
 	
 	public Game(String world) throws IOException {
@@ -53,7 +52,7 @@ public class Game {
 		writer.write(p.handle("look").getText() + "\n");
 		while(true) {
         	String command = reader.read();
-        	if (command.equals(quitWord)) {
+        	if (p.getTarget() == null && command.equals(quitWord)) {
         		break;
         	}
         	writer.write(p.handle(command).getText());;

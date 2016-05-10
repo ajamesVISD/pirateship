@@ -3,15 +3,16 @@ package org.vashonsd.pirateship.minigame;
 import org.vashonsd.pirateship.interactions.Request;
 import org.vashonsd.pirateship.interactions.Response;
 import org.vashonsd.pirateship.minigame.text.TextMinigame;
+import org.vashonsd.pirateship.minigame.text.TextMinigameFactory;
 
 public class TextMinigameAdapter extends Minigame {
 	
 	TextMinigame minigame;
 	Response response;
 
-	public TextMinigameAdapter(TextMinigame t) {
-		super(t.getPrompt(), t.getPrompt(), "", "");
-		this.minigame = t;
+	public TextMinigameAdapter(TextMinigameFactory factory) {
+		super(factory.getFullName(), factory.getName(), factory.getDescription(), factory.getDescription());
+		this.minigame = factory.newGame();
 		response = new Response();
 		//by default, the keepAlive value is set to true.
 		response.setKeepAlive(true);
@@ -19,30 +20,24 @@ public class TextMinigameAdapter extends Minigame {
 		response.setTarget(this);
 		response.setText(minigame.Run());
 	}
-
-	@Override
-	public Response handle(Request req) {
-		String prompt = minigame.getPrompt() + ": ";
-		if (req.getText().equals("exit")) {
-			response.setText(prompt + minigame.Exit());
-		} else {
-			response.setText(prompt + minigame.Handle(req.getText()));
-		}
+	
+	public Response handleOtherwise(Request req) {
+		response.setText(minigame.Handle(req.getText()));
 		return response;
 	}
 
 	@Override
-	public String greet() {
+	public String getGreeting() {
 		return minigame.Run();
 	}
 
 	@Override
-	public String prompt() {
+	public String getPrompt() {
 		return minigame.getPrompt();
 	}
 
 	@Override
-	public String exit() {
+	public String getExit() {
 		return minigame.Exit();
 	}
 }

@@ -23,6 +23,14 @@ public class Player extends Actor {
 	 */
 	Actor target;
 	
+	public Actor getTarget() {
+		return target;
+	}
+
+	public void setTarget(Actor target) {
+		this.target = target;
+	}
+
 	/**
 	 * Pass a string for an id, a string for a name.
 	 * @param id a unique identifier for this Player. Please look first in the PlayerRegistry to be sure this id is unique.
@@ -80,9 +88,7 @@ public class Player extends Actor {
 			refresh();
 			resp = interactions.handle(req);
 		}
-		if (resp.getKeepAlive()) {
-			this.target = resp.getTarget();
-		}
+		this.target = resp.getTarget();
 		return resp;
 	}
 

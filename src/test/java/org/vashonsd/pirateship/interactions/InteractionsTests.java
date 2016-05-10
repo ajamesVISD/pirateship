@@ -10,6 +10,8 @@ import org.vashonsd.pirateship.commands.Command;
 import org.vashonsd.pirateship.commands.Examine;
 import org.vashonsd.pirateship.commands.Go;
 import org.vashonsd.pirateship.creature.Creature;
+import org.vashonsd.pirateship.minigame.TextMinigameAdapter;
+import org.vashonsd.pirateship.minigame.text.TwentyQuestionsFactory;
 import org.vashonsd.pirateship.structure.Location;
 import org.vashonsd.pirateship.structure.Route;
 
@@ -159,6 +161,15 @@ public class InteractionsTests {
 		c.addActors(yoyo1);
 		c.addActors(yoyo2);
 		System.out.println("Clarification: " + c.clarify().getText());
+	}
+	
+	/**
+	 * TextMinigameAdapter tests
+	 */
+	@Test
+	public void textMinigameAdapterShouldHoldaNewGame() {
+		TextMinigameAdapter mini = new TextMinigameAdapter(new TwentyQuestionsFactory());
+		System.out.println(mini.getGreeting());
 	}
 	
 	

@@ -3,6 +3,7 @@ package org.vashonsd.pirateship.minigame;
 import org.vashonsd.pirateship.interactions.Actor;
 import org.vashonsd.pirateship.interactions.Request;
 import org.vashonsd.pirateship.interactions.Response;
+import org.vashonsd.pirateship.minigame.text.*;
 
 /**
  * A 
@@ -12,16 +13,33 @@ import org.vashonsd.pirateship.interactions.Response;
 public abstract class Minigame extends Actor {
 	
 	Response response;
+	String exitWord;
+	
+	public static Minigame produce(String s) {
+		Minigame m;
+		if (s.equalsIgnoreCase("idiotic")) {
+			m = new IdioticGame();
+		} else {
+			m = null;
+		} if (s.equalsIgnoreCase("20Q")) {
+			m = new TextMinigameAdapter(new TwentyQuestionsFactory());
+		}
+		return m;
+	}
 
 	public Minigame(String name, String typeName, String description, String splash) {
 		super(name, typeName, description, splash);
 		response = new Response();
 		response.setKeepAlive(true);
 		response.setTarget(this);
-		response.setText(greet());
+		//response.setText(getGreeting());
+		this.exitWord = "exit";
 	}
-
-	public abstract String greet();
+	
+	public Response quit() {
+		Response r = new Response(getExit());
+		return r;
+	}
 
 	/**
 	 * You get the keys to the handle method. Drive safely.
@@ -30,9 +48,19 @@ public abstract class Minigame extends Actor {
 	 * Use req.getPlayer() to get the player that made the request.
 	 */
 	@Override
-	public abstract Response handle(Request req);
+	public Response handle(Request req) {
+		if (req.getText().equalsIgnoreCase(exitWord)) {
+			return quit();
+		} else {
+			return handleOtherwise(req);
+		}
+	}
 	
-	public abstract String prompt();
+	public abstract String getGreeting();
 	
-	public abstract String exit();
+	public abstract Response handleOtherwise(Request req);
+	
+	public abstract String getPrompt();
+	
+	public abstract String getExit();
 }
