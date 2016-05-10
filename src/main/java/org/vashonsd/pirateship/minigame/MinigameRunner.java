@@ -52,7 +52,7 @@ public class MinigameRunner extends Actor {
 				result += game.getPrompt() + ": " + "Welcome back, " + player.getName() + "!\n";
 			} else {
 				game = Minigame.produce(minigameType);
-				result += game.getGreeting() + "\n";
+				//result += game.getGreeting() + "\n";
 				games.put(id, game);
 			}
 		} else {

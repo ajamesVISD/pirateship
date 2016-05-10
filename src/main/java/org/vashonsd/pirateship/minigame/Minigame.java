@@ -16,19 +16,34 @@ public abstract class Minigame extends Actor {
 	String exitWord;
 	
 	public static Minigame produce(String s) {
-		Minigame m;
-		if (s.equalsIgnoreCase("idiotic")) {
-			m = new IdioticGame();
-		} else {
-			m = null;
-		} if (s.equalsIgnoreCase("20Q")) {
-			m = new TextMinigameAdapter(new TwentyQuestionsFactory());
+		TextMinigameFactory m;
+		if (s.equalsIgnoreCase("20Q")) {
+			m = new TwentyQuestionsFactory();
+		} else if (s.equalsIgnoreCase("Blackjack")) {
+			m = new BlackjackFactory();
+		} else if (s.equalsIgnoreCase("CC")) {
+			m = new CookieClickerFactory();
+		} else if (s.equalsIgnoreCase("GF")) {
+			m = new GoFishFactory();
+		} else if (s.equalsIgnoreCase("GuessCalc")){
+			m = new GuessingCalculatorFactory();
+		} else if (s.equalsIgnoreCase("math")) {
+			m = new MathFactory();
+		} else if (s.equalsIgnoreCase("GOPP")) {
+			m = new PrisonEscapeFactory();
+		} else if (s.equalsIgnoreCase("Shot")) {
+			m = new ShotgunFactory();
+		} else if (s.equalsIgnoreCase("Tic tac toe")) {
+			m = new TicTacToeFactory();
 		}
-		return m;
+		else {
+			m = null;
+		}
+		return new TextMinigameAdapter(m);
 	}
 
 	public Minigame(String name, String typeName, String description, String splash) {
-		super(name, typeName, description, splash);
+		super(name, typeName, description, " " + splash + "[" + typeName + "]");
 		response = new Response();
 		response.setKeepAlive(true);
 		response.setTarget(this);
