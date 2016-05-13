@@ -1,13 +1,13 @@
 package org.vashonsd.pirateship.commands;
 
-import java.util.ArrayList;
-
 public class CommandSets {
 	
-	public static ArrayList<Command> basic() {
-		ArrayList<Command> results = new ArrayList<Command>();
-		results.add(new Examine());
-		results.add(new Take());
+	public static Command[] basicForItems() {
+		Command[] results = 
+		{
+		new Examine(), 
+		new Take()
+		};
 		return results;
 	}
 	

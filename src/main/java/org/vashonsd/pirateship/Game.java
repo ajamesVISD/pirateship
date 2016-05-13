@@ -6,9 +6,9 @@ import java.util.HashMap;
 import org.vashonsd.pirateship.interactions.Player;
 import org.vashonsd.pirateship.interactions.Request;
 import org.vashonsd.pirateship.io.*;
+import org.vashonsd.pirateship.item.*;
 import org.vashonsd.pirateship.structure.*;
 import org.vashonsd.pirateship.minigame.*;
-import org.vashonsd.pirateship.itemStuff.*;
 
 public class Game {
 	private StringRead reader;
@@ -16,13 +16,8 @@ public class Game {
 	
 	private DatabaseWriter db = new DatabaseWriter();
 	
-	//Worlds act as namespaces. That is, two locations can have the same identifier as long as they exist in separate Worlds.
-	private HashMap<String, World> worlds;
-	
 	//This is our register of current Players, each with a unique ID.
 	private PlayerRegistry players;
-	
-	private World thisWorld;
 	
 	//private HashMap<String, Player> players;
 	

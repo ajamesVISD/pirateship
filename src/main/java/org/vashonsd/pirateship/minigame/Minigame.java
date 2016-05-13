@@ -1,6 +1,7 @@
 package org.vashonsd.pirateship.minigame;
 
 import org.vashonsd.pirateship.interactions.Actor;
+import org.vashonsd.pirateship.interactions.Player;
 import org.vashonsd.pirateship.interactions.Request;
 import org.vashonsd.pirateship.interactions.Response;
 import org.vashonsd.pirateship.minigame.text.*;
@@ -51,8 +52,9 @@ public abstract class Minigame extends Actor {
 		this.exitWord = "exit";
 	}
 	
-	public Response quit() {
+	public Response quit(Player p) {
 		Response r = new Response(getExit());
+		r.setText(r.getText() + "\n" + p.look());
 		return r;
 	}
 
@@ -65,7 +67,7 @@ public abstract class Minigame extends Actor {
 	@Override
 	public Response handle(Request req) {
 		if (req.getText().equalsIgnoreCase(exitWord)) {
-			return quit();
+			return quit(req.getPlayer());
 		} else {
 			return handleOtherwise(req);
 		}
