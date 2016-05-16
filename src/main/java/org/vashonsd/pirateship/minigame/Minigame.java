@@ -1,51 +1,81 @@
-/**
- * 
- */
 package org.vashonsd.pirateship.minigame;
 
+import org.vashonsd.pirateship.interactions.Actor;
+import org.vashonsd.pirateship.interactions.Request;
+import org.vashonsd.pirateship.interactions.Response;
+import org.vashonsd.pirateship.minigame.text.*;
+
 /**
+ * A 
  * @author andy
- * The Minigame interface describes the behaviors of anything that can work as a Minigame in our world.
- * 
- * Minigames are like processes that run within the main process of the game. Once the Player decides to 
- * Run a minigame, the text commands are now piped into the Minigame and consumed there.
- * 
- * This means that Minigames need to be able to quit gracefully, returning an exit message. They cannot
- * grab control of the interface and never let it go.
+ *
  */
-public interface Minigame {
-  /*
-   * Run starts up the Minigame. It should return a String to announce its starting up; this may
-   * be displayed back to the user.
-   * 
-   * 
-   */
-  public String Run();
-  
-  /*
-   * The "prompt" in getPrompt is what will be displayed in the chat with the user. 
-   * 
-   * While playing CrazyChess, the user might want to see a response like:
-   * 
-   * CrazyChess: "I resign! Do you want to play again? (y/n)"
-   * 
-   * the "CrazyChess" part of that line is the prompt. The game engine will handle adding it to the
-   * start of the line.
-   */
-  public String getPrompt();
-  
-  /*
-   * This is the entry point for commands to reach the minigame. This of this as the user input; the return
-   * value is the output.
-   * 
-   * For example, in CrazyChess, expect to receive something like "B>e4" (Bishop to the square at e4).
-   * 
-   * The return value might be a string representing the board, with CrazyChess' move and bizarre messages.
-   */
-  public String Request(String s);
-  
-  /*
-   * This sends control back to the main environment, along with one last message.
-   */
-  public String Exit();
+public abstract class Minigame extends Actor {
+	
+	Response response;
+	String exitWord;
+	
+	public static Minigame produce(String s) {
+		TextMinigameFactory m;
+		if (s.equalsIgnoreCase("20Q")) {
+			m = new TwentyQuestionsFactory();
+		} else if (s.equalsIgnoreCase("Blackjack")) {
+			m = new BlackjackFactory();
+		} else if (s.equalsIgnoreCase("CC")) {
+			m = new CookieClickerFactory();
+		} else if (s.equalsIgnoreCase("GF")) {
+			m = new GoFishFactory();
+		} else if (s.equalsIgnoreCase("GuessCalc")){
+			m = new GuessingCalculatorFactory();
+		} else if (s.equalsIgnoreCase("math")) {
+			m = new MathFactory();
+		} else if (s.equalsIgnoreCase("GOPP")) {
+			m = new PrisonEscapeFactory();
+		} else if (s.equalsIgnoreCase("Shot")) {
+			m = new ShotgunFactory();
+		} else if (s.equalsIgnoreCase("Tic tac toe")) {
+			m = new TicTacToeFactory();
+		}
+		else {
+			m = null;
+		}
+		return new TextMinigameAdapter(m);
+	}
+
+	public Minigame(String name, String typeName, String description, String splash) {
+		super(name, typeName, description, " " + splash + "[" + typeName + "]");
+		response = new Response();
+		response.setKeepAlive(true);
+		response.setTarget(this);
+		//response.setText(getGreeting());
+		this.exitWord = "exit";
+	}
+	
+	public Response quit() {
+		Response r = new Response(getExit());
+		return r;
+	}
+
+	/**
+	 * You get the keys to the handle method. Drive safely.
+	 * 
+	 * Use req.getVerb() to find out what action phrase has been sent to you.
+	 * Use req.getPlayer() to get the player that made the request.
+	 */
+	@Override
+	public Response handle(Request req) {
+		if (req.getText().equalsIgnoreCase(exitWord)) {
+			return quit();
+		} else {
+			return handleOtherwise(req);
+		}
+	}
+	
+	public abstract String getGreeting();
+	
+	public abstract Response handleOtherwise(Request req);
+	
+	public abstract String getPrompt();
+	
+	public abstract String getExit();
 }

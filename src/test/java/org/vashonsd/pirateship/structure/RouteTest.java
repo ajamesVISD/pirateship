@@ -7,18 +7,18 @@ import org.junit.Test;
 
 public class RouteTest {
 	
-	private Route testRoute;
-	private Location to;
+	private Location here;
+	private Location there;
 
 	@Before
 	public void setUp() throws Exception {
-		to = new Location ("to", "the place we're going to");
-		testRoute = new Route("A long pathway", "northwest", to);
+		here = new Location("here", "a pleasant grove", "go here");
+		there = new Location("there", "a terrible place where no one ought to go.", "go there");
 	}
 
 	@Test
 	public void testRouteGoesToDestination() {
-		assertSame(testRoute.getDestination(), to);
+		here.addRoute("a winding staircase", "up", "you see a winding staircase", there);
 	}
 
 }

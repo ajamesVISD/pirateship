@@ -11,29 +11,45 @@ import java.util.*;
  */
 public class World {
 	private String name;
-	private ArrayList<Location> locations;
-	private int pointer; //This is the index of the starting location for this World.
+	private HashMap<String, Location> locations;
+	private String pointer; //This is the index of the starting location for this World.
 	
 	public World(String name) {
 		super();
 		this.setName(name);
-		locations = new ArrayList<Location>();
+		locations = new HashMap<String, Location>();
 	}
 	
+	/**
+	 * Checks for a unique ID for this Location.
+	 * If the name is not unique, increments it until it is.
+	 * @param loc
+	 */
 	public void addLocation(Location loc) {
-		locations.add(loc);
+		String name = loc.getName();
+		String id = name;
+		int incr = 0;
+		while(locations.containsKey(id)) {
+			incr++;
+			id = name + Integer.toString(incr);
+		}
+		//Now we have a unique identifier.
+		loc.setId(id);
+		locations.put(id, loc);
 	}
 	
-	public void addLocation(String name, String description) {
-		Location l = new Location(name, description);
-		locations.add(l);
+	public void addLocation(String name, String description, String splash) {
+		Location l = new Location(name, description, splash);
+		addLocation(l);
 	}
 	
 	/*
 	 * From the given Location, find the index of that Location and set the pointer to that.
+	 * 
+	 * Be sure it is enrolled first.
 	 */
 	public void setPointer(Location l) {
-		pointer = locations.indexOf(l);
+		pointer = l.getId();
 	}
 	
 	/*
@@ -41,6 +57,18 @@ public class World {
 	 */
 	public Location getStartingLocation() {
 		return locations.get(pointer);
+	}
+	
+	public void setStartingLocation(Location l) {
+		setPointer(l);
+	}
+	
+	public ArrayList<Location> getLocations() {
+		ArrayList<Location> result = new ArrayList<Location>();
+		for (String key : locations.keySet()) {
+			result.add(locations.get(key));
+		}
+		return result;
 	}
 
 	public String getName() {

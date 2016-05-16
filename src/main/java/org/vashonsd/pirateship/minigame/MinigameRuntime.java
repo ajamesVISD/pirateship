@@ -6,19 +6,28 @@ package org.vashonsd.pirateship.minigame;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 
+import org.vashonsd.pirateship.minigame.text.Registry;
+import org.vashonsd.pirateship.minigame.text.TextMinigame;
+
 /**
  * @author andy
  * This makes a runtime in which to test out minigames. This avoids the chore of handling static methods
  * and, if we like, allows us to pass different I/O environments to the runtime.
  */
 public class MinigameRuntime {
-	private Minigame receiver;
+	private TextMinigame receiver;
 	private Registry r;
 	
 	public MinigameRuntime() {
 		super();
 		r = new Registry();
 		//By default, we'll use the console in as input. If we want to set a different input later, we can.
+	}
+	
+	public MinigameRuntime(Registry r)
+	{
+		super();
+		this.r = r;
 	}
 	
 	public String showGames() {
@@ -36,7 +45,8 @@ public class MinigameRuntime {
 	public String handle(String input) {
 		// Our first condition: We don't have a runtime set for any minigame. Time to see if
 		// have been sent a valid choice for one.
-		if (receiver == null) {
+		if (receiver == null) 
+		{
 			if (r.hasGame(input)) {
 				receiver = r.getGame(input);
 				return prompted(receiver.Run());
@@ -45,7 +55,7 @@ public class MinigameRuntime {
 			}
 		}
 		
-		//Now we know we hava a Minigame set as a receiver for commands.
+		//Now we know we hava a TextMinigame set as a receiver for commands.
 		//First, if the minigame gets the signal "exit," it's time to quit.
 		if (input.equals("exit")) {
 			String result = prompted(receiver.Exit());
@@ -53,6 +63,6 @@ public class MinigameRuntime {
 			return result;
 		}
 		//Otherwise, send back whatever the receiver does with the input.
-		return prompted(receiver.Request(input));
+		return prompted(receiver.Handle(input));
 	}
 }

@@ -1,18 +1,19 @@
-package org.vashonsd.pirateship.minigame;
+package org.vashonsd.pirateship.minigame.text;
 
 import java.util.*;
+
 
 public class Registry {
 	// First we make an arraylist of Minigames, then we walk through each one, finding out its short name
 	// and using that to enroll it in the hashmap.
-	private HashMap<String, MinigameFactory> minigameMap;
-	private ArrayList<MinigameFactory> minigames;
+	private HashMap<String, TextMinigameFactory> minigameMap;
+	private ArrayList<TextMinigameFactory> minigames;
 
 	public Registry() {
 		super();
-		minigames = new ArrayList<MinigameFactory>();
-		minigameMap = new HashMap<String, MinigameFactory>();
-		enrollMinigames();
+		minigames = new ArrayList<TextMinigameFactory>();
+		minigameMap = new HashMap<String, TextMinigameFactory>();
+		//enrollMinigames();
 		createMap();
 	}
 	
@@ -20,28 +21,52 @@ public class Registry {
 		return minigameMap.containsKey(which);
 	}
 	
+	public void addGame(TextMinigameFactory toAdd)
+	{
+		minigames.add(toAdd);
+		createMap();
+	}
+	
+	public boolean isEmpty()
+	{
+		if(minigames.size() == 0)
+			return true;
+		
+		return false;
+	}
+	
 	/*
 	 * PROGRAMMERS! This chunk of code is where we enroll minigames. Keep adding them here, and
 	 * if you've set them up correctly, 
 	 */
+	
+	/*
 	private void enrollMinigames() {
 		minigames.add(new TwentyQuestionsFactory());
+		minigames.add(new CookieClickerFactory());
+		minigames.add(new MathFactory());
+		minigames.add(new GuessingCalculatorFactory());
+		minigames.add(new TicTacToeFactory());
+		minigames.add(new MinigameTwitterFactory());
+		minigames.add(new ShotgunFactory());
+		minigames.add(new PrisonEscapeFactory());
 	}
+	*/
 	
 	/*
 	 * This method walks through the list of minigames, asking each for its name and using that
 	 * name as the key in the basic map.
 	 */
 	private void createMap() {
-		for (MinigameFactory m: minigames) {
+		for (TextMinigameFactory m: minigames) {
 			minigameMap.put(m.getName(), m);
 		}
 	}
 	
 	/*
-	 * The point of all this: We get a playable Minigame by asking for it by its name.
+	 * The point of all this: We get a playable TextMinigame by asking for it by its name.
 	 */
-	public Minigame getGame(String which) {
+	public TextMinigame getGame(String which) {
 		if (minigameMap.containsKey(which)) {
 			return minigameMap.get(which).newGame();
 		} else {
@@ -51,7 +76,7 @@ public class Registry {
 	
 	public String toString() {
 		String result = "";
-		for (MinigameFactory m: minigameMap.values()) {
+		for (TextMinigameFactory m: minigameMap.values()) {
 			result += m.getName() + ": " + m.getDescription() + "\n";
 		}
 		return result;

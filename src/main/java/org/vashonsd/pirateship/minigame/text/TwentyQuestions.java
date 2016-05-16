@@ -1,8 +1,8 @@
-package org.vashonsd.pirateship.minigame;
+package org.vashonsd.pirateship.minigame.text;
 
 import java.util.Random;
 
-public class TwentyQuestions implements Minigame {
+public class TwentyQuestions implements TextMinigame {
 	private int theNumber;
 	private int guessesLeft;
 	
@@ -21,7 +21,7 @@ public class TwentyQuestions implements Minigame {
 		return "I am thinking of a number from 1 to 1,000. What number do you guess?";
 	}
 
-	public String Request(String s) {
+	public String Handle(String s) {
 		// TODO Auto-generated method stub
 		int g;
 		try {
