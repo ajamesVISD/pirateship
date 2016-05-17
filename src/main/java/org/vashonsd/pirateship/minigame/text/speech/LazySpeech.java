@@ -99,7 +99,7 @@ public class LazySpeech implements SpeechBehavior {
 		responsePrompts.put("something", "Something.");	
 		fLevelChange.put("something", 0);
 		// "can you give me"
-		responsePrompts.put("something to eat", "I'd love to, buddy, I really woud.\nBut then I'd have to go and GET it.\nAnd, to be honest, I don't wanna.\nSo no dice.");	
+		responsePrompts.put("something to eat", "I'd love to, buddy, I really would.\nBut then I'd have to go and GET it.\nAnd, to be honest, I don't wanna.\nSo no dice.");	
 		fLevelChange.put("something to eat", -1);
 		responsePrompts.put("a smile", "A smile? That's a bit more effort than I'm willing to expend.\nLopsided grin? Well, maybe I can manage.");	
 		fLevelChange.put("a smile", 0);

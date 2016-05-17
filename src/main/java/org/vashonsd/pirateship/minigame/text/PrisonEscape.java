@@ -228,7 +228,7 @@ public class PrisonEscape implements TextMinigame {
 		String pigText = "";
 		if (lastPrompt.equals("")) {
 			pigText += pig.getPigPrint() + "\n\n";
-			pigText += "\nQ: " + (MAXQUES - pig.getQuestion()) + "\t<3: " + pig.getFLevel() + "\n\n";
+			pigText += "\nQ: " + (MAXQUES - pig.getQuestion()) + "\t<3: " + pig.getFLevel() + " / " + MAXLEVEL + "\n\n";
 		}
 		pigText += lastPrompt + "\n";
 		pigText += getPromptList();
@@ -269,7 +269,7 @@ public class PrisonEscape implements TextMinigame {
 				// Custom pig print
 				String response = pig.getPigPrint() + "\n";
 				response += pig.React(s);
-				response += "\nQ: " + (MAXQUES - pig.getQuestion()) + "\t<3: " + pig.getFLevel() + "\n\n";
+				response += "\nQ: " + (MAXQUES - pig.getQuestion()) + "\t<3: " + pig.getFLevel() + " / " + MAXLEVEL + "\n\n";
 				response += pig.changeOrientation();
 				
 				

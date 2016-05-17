@@ -8,6 +8,7 @@ public class Eagle extends Creature {
 		this.setHealth(40);
 		this.setTypeName("eagle");
 		this.setTypeNamePlural("eagles");
+		setSpeechBehavior(new Squawking());
 	}
 	
 
