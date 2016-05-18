@@ -26,14 +26,16 @@ public class TicTacToe implements TextMinigame {
 	private void setUpGame() {
 		// TODO Auto-generated method stub
 		//Make board
-		printBoard();
+		newBoard();
+		playerWin = false;
+		computerWin = false;
 		
 	}
 
 	public String Run() {
 		// TODO Auto-generated method stub
 
-		return "Where would you like to place a piece? Ex. --> row, column";
+		return printBoard() + "Where would you like to place a piece? Ex. --> row, column";
 
 	}
 
@@ -62,6 +64,8 @@ public class TicTacToe implements TextMinigame {
 		
 		//PLAYER TURN
 		
+		String a = "";
+		
 		//check row and col are a numbers 1,3
 		int row = Character.getNumericValue(s.charAt(0));
 		
@@ -74,7 +78,7 @@ public class TicTacToe implements TextMinigame {
 
 		//Add move to board and print
 		setVal(row - 1, col-1, 1);	
-		printBoard();
+		a += printBoard();
 		
 		// COMPUTER TURN
 		
@@ -83,7 +87,7 @@ public class TicTacToe implements TextMinigame {
 		int rndRow = rnd.nextInt(3);
 		int rndCol = rnd.nextInt(3);
 		
-		System.out.println("My turn:");
+		a += "\n My turn:";
 		
 		//Make move is not taken
 		while(board[rndRow][rndCol] ==1 || board[rndRow][rndCol] ==2)
@@ -95,7 +99,7 @@ public class TicTacToe implements TextMinigame {
 		//Add to board and print
 		setVal(rndRow, rndCol,2);
 		
-		printBoard();
+		a += printBoard();
 		
 		
 		//Check for Winners and return a message to user
@@ -105,20 +109,22 @@ public class TicTacToe implements TextMinigame {
 		if(playerWin == true)
 		{
 			newBoard();
-			System.out.println("You Won! I'm ready to play again. Here's a new board");
-			printBoard();
-			return "What is your move? Ex. 1,3 ";
+			playerWin = false;
+			a += "\n You Won! I'm ready to play again. Here's a new board";
+			a += "\n" + printBoard();
+			return a + "What is your move? Ex. 1,3 ";
 		}
 		else if(computerWin == true)
 		{
 			newBoard();
-			System.out.println("I Won! I'm ready to play again. Here's a new board");
-			printBoard();
-			return "What is your move? Ex. 1,3 ";
+			computerWin = false;
+			a += "\n I Won! I'm ready to play again. Here's a new board";
+			a += printBoard();
+			return a + "What is your move? Ex. 1,3 ";
 		}
 		else
 		{
-			return "I have set a piece! Your turn.";
+			return a + "I have set a piece! Your turn." + "\n" + "What is your move? Ex. 1,3";
 		}
 	}
 
@@ -228,38 +234,41 @@ public class TicTacToe implements TextMinigame {
 	}
 	
 	
-    public void printBoard()
+    public String printBoard()
     {
         //Print header
-        System.out.println(" ");
+        String s = "";
+        s += "\n";
         for(int i = 0; i<4; i++)
         {
             if(i==0)
             {
-                System.out.print("  ");
+                s += "  ";
             }
             else
             {
-                System.out.print(" " + i);
+                s += " " + i;
             }
         }
-        System.out.println("");
+
         //make an array for the letters on the side
         String[] arr = {"1 ", "2 ", "3 "};
+        
         
         //Print Grid
         for(int i=0; i<3; i++)
         {
-            System.out.println("");
-            System.out.print(arr[i]);
+        	s += "\n";
+            s += arr[i];
             
             for(int j=0; j<3; j++)
             {
-                System.out.print(" " + printNum(getVal(i, j)));
+                s += " " + printNum(getVal(i, j));
             }
         }
         
-        System.out.println("");
+        s += "\n";
+        return s;
     }
 	
 }
