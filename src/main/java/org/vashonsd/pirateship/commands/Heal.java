@@ -10,7 +10,6 @@ import org.vashonsd.pirateship.interactions.*;
 			addKeyword("heal");
 		}
 
-		@Override
 		public Response execute(Actor obj, Player player) {
 			Response r = new Response();
 			String text = "";
