@@ -25,8 +25,8 @@ public abstract class Actor {
 	
 	/**
 	 * Use this method to enroll a Command with this object. 
-	 * Commands come with their own ArrayList of accessors, for example: ["eat","devour","consume"].
-	 * @param c - the Command you wish to enroll with this object.
+	 * Commands come with their own ArrayList of keywords, for example: ["eat","devour","consume"].
+	 * @param c - an instance of the Command you wish to enroll with this object.
 	 */
 	public void enrollCommand(Command c) {
 		for (String s : c.getKeywords()) {
@@ -71,6 +71,10 @@ public abstract class Actor {
 		return this.inventory;
 	}
 	
+	/**
+	 * Use this method to add an item to the Actor's inventory.
+	 * @param a
+	 */
 	public void addToInventory(Actor a) {
 		a.setLocation(this);
 		this.inventory.addActor(a);

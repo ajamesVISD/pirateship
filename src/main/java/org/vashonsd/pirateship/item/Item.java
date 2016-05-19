@@ -1,4 +1,4 @@
-package org.vashonsd.pirateship.itemStuff;
+package org.vashonsd.pirateship.item;
 
 public class Item {
 	//Initializing the item variables

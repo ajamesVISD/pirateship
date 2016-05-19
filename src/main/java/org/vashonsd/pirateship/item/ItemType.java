@@ -1,4 +1,4 @@
-package org.vashonsd.pirateship.itemStuff;
+package org.vashonsd.pirateship.item;
 
 import java.util.*;
 
