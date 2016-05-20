@@ -7,7 +7,6 @@ public class PokemonBattle implements TextMinigame {
 	private Pokemon you;
 	private Pokemon opponent;
 	private PokeMoveGenerator gen;
-	private boolean yourTurn;
 	private boolean intro;
 	
 	public PokemonBattle() {
@@ -28,9 +27,10 @@ public class PokemonBattle implements TextMinigame {
 		{
 			intro = true;
 			
+			return getIntro();
 		}
 		
-		return null;
+		return "byeBye";
 	}
 
 	public String Exit() {
@@ -62,11 +62,6 @@ public class PokemonBattle implements TextMinigame {
 		opponent.addMove(gen.tackle());
 		*/
 		
-		if(opponent.getSpeed() > you.getSpeed())
-			yourTurn = false;
-		else
-			yourTurn = true;
-		
 		intro = false;
 	}
 	
@@ -76,7 +71,9 @@ public class PokemonBattle implements TextMinigame {
 		Pokemon charmander = new Pokemon("charmander");
 		Pokemon squirtle = new Pokemon("squirtle");
 		String toReturn = "";
-		toReturn += "Pick your pokemon: " + bulbasaur.toString();
+		toReturn += "Pick your pokemon: " + bulbasaur.toString() + "\n" + bulbasaur.printOut() +"\n"
+			+ charmander.toString() + "\n" + charmander.printOut() +"\n" 
+			+ squirtle.toString() + "\n" + squirtle.printOut() + "\n";
 		
 		return toReturn;
 	}
