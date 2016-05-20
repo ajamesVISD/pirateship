@@ -6,24 +6,30 @@ public class PokeMove {
 	private PokeType moveType;
 	private int power;
 	private int accuracy;
-	private boolean continuous;
 	private int healthGain;
+	private int myAttackChange;
 	private int attackChange;
+	private int myDefenseChange;
 	private int defenseChange;
+	private int mySpeedChange;
 	private int speedChange;
+	private int myAccuracyChange;
 	private int accuracyChange;
 	
-	public PokeMove(String name, String type, int power, int accuracy, boolean continuous, int healthGain, int attackChange, int defenseChange, int speedChange, int accuracyChange) 
+	public PokeMove(String name, String type, int power, int accuracy, int healthGain, int myAttackChange, int attackChange, int myDefenseChange, int defenseChange, int mySpeedChange, int speedChange, int myAccuracyChange, int accuracyChange) 
 	{
 		this.name = name;
 		this.moveType = new PokeType(type);
 		this.power = power;
 		this.accuracy = accuracy;
-		this.continuous = continuous;
 		this.healthGain = healthGain;
+		this.myAttackChange = myAttackChange;
 		this.attackChange = attackChange;
+		this.myDefenseChange = myDefenseChange;
 		this.defenseChange = defenseChange;
+		this.mySpeedChange = mySpeedChange;
 		this.speedChange = speedChange;
+		this.myAccuracyChange = myAccuracyChange;
 		this.accuracyChange = accuracyChange;
 	}
 	
@@ -42,22 +48,32 @@ public class PokeMove {
 	public int getAccuracy() {
 		return accuracy;
 	}
-	public boolean isContinuous() {
-		return continuous;
-	}
 	public int getHealthGain() {
 		return healthGain;
 	}
 	public int getAttackChange() {
 		return attackChange;
 	}
-	public int defenseChange() {
+	public int getDefenseChange() {
 		return defenseChange;
 	}
-	public int speedChange() {
+	public int getSpeedChange() {
 		return speedChange;
 	}
-	public int accuracyChange() {
+	public int getAccuracyChange() {
 		return accuracyChange;
 	}
+	public int getMyAttackChange() {
+		return myAttackChange;
+	}
+	public int getMyDefenseChange() {
+		return myDefenseChange;
+	}
+	public int getMySpeedChange() {
+		return mySpeedChange;
+	}
+	public int getMyAccuracyChange() {
+		return myAccuracyChange;
+	}
+
 }

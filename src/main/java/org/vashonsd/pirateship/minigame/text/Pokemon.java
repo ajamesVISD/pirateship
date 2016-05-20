@@ -15,12 +15,14 @@ public class Pokemon
 	private ArrayList<PokeMove> learnable;
 	private String printOut;
 	private int accuracy;
+	private PokeMoveGenerator gen;
 	
 	public Pokemon(String name)
 	{
 		this.name = name;
 		moves = new ArrayList<PokeMove>();
 		learnable = new ArrayList<PokeMove>();
+		gen = new PokeMoveGenerator();
 		
 		if(name.equalsIgnoreCase("charmander"))
 			charmander();
@@ -172,6 +174,8 @@ public class Pokemon
 				" .'          /| `-.        . ,'         ,           ,\n" +
 				" '-.__ __ _,','    '`-..___;-...__   ,.'\\ ____.___.'\n" +
 				" `\"^--'..'   '-`-^-'\"--    `-^-'`.''\"\"\"\"\"`.,^.`.--' ";
+		
+		learnable.add(gen.tackle());
 	}
 	
 	public String toString() {
