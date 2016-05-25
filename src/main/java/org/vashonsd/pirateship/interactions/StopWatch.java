@@ -11,6 +11,8 @@ public class StopWatch extends Actor {
 		this.enrollCommand(new GetTime());
 		this.enrollCommand(new Take());
 		this.enrollCommand(new Drop());
+		//this.enrollCommand(new CheckColor());
+		
 	}
 
 }
