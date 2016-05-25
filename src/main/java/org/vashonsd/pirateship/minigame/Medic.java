@@ -48,7 +48,11 @@ public class Medic extends Minigame {
 
 	@Override
 	public String getExit() {
-		return "I hope you use these " + amountOfBandage + " bandages wisely.";
+		String s = "I hope you use these " + amountOfBandage + " bandages wisely.";
+		stage = 1;
+		amountOfBandage = 0;
+		
+		return s;
 	}
 
 }
