@@ -1,0 +1,35 @@
+{
+  "name": "New York",
+  "locations": [
+    {
+      "locname": "Times Square",
+      "description": "There are a lot of lights here",
+      "route_id": [
+        "Times Square - The village"
+      ]
+    },
+    {
+      "locname": "The village",
+      "description": "Everyone is nice here.",
+      "route_id": [
+        "The village - Times Square"
+      ]
+    }
+  ],
+  "route": [
+    {
+      "id": "Times Square - The village",
+      "description": "subway",
+      "accessor": "drive",
+      "from": "Times Square",
+      "destination": "The village"
+    },
+    {
+      "id": "The village - Times Square",
+      "description": "drive",
+      "accessor": "drive",
+      "from": "The village",
+      "destination": "Times Square"
+    }
+  ]
+}
