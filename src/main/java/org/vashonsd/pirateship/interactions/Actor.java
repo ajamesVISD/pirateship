@@ -318,6 +318,14 @@ public abstract class Actor {
 		this.typeName = typeName;
 		this.typeNamePlural = typeName + "s";
 		this.id = UUID.randomUUID().toString();
+		
+		try {
+			startThread();
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 		initializeColors();
 		this.enrollCommand(new CheckColor());
 		
@@ -328,6 +336,45 @@ public abstract class Actor {
 	{
 		return colors.get(currentColor);
 	}
+	
+	public void startThread() throws InterruptedException
+	{
+		Thread t1 = new Thread(new Runnable() 
+		{
+			@Override
+			public void run() {
+				
+				changeColor();
+				runThread();
+
+			}
+			
+			public void changeColor()
+			{
+				while(true)
+				{
+					currentColor = (int) (Math.random() * 32) + 1;
+					try {
+						Thread.sleep(6300);
+					} catch (InterruptedException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+			}
+			
+			
+		});
+		
+		t1.start();
+	}
+	
+	public void runThread()
+	{
+		
+	}
+	
+	
 	
 	public void initializeColors()
 	{
@@ -363,27 +410,6 @@ public abstract class Actor {
 		colors.put(30, "orange red");
 		colors.put(31, "tan");
 		colors.put(32, "pea green");
-		
-		Thread t1 = new Thread(new Runnable() 
-		{
-			@Override
-			public void run() {
-				while(true)
-				{
-					currentColor = (int) (Math.random() * 32) + 1;
-					try {
-						Thread.sleep(6300);
-					} catch (InterruptedException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-				}
-					
-				
-			}
-		});
-		
-		t1.start();
 	}
 
 	/**
