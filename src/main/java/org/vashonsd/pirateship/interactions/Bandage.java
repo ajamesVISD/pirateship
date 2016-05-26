@@ -21,7 +21,7 @@ public class Bandage extends Actor {
 
 	private void setUp() {
 		this.enrollCommand(new Examine());
-		this.setTypeNamePlural("bandage");
+		this.setTypeNamePlural("bandages");
 		this.setTypeName("bandage");
 		this.enrollCommand(new Take());
 		this.enrollCommand(new Drop());
