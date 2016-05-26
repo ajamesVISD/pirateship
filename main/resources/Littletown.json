@@ -1,0 +1,239 @@
+{
+  "name": "Littletown",
+  "locations": [
+    {
+      "locname": "Town square",
+      "description": "It's bustling with excitment.",
+      "route_id": [
+        "Town square - Florist stand",
+        "Town square - Baker's shop",
+        "Town square - Tailorist",
+        "Town square - West Street"
+      ]
+    },
+    {
+      "locname": "Florist stand",
+      "description": "Fresh flowers for sale!",
+      "route_id": [
+        "Florist stand - Town square"
+      ]
+    },
+    {
+      "locname": "Baker's shop",
+      "description": "Bread, bagels, and buns all right here.",
+      "route_id": [
+        "Baker's shop - Town square"
+      ]
+    },
+    {
+      "locname": "Tailorist",
+      "description": "Clothes for everybody folks.",
+      "route_id": [
+        "Tailorist - Town square"
+      ]
+    },
+    {
+      "locname": "West Street",
+      "description": "A nice looking cobblestone road with houses lining it.",
+      "route_id": [
+        "West Street - Jacob's House",
+        "West Street - Mary's House",
+        "West Street - Town square"
+      ]
+    },
+    {
+      "locname": "Jacob's House",
+      "description": "A good sized oak door with a shining brass door handle.",
+      "route_id": [
+        "Jacob's House - The door is locked tight"
+      ]
+    },
+    {
+      "locname": "The door is locked tight",
+      "description": "Must not be home.",
+      "route_id": [
+        "The door is locked tight - West Street"
+      ]
+    },
+    {
+      "locname": "Mary's House",
+      "description": "A small circular door with colorful painted designs.",
+      "route_id": [
+        "Mary's House - Mary's house is very bright with colors"
+      ]
+    },
+    {
+      "locname": "Mary's house is very bright with colors",
+      "description": "Mary is sobbing in the corner.",
+      "route_id": [
+        "Mary's house is very bright with colors - She says through her tears",
+        "Mary's house is very bright with colors - West Street"
+      ]
+    },
+    {
+      "locname": "She says through her tears",
+      "description": "My hampster died and i'm sad.",
+      "route_id": [
+        "She says through her tears - Her tears dry up",
+        "She says through her tears - She pushes you away"
+      ]
+    },
+    {
+      "locname": "Her tears dry up",
+      "description": "She starts to smile.",
+      "route_id": [
+        "Her tears dry up - She says through her tears",
+        "Her tears dry up - West Street"
+      ]
+    },
+    {
+      "locname": "She pushes you away",
+      "description": "You are forced to leave.",
+      "route_id": [
+        "She pushes you away - West Street"
+      ]
+    }
+  ],
+  "route": [
+    {
+      "id": "Town square - Florist stand",
+      "description": "The florist's stand is bright with colors",
+      "accessor": "florist",
+      "from": "Town square",
+      "destination": "Florist stand"
+    },
+    {
+      "id": "Town square - Baker's shop",
+      "description": "A warm aroma wafts from the bakery",
+      "accessor": "bakery",
+      "from": "Town square",
+      "destination": "Baker's shop"
+    },
+    {
+      "id": "Town square - Tailorist",
+      "description": "The tailor is hard at work mending a green shirt",
+      "accessor": "tailor",
+      "from": "Town square",
+      "destination": "Tailorist"
+    },
+    {
+      "id": "Town square - West Street",
+      "description": "Neighbors talk and laugh in the street",
+      "accessor": "west",
+      "from": "Town square",
+      "destination": "West Street"
+    },
+    {
+      "id": "Florist stand - Town square",
+      "description": "Leave the florist's stand",
+      "accessor": "back",
+      "from": "Florist stand",
+      "destination": "Town square"
+    },
+    {
+      "id": "Baker's shop - Town square",
+      "description": "Leave the bakery",
+      "accessor": "back",
+      "from": "Baker's shop",
+      "destination": "Town square"
+    },
+    {
+      "id": "Tailorist - Town square",
+      "description": "Leave the tailorist's",
+      "accessor": "back",
+      "from": "Tailorist",
+      "destination": "Town square"
+    },
+    {
+      "id": "West Street - Jacob's House",
+      "description": "Visit Jacob's house",
+      "accessor": "jacob",
+      "from": "West Street",
+      "destination": "Jacob's House"
+    },
+    {
+      "id": "West Street - Mary's House",
+      "description": "Visit Mary's house",
+      "accessor": "mary",
+      "from": "West Street",
+      "destination": "Mary's House"
+    },
+    {
+      "id": "West Street - Town square",
+      "description": "Go back to the square",
+      "accessor": "back",
+      "from": "West Street",
+      "destination": "Town square"
+    },
+    {
+      "id": "Jacob's House - The door is locked tight",
+      "description": "Go inside",
+      "accessor": "open",
+      "from": "Jacob's House",
+      "destination": "The door is locked tight"
+    },
+    {
+      "id": "The door is locked tight - West Street",
+      "description": "Leave",
+      "accessor": "back",
+      "from": "The door is locked tight",
+      "destination": "West Street"
+    },
+    {
+      "id": "Mary's House - Mary's house is very bright with colors",
+      "description": "Go inside",
+      "accessor": "open",
+      "from": "Mary's House",
+      "destination": "Mary's house is very bright with colors"
+    },
+    {
+      "id": "Mary's house is very bright with colors - She says through her tears",
+      "description": "Talk to her",
+      "accessor": "talk",
+      "from": "Mary's house is very bright with colors",
+      "destination": "She says through her tears"
+    },
+    {
+      "id": "Mary's house is very bright with colors - West Street",
+      "description": "Leave",
+      "accessor": "back",
+      "from": "Mary's house is very bright with colors",
+      "destination": "West Street"
+    },
+    {
+      "id": "She says through her tears - Her tears dry up",
+      "description": "Comfort her",
+      "accessor": "comfort",
+      "from": "She says through her tears",
+      "destination": "Her tears dry up"
+    },
+    {
+      "id": "She says through her tears - She pushes you away",
+      "description": "Laugh in her face",
+      "accessor": "laugh",
+      "from": "She says through her tears",
+      "destination": "She pushes you away"
+    },
+    {
+      "id": "Her tears dry up - She says through her tears",
+      "description": "Talk to her some more",
+      "accessor": "talk",
+      "from": "Her tears dry up",
+      "destination": "She says through her tears"
+    },
+    {
+      "id": "Her tears dry up - West Street",
+      "description": "Leave",
+      "accessor": "leave",
+      "from": "Her tears dry up",
+      "destination": "West Street"
+    },
+    {
+      "id": "She pushes you away - West Street",
+      "description": "Leave",
+      "accessor": "leave",
+      "from": "She pushes you away",
+      "destination": "West Street"
+    }
+  ]
+}

@@ -14,12 +14,12 @@ public class Game {
 	private StringRead reader;
 	private StringWrite writer;
 	
-	private DatabaseWriter db = new DatabaseWriter();
-	
 	//This is our register of current Players, each with a unique ID.
 	private PlayerRegistry players;
 	
 	//private HashMap<String, Player> players;
+	
+	private World thisWorld;
 	
 	private String quitWord;
 	
@@ -28,8 +28,8 @@ public class Game {
 		
 		quitWord = "exit";
 
-    	//thisWorld = WorldBuilder.makeWorldByFile(world);
-		World thisWorld = WorldBuilder.makeWorld(world);
+    	//thisWorld = DatabaseParser.parseWorld(world);
+		thisWorld = WorldBuilder.makeWorld(world);
 		
 		this.players = new PlayerRegistry();
 		Player p = new Player("Demo", "Just a player");
@@ -52,6 +52,7 @@ public class Game {
         	}
         	writer.write(p.handle(command).getText());;
 		}
+		DatabaseWriter.worldWriter(thisWorld);
 		writer.write("Thanks for playing!");
 	}
 }

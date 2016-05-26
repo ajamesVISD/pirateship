@@ -1,0 +1,213 @@
+{
+  "name": "Busytown",
+  "locations": [
+    {
+      "locname": "City Hall Lobby",
+      "description": "Giant columns rise up 100 feet.",
+      "splash": "You are in the City Hall Lobby. It is majestic.",
+      "route_id": [
+        "City Hall Lobby - City Hall"
+      ],
+      "inventory": []
+    },
+    {
+      "locname": "Dead End Street",
+      "description": "This place is miserable.",
+      "splash": "Uh oh! Dead end.",
+      "route_id": [
+        "Dead End Street - City Hall"
+      ],
+      "inventory": []
+    },
+    {
+      "locname": "City Hall",
+      "description": "It's a brick building",
+      "splash": "You stand before a brick building with Greek gods painted on it",
+      "route_id": [
+        "City Hall - City Hall Lobby",
+        "City Hall - Happy Park",
+        "City Hall - Dead End Street",
+        "City Hall - Game Room",
+        "City Hall - Pig Prison"
+      ],
+      "inventory": [
+        {
+          "name": "Daniel the Eagle",
+          "type": "eagle",
+          "description": "It is an eagle with sharp talons",
+          "splash": "An eagle soars above"
+        },
+        {
+          "name": "Little Larry Lizard",
+          "type": "lizard",
+          "description": "It is sleek and green",
+          "splash": "There is a lizard here."
+        },
+        {
+          "name": "Twenty Questions",
+          "type": "20Q",
+          "description": "I'll pick a number between 1 and 1,000. You have 20 questions to guess it.",
+          "splash": " I'll pick a number between 1 and 1,000. You have 20 questions to guess it.[20Q]"
+        }
+      ]
+    },
+    {
+      "locname": "Happy Park",
+      "description": "This happy place has birds singing, people playing.",
+      "splash": "Welcome to Happy Park! What a happy place.",
+      "route_id": [
+        "Happy Park - City Hall"
+      ],
+      "inventory": []
+    },
+    {
+      "locname": "Pig Prison",
+      "description": "You done it now sonny",
+      "splash": "It's Pig Prison, the worst place ever.",
+      "route_id": [
+        "Pig Prison - City Hall"
+      ],
+      "inventory": []
+    },
+    {
+      "locname": "Game Room",
+      "description": "Play minigames!",
+      "splash": "You are in the Game Room. Bells ring and machines whir.",
+      "route_id": [
+        "Game Room - City Hall"
+      ],
+      "inventory": [
+        {
+          "name": "Twenty Questions",
+          "type": "20Q",
+          "description": "I'll pick a number between 1 and 1,000. You have 20 questions to guess it.",
+          "splash": " I'll pick a number between 1 and 1,000. You have 20 questions to guess it.[20Q]"
+        },
+        {
+          "name": "Cookie Clicker",
+          "type": "CC",
+          "description": "You click a cookie to gain cookies.",
+          "splash": " You click a cookie to gain cookies.[CC]"
+        },
+        {
+          "name": "Go Fish",
+          "type": "GF",
+          "description": "Play a game of Go Fish against the computer.",
+          "splash": " Play a game of Go Fish against the computer.[GF]"
+        },
+        {
+          "name": "Guessing Calculator",
+          "type": "GuessCalc",
+          "description": "I'll give you two whole numbers, and you tell me what their sum is.",
+          "splash": " I'll give you two whole numbers, and you tell me what their sum is.[GuessCalc]"
+        },
+        {
+          "name": "Solve the math problem.",
+          "type": "math",
+          "description": "Solve the math problem.",
+          "splash": " Solve the math problem.[math]"
+        },
+        {
+          "name": "Get Out of Pig Prison",
+          "type": "GOPP",
+          "description": "Convice your pig warden to let you out of jail",
+          "splash": " Convice your pig warden to let you out of jail[GOPP]"
+        },
+        {
+          "name": "Shotgun",
+          "type": "Shot",
+          "description": "Reload, Block, or Shoot, but time it right or you're dead",
+          "splash": " Reload, Block, or Shoot, but time it right or you're dead[Shot]"
+        },
+        {
+          "name": "Tic Tac Toe",
+          "type": "Tic Tac Toe",
+          "description": "Play tic tac toe against me, the computer. Don't worry, I'm not very good.",
+          "splash": " Play tic tac toe against me, the computer. Don't worry, I'm not very good.[Tic Tac Toe]"
+        }
+      ]
+    }
+  ],
+  "route": [
+    {
+      "id": "City Hall Lobby - City Hall",
+      "name": "outside",
+      "description": "It looks nice out there",
+      "splash": "You could go back outside",
+      "from": "City Hall Lobby",
+      "destination": "City Hall"
+    },
+    {
+      "id": "Dead End Street - City Hall",
+      "name": "south",
+      "description": "You can return to City Hall",
+      "splash": "City Hall is to the south",
+      "from": "Dead End Street",
+      "destination": "City Hall"
+    },
+    {
+      "id": "City Hall - City Hall Lobby",
+      "name": "open",
+      "description": "This door has a brass handle. You could open it.",
+      "splash": "You see a heavy door with a brass handle",
+      "from": "City Hall",
+      "destination": "City Hall Lobby"
+    },
+    {
+      "id": "City Hall - Happy Park",
+      "name": "east",
+      "description": "You can see a park off to the east",
+      "splash": "A gravel walkway leads east",
+      "from": "City Hall",
+      "destination": "Happy Park"
+    },
+    {
+      "id": "City Hall - Dead End Street",
+      "name": "north",
+      "description": "You can't see very far into the alley",
+      "splash": "A dark alley leads to the north",
+      "from": "City Hall",
+      "destination": "Dead End Street"
+    },
+    {
+      "id": "City Hall - Game Room",
+      "name": "games",
+      "description": "The sign says type \"games\" for some games!",
+      "splash": "A sign says type \"games\" for some games!",
+      "from": "City Hall",
+      "destination": "Game Room"
+    },
+    {
+      "id": "City Hall - Pig Prison",
+      "name": "prison",
+      "description": "Go straight to jail",
+      "splash": "You can also go to prison if you want.",
+      "from": "City Hall",
+      "destination": "Pig Prison"
+    },
+    {
+      "id": "Happy Park - City Hall",
+      "name": "west",
+      "description": "The gravel walkway leads back to City Hall",
+      "splash": "Head west to go back to City Hall",
+      "from": "Happy Park",
+      "destination": "City Hall"
+    },
+    {
+      "id": "Pig Prison - City Hall",
+      "name": "escape",
+      "description": "Escape!",
+      "splash": "You must type \"escape\" to escape!",
+      "from": "Pig Prison",
+      "destination": "City Hall"
+    },
+    {
+      "id": "Game Room - City Hall",
+      "name": "back",
+      "description": "It's the way back",
+      "splash": "You could go back to City Hall.",
+      "from": "Game Room",
+      "destination": "City Hall"
+    }
+  ]
+}

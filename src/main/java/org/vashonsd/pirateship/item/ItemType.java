@@ -2,6 +2,7 @@ package org.vashonsd.pirateship.item;
 
 import java.util.*;
 
+
 public class ItemType
 {
     private ArrayList<Tag> tags;
