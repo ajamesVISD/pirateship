@@ -11,7 +11,6 @@ public class Dog extends Creature {
 		this.setTypeNamePlural("dogs");
 		this.enrollCommand(new Take());
 		this.enrollCommand(new Drop());
-		this.enrollCommand(new Heal());
-		this.enrollCommand(new Harm());
+		
 	}
 }

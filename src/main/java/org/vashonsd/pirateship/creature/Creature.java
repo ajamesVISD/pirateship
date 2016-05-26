@@ -10,5 +10,7 @@ public class Creature extends Actor {
 		this.enrollCommand(new Examine());
 		this.enrollCommand(new Harm());
 		this.setAlive(true);
+		this.enrollCommand(new Heal());
+		this.enrollCommand(new Drop());
 	}	
 }
