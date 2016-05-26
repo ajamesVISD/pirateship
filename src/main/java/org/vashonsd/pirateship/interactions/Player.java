@@ -39,6 +39,9 @@ public class Player extends Actor {
 	public Player(String name, String description) {
 		super(name, name, description, name + " is here!");
 		interactions = new AvailableInteractions();
+		this.setAlive(true);
+		this.setAttack(10);
+		this.setDefense(0);
 	}
 	
 	/** 
