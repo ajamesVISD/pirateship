@@ -22,6 +22,7 @@ public class Location extends Actor {
 	   this.name = name;
 	   this.description = description;
 	   this.setTraversable(true);
+	   this.routes = new ArrayList<Route>();
 	}
 	
 	public void addRoute(String description, String accessor, String splash, Location dest) {

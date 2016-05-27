@@ -4,6 +4,8 @@ import java.util.ArrayList;
 
 import org.vashonsd.pirateship.commands.Command;
 import org.vashonsd.pirateship.interactions.*;
+import org.vashonsd.pirateship.io.StringRead;
+import org.vashonsd.pirateship.io.StringWrite;
 
 
 /**
@@ -12,6 +14,9 @@ import org.vashonsd.pirateship.interactions.*;
  * switched in an out as a component as needed.
  */
 public class Player extends Actor {
+	
+	private StringRead reader;
+	private StringWrite writer;
 	
 	/**
 	 * An object representing the commands which the Actor may invoke.

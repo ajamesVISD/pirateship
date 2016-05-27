@@ -3,7 +3,7 @@ package org.vashonsd.pirateship.structure;
 import java.io.IOException;
 
 import org.vashonsd.pirateship.creature.CreatureFactory;
-import org.vashonsd.pirateship.interactions.Baguette;
+import org.vashonsd.pirateship.interactions.*;
 import org.vashonsd.pirateship.minigame.*;
 
 /**
@@ -53,7 +53,6 @@ public class WorldBuilder {
 		Location news = new Location("Dead End Street", "This place is miserable.", "Uh oh! Dead end.");
 		Location gameRoom = new Location("Game Room", "Play minigames!", "You are in the Game Room. Bells ring and machines whir.");
 		Location prison = new Location("Pig Prison", "You done it now sonny", "It's Pig Prison, the worst place ever.");
-		Location casino = new Location("Casino", "Play Cards", "Welcome to the Casino!");
 		
 		main.addRoute("This door has a brass handle. You could open it.", "open", "You see a heavy door with a brass handle", chat);
 		main.addRoute("You can see a park off to the east", "east", "A gravel walkway leads east",soft);
@@ -70,8 +69,10 @@ public class WorldBuilder {
 		//casino.addRoute("Back to City Hall", "back", main);
 		
 		main.addToInventory(CreatureFactory.newCreature("eagle"));
-		//main.addToInventory(new Baguette());
+		main.addToInventory(new StopWatch("stopwatch"));
 		main.addToInventory(CreatureFactory.newCreature("lizard"));
+		main.addToInventory(CreatureFactory.newCreature("dog"));
+		main.addToInventory(new Bandage("bandage"));
 		
 		gameRoom.addToInventory(new MinigameRunner("20Q"));
 		//gameRoom.addToInventory(new MinigameRunner("Blackjack"));
@@ -89,20 +90,6 @@ public class WorldBuilder {
 		w.addLocation(news);
 		w.addLocation(gameRoom);
 		w.addLocation(prison);
-		//w.addLocation(casino);
-		
-		
-//		gameRoom.addGame(new TwentyQuestionsFactory());
-//		gameRoom.addGame(new CookieClickerFactory());
-//		gameRoom.addGame(new MathFactory());
-//		gameRoom.addGame(new GuessingCalculatorFactory());
-//		gameRoom.addGame(new TicTacToeFactory());
-//		gameRoom.addGame(new MinigameTwitterFactory());
-//		gameRoom.addGame(new ShotgunFactory());
-		
-//		casino.addGame(new GoFishFactory());
-		
-		//prison.addGame(new PrisonEscapeFactory());
 		
 		w.setStartingLocation(main);
 		

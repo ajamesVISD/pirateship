@@ -245,6 +245,13 @@ public abstract class Actor {
 		this.maxHealth = maxHealth;
 	}
 	
+	public boolean hasByTypeName(String s) {
+		return this.inventory.hasByTypeName(s);
+	}
+	
+	public Actor getByTypeName(String s) {
+		return this.inventory.getByTypeName(s);
+	}
 	/**
 	 * Actors are, by default, not alive. "Alive" is simply a boolean; make of it what you will.
 	 */

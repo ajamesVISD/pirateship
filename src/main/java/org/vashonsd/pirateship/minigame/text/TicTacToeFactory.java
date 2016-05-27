@@ -4,7 +4,7 @@ public class TicTacToeFactory implements TextMinigameFactory {
 
 	public String getName() {
 		// TODO Auto-generated method stub
-		return "Tic Tac Toe";
+		return "TTT";
 	}
 
 	public String getFullName() {
