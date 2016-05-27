@@ -26,6 +26,7 @@ public class Coin extends Actor {
 		this.setTypeName("coin");
 		this.enrollCommand(new Take());
 		this.enrollCommand(new Drop());
+		this.enrollCommand(new FlipCoin());
 	}
 
 }
