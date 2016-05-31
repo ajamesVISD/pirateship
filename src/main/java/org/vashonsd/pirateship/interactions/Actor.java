@@ -2,9 +2,12 @@ package org.vashonsd.pirateship.interactions;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Random;
 import java.util.UUID;
 
+import org.vashonsd.pirateship.commands.CheckColor;
 import org.vashonsd.pirateship.commands.Command;
+import org.vashonsd.pirateship.commands.Eat;
 
 /**
  * An Actor is anything that can interact in the World.
@@ -23,10 +26,13 @@ public abstract class Actor {
 	 */
 	protected HashMap<String, Command> commands;
 	
+	protected HashMap<Integer, String> colors;
+	protected int currentColor;
+	
 	/**
 	 * Use this method to enroll a Command with this object. 
-	 * Commands come with their own ArrayList of accessors, for example: ["eat","devour","consume"].
-	 * @param c - the Command you wish to enroll with this object.
+	 * Commands come with their own ArrayList of keywords, for example: ["eat","devour","consume"].
+	 * @param c - an instance of the Command you wish to enroll with this object.
 	 */
 	public void enrollCommand(Command c) {
 		for (String s : c.getKeywords()) {
@@ -71,6 +77,10 @@ public abstract class Actor {
 		return this.inventory;
 	}
 	
+	/**
+	 * Use this method to add an item to the Actor's inventory.
+	 * @param a
+	 */
 	public void addToInventory(Actor a) {
 		a.setLocation(this);
 		this.inventory.addActor(a);
@@ -241,6 +251,13 @@ public abstract class Actor {
 		this.maxHealth = maxHealth;
 	}
 	
+	public boolean hasByTypeName(String s) {
+		return this.inventory.hasByTypeName(s);
+	}
+	
+	public Actor getByTypeName(String s) {
+		return this.inventory.getByTypeName(s);
+	}
 	/**
 	 * Actors are, by default, not alive. "Alive" is simply a boolean; make of it what you will.
 	 */
@@ -294,12 +311,106 @@ public abstract class Actor {
 	public Actor(String name, String typeName, String description, String splash) {
 		commands = new HashMap<String, Command>();
 		inventory = new Inventory();
+		colors = new HashMap<Integer, String>();
 		this.description = description;
 		this.splashText = splash;
 		this.name = name;
 		this.typeName = typeName;
 		this.typeNamePlural = typeName + "s";
 		this.id = UUID.randomUUID().toString();
+		
+		try {
+			startThread();
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		initializeColors();
+		this.enrollCommand(new CheckColor());
+		
+	}
+	
+	
+	public String checkColor()
+	{
+		return colors.get(currentColor);
+	}
+	
+	public void startThread() throws InterruptedException
+	{
+		Thread t1 = new Thread(new Runnable() 
+		{
+			@Override
+			public void run() {
+				
+				runThread();
+				
+			}
+			
+			
+			
+			
+		});
+		
+		t1.start();
+	}
+	
+	public void runThread()
+	{
+		
+	}
+	
+	public void changeColor(long milliseconds)
+	{
+		while(true)
+		{
+			currentColor = (int) (Math.random() * 32) + 1;
+			try {
+				Thread.sleep(milliseconds);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+	}
+	
+	
+	
+	public void initializeColors()
+	{
+		colors.put(1, "blue"); 
+		colors.put(2, "green");
+		colors.put(3, "red");
+		colors.put(4, "turquoise");
+		colors.put(5, "orange");
+		colors.put(6, "purple");
+		colors.put(7, "lime green");
+		colors.put(8, "black");
+		colors.put(9, "white");
+		colors.put(10, "chrome");
+		colors.put(11, "gold"); 
+		colors.put(12, "light blue");
+		colors.put(13, "hazel");
+		colors.put(14, "aqua");
+		colors.put(15, "silver");
+		colors.put(16, "canary yellow");
+		colors.put(17, "sea blue");
+		colors.put(18, "brown");
+		colors.put(19, "lavender");
+		colors.put(20, "yellow");
+		colors.put(21, "pink"); 
+		colors.put(22, "lilic");
+		colors.put(23, "bright green");
+		colors.put(24, "mauve");
+		colors.put(25, "grey");
+		colors.put(26, "fuscia");
+		colors.put(27, "apple green");
+		colors.put(28, "dark stone grey");
+		colors.put(29, "opaque");
+		colors.put(30, "orange red");
+		colors.put(31, "tan");
+		colors.put(32, "pea green");
 	}
 
 	/**

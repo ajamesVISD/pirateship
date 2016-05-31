@@ -25,4 +25,17 @@ public class Location extends Actor {
 		r.enrollCommand(new TravelCommand(accessor, dest));
 		addToInventory(r);
 	}
+	
+	/**
+	 * Use this method to add something to a Location. To add a Route, use the addRoute method.
+	 * @param a
+	 */
+	public void addToLocation(Actor a) {
+		this.addToInventory(a);
+	}
+	
+	public void removeToLocation(Actor a)
+	{
+		this.removeFromInventory(a);
+	}
 }

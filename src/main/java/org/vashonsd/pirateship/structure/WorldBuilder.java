@@ -3,8 +3,9 @@ package org.vashonsd.pirateship.structure;
 import java.io.IOException;
 
 import org.vashonsd.pirateship.creature.CreatureFactory;
-import org.vashonsd.pirateship.interactions.Baguette;
+import org.vashonsd.pirateship.interactions.*;
 import org.vashonsd.pirateship.minigame.*;
+import org.vashonsd.pirateship.minigame.text.MinigameTwitterFactory;
 
 /**
  * @author andy 
@@ -70,9 +71,11 @@ public class WorldBuilder {
 		//casino.addRoute("Back to City Hall", "back", main);
 		
 		main.addToInventory(CreatureFactory.newCreature("eagle"));
-		//main.addToInventory(new Baguette());
+		main.addToInventory(new StopWatch("stopwatch"));
 		main.addToInventory(CreatureFactory.newCreature("lizard"));
-		main.addToInventory(new MinigameRunner("20Q"));
+		main.addToInventory(CreatureFactory.newCreature("dog"));
+		main.addToInventory(new Bandage("bandage"));
+		
 		
 		gameRoom.addToInventory(new MinigameRunner("20Q"));
 		//gameRoom.addToInventory(new MinigameRunner("Blackjack"));
@@ -83,6 +86,7 @@ public class WorldBuilder {
 		gameRoom.addToInventory(new MinigameRunner("GOPP"));
 		gameRoom.addToInventory(new MinigameRunner("Shot"));
 		gameRoom.addToInventory(new MinigameRunner("Tic tac toe"));
+		gameRoom.addToInventory(new MinigameRunner("Twitter"));
 		
 		w.addLocation(main);
 		w.addLocation(chat);
