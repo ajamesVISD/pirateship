@@ -33,4 +33,9 @@ public class Location extends Actor {
 	public void addToLocation(Actor a) {
 		this.addToInventory(a);
 	}
+	
+	public void removeToLocation(Actor a)
+	{
+		this.removeFromInventory(a);
+	}
 }

@@ -344,24 +344,11 @@ public abstract class Actor {
 			@Override
 			public void run() {
 				
-				changeColor();
 				runThread();
-
+				
 			}
 			
-			public void changeColor()
-			{
-				while(true)
-				{
-					currentColor = (int) (Math.random() * 32) + 1;
-					try {
-						Thread.sleep(6300);
-					} catch (InterruptedException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-				}
-			}
+			
 			
 			
 		});
@@ -372,6 +359,20 @@ public abstract class Actor {
 	public void runThread()
 	{
 		
+	}
+	
+	public void changeColor(long milliseconds)
+	{
+		while(true)
+		{
+			currentColor = (int) (Math.random() * 32) + 1;
+			try {
+				Thread.sleep(milliseconds);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
 	}
 	
 	
