@@ -5,6 +5,7 @@ import java.io.IOException;
 import org.vashonsd.pirateship.creature.CreatureFactory;
 import org.vashonsd.pirateship.interactions.*;
 import org.vashonsd.pirateship.minigame.*;
+import org.vashonsd.pirateship.minigame.text.MinigameTwitterFactory;
 
 /**
  * @author andy 
@@ -83,6 +84,7 @@ public class WorldBuilder {
 		gameRoom.addToInventory(new MinigameRunner("GOPP"));
 		gameRoom.addToInventory(new MinigameRunner("Shot"));
 		gameRoom.addToInventory(new MinigameRunner("Tic tac toe"));
+		gameRoom.addToInventory(new MinigameRunner("Twitter"));
 		
 		w.addLocation(main);
 		w.addLocation(chat);
