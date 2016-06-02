@@ -62,11 +62,21 @@ public class PokeType {
 	// 2 = effective (200% power)
 	public int isEffective(PokeType p)
 	{
-		if(type.equals(p.getEffective()))
+		if(type.equals(p.getWeak()))
 			return 2;
-		else if(type.equals(p.getWeak()))
+		else if(type.equals(p.getEffective()))
 			return 1/2;
 		else
 			return 1;
+	}
+	
+	public String effString(PokeType p)
+	{
+		if(type.equals(p.getWeak()))
+			return ". It was super effective!";
+		else if(type.equals(p.getEffective()))
+			return ". It wasn't very effective.";
+		else
+			return ". It hit.";
 	}
 }

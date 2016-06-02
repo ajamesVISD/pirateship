@@ -3,6 +3,7 @@ package org.vashonsd.pirateship.minigame.text;
 public class PokeMove {
 
 	private String name;
+	private String description;
 	private PokeType moveType;
 	private int power;
 	private int accuracy;
@@ -16,9 +17,10 @@ public class PokeMove {
 	private int myAccuracyChange;
 	private int accuracyChange;
 	
-	public PokeMove(String name, String type, int power, int accuracy, int healthGain, int myAttackChange, int attackChange, int myDefenseChange, int defenseChange, int mySpeedChange, int speedChange, int myAccuracyChange, int accuracyChange) 
+	public PokeMove(String name, String description, String type, int power, int accuracy, int healthGain, int myAttackChange, int attackChange, int myDefenseChange, int defenseChange, int mySpeedChange, int speedChange, int myAccuracyChange, int accuracyChange) 
 	{
 		this.name = name;
+		this.description = description;
 		this.moveType = new PokeType(type);
 		this.power = power;
 		this.accuracy = accuracy;
@@ -35,6 +37,9 @@ public class PokeMove {
 	
 	public String getName() {
 		return name;
+	}
+	public String getDescription() {
+		return description;
 	}
 	public PokeType getType() {
 		return moveType;
@@ -76,4 +81,7 @@ public class PokeMove {
 		return myAccuracyChange;
 	}
 
+	public String toString() {
+		return name + "\nType: "+ moveType.getType() + ". \"" + description + "\"\nPower: " + power + ". Accuracy: " + accuracy + "\n";
+	}
 }

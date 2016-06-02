@@ -1,4 +1,5 @@
 package org.vashonsd.pirateship.minigame.text;
+import java.util.*;
 
 public class PokemonBattle implements TextMinigame {
 
@@ -8,29 +9,172 @@ public class PokemonBattle implements TextMinigame {
 	private Pokemon opponent;
 	private PokeMoveGenerator gen;
 	private boolean intro;
+	private ArrayList<Pokemon> availablePokemon;
 	
 	public PokemonBattle() {
-		setUp();
+		choseP = false;
+		choseM = false;
+		intro = false;
+		availablePokemon = new ArrayList<Pokemon>();
+		gen = new PokeMoveGenerator();
+		
+		availablePokemon.add(new Pokemon("bulbasaur"));
+		availablePokemon.add(new Pokemon("charmander"));
+		availablePokemon.add(new Pokemon("squirtle"));
 	}
 	
 	public String Run() {
-		return "Wake up! You're gonna be late for your first day as a Pokemon trainer!\n\n";
+		return "Wake up! You're gonna be late for your first day as a Pokemon trainer!";
 	}
 	
 	public String getPrompt() {
-		return "PB";
+		return "Poke";
 	}
 
 	public String Handle(String s) 
 	{
-		if(intro = false)
-		{
+		boolean hasMove = false;
+		
+		if(intro == false) {
 			intro = true;
-			
 			return getIntro();
 		}
+		if(choseP == false) {
+			if(s.equalsIgnoreCase("yes")) {
+				choseP = true;
+				int which = Randomizer.nextInt(2);
+				
+				if(which == 0) {
+					opponent = new Pokemon("squirtle");
+					opponent.addMove(gen.tackle());
+					opponent.addMove(gen.waterGun());
+					opponent.addMove(gen.withdraw());
+					opponent.addMove(gen.tailWhip());
+				} 
+				else if(which == 1) {
+					opponent = new Pokemon("charmander");
+					opponent.addMove(gen.scratch());
+					opponent.addMove(gen.ember());
+					opponent.addMove(gen.rage());
+					opponent.addMove(gen.tailWhip());
+				}
+				else if(which == 2) {
+					opponent = new Pokemon("bulbasaur");
+					opponent.addMove(gen.tackle());
+					opponent.addMove(gen.razorLeaf());
+					opponent.addMove(gen.growth());
+					opponent.addMove(gen.growl());
+				}
+				
+				return "You have chosen " + you.getName() + "\nWhat moves should your pokemon learn (4 max)\n" + learnableMoves(you);
+			}
+			else if (s.equalsIgnoreCase("no")) {
+				return getIntro();
+			}
+			for(Pokemon m: availablePokemon) {
+				if(s.equalsIgnoreCase(m.getName())) {
+					you = m;
+					return m.toString() + m.printOut() + "\nWould you like " + m.getName() + " the " + m.getTypeName() + " pokemon?";
+				}
+			}
+			
+			return "You must chose a pokemon from the list.";
+		}
 		
-		return "byeBye";
+		if(choseM == false) {
+			if(you.getMoves().size() == 4) {
+				choseM = true;
+				return "Your Pokemon is ready to battle!\n\n" + you.battleHUD(opponent) + "\n" + you.printMoves();
+			}
+			for(PokeMove m: you.getLearnable()) {
+				if(s.equalsIgnoreCase(m.getName())) {
+					you.addMove(m);
+					if(you.getMoves().size() < 4) {
+						return "Your Pokemon learned " + m.getName() + "\n" + you.getName() + "'s moves: \n" + you.printMoves() + "\n\nSelect another move. " + learnableMoves(you) + "\n";
+					} else {
+						return "Your Pokemon learned " + m.getName() + "\n" + you.getName() + "'s moves: \n" + you.printMoves();
+					}
+				}
+			}
+			
+			return "You must select a move from the list.\n" + learnableMoves(you);
+		}
+		
+		if(!you.isDead() && !opponent.isDead())
+		{
+			int youAcc = Randomizer.nextInt(100);
+			int oppAcc = Randomizer.nextInt(100);
+			PokeMove oppMove = opponent.getMoves().get(Randomizer.nextInt(3));
+			String toReturn = "";
+			
+			if(yourMove()) {
+				for(PokeMove m: you.getMoves()) {
+					
+					if(s.equalsIgnoreCase(m.getName())) {
+						hasMove = true;
+						
+						if(willHit(m, youAcc)) {
+							hit(you, opponent, m);
+							toReturn += "You used " + m.getName() + m.getType().effString(opponent.getType()) + "\n";
+						} else {
+							toReturn += "You used " + m.getName() + " it missed.\n";
+						}
+						
+						break;
+					}
+				}
+				
+				if(hasMove == false) {
+					return "You must chose a valid move.";
+				}
+				if(you.isDead() || opponent.isDead()) {
+					return you.battleHUD(opponent) + getWinner().getName() + " wins.";
+				}
+				
+					if(willHit(oppMove, oppAcc)) {
+						hit(opponent, you, oppMove);
+						toReturn += "Opponent used " + oppMove.getName() + oppMove.getType().effString(you.getType()) + "\n";
+					} else {
+						toReturn += "Opponent used " + oppMove.getName() + " it missed.\n";
+					}
+				}
+				else if(!yourMove()) {
+					if(willHit(oppMove, oppAcc)) {
+						hit(opponent, you, oppMove);
+						toReturn += "Opponent used " + oppMove.getName() + oppMove.getType().effString(you.getType()) + "\n";
+					} else {
+						toReturn += "Opponent used " + oppMove.getName() + " it missed.\n";
+					}
+					
+					if(you.isDead() || opponent.isDead()) {
+						return getWinner().getName() + " wins.";
+					}
+					
+					for(PokeMove m: you.getMoves()) {
+						
+						if(s.equalsIgnoreCase(m.getName())) {
+							hasMove = true;
+							
+							if(willHit(m, youAcc)) {
+								hit(you, opponent, m);
+								toReturn += "You used " + m.getName() + m.getType().effString(opponent.getType()) + "\n";
+							} else {
+								toReturn += "You used " + m.getName() + " it missed.\n";
+							}
+							
+							break;
+						}
+				}
+				
+					if(hasMove == false) {
+						return "You must chose a valid move.";
+					}
+			}
+			
+			return toReturn + "\n\n" + you.battleHUD(opponent) + "\n" + you.printMoves();
+		}
+		
+		return you.battleHUD(opponent) + getWinner().getName() + " wins.";
 	}
 
 	public String Exit() {
@@ -40,7 +184,7 @@ public class PokemonBattle implements TextMinigame {
 	public void hit(Pokemon source, Pokemon target, PokeMove move) 
 	{
 		source.changeHP(move.getHealthGain());
-		target.changeHP((0-(((source.getAttack())/100)*(move.getPower()))*((100 - target.getDefense())/100))*move.getType().isEffective(target.getType()));
+		target.changeHP((-(((source.getAttack())/100)*(move.getPower()))*((100 - target.getDefense())/100))*move.getType().isEffective(target.getType()));
 		source.changeAttack(move.getMyAttackChange());
 		target.changeAttack(move.getAttackChange());
 		source.changeDefense(move.getMyDefenseChange());
@@ -51,30 +195,35 @@ public class PokemonBattle implements TextMinigame {
 		target.changeAccuracy(move.getAccuracyChange());
 	}
 	
-	public void setUp() 
-	{
-		choseP = false;
-		choseM = false;
-		/*
-		you = new Pokemon("bulbasaur");
-		you.addMove(gen.tackle());
-		opponent = new Pokemon("bulbasaur");
-		opponent.addMove(gen.tackle());
-		*/
-		
-		intro = false;
-	}
-	
 	public String getIntro()
 	{
-		Pokemon bulbasaur = new Pokemon("bulbasaur");
-		Pokemon charmander = new Pokemon("charmander");
-		Pokemon squirtle = new Pokemon("squirtle");
-		String toReturn = "";
-		toReturn += "Pick your pokemon: " + bulbasaur.toString() + "\n" + bulbasaur.printOut() +"\n"
-			+ charmander.toString() + "\n" + charmander.printOut() +"\n" 
-			+ squirtle.toString() + "\n" + squirtle.printOut() + "\n";
-		
+		String toReturn = "Select a Pokemon: \n";
+		for(Pokemon m: availablePokemon) {
+			toReturn += m.getName() + "\n";
+		}
 		return toReturn;
+	}
+	
+	public String learnableMoves(Pokemon s) {
+		String toReturn = "Available moves:\n";
+		for(PokeMove m: s.getLearnable()) {
+			toReturn += m.toString() + "\n";
+		}
+		return toReturn;
+	}
+	
+	public boolean yourMove() {
+		return you.getSpeed() >= opponent.getSpeed();
+	}
+	
+	public Pokemon getWinner() {
+		if(you.isDead())
+			return opponent;
+		
+		return you;
+	}
+	
+	public boolean willHit(PokeMove m, int acc) {
+		return acc < m.getAccuracy();
 	}
 }

@@ -8,14 +8,16 @@ public class Pokemon
 	private String description;
 	private PokeType type;
 	private int hp;
-	private int attack;
-	private int defense;
+	private int maxHP;
+	private double attack;
+	private double defense;
 	private int speed;
 	private ArrayList<PokeMove> moves;
 	private ArrayList<PokeMove> learnable;
 	private String printOut;
 	private int accuracy;
 	private PokeMoveGenerator gen;
+	private ArrayList<String> head;
 	
 	public Pokemon(String name)
 	{
@@ -23,6 +25,7 @@ public class Pokemon
 		moves = new ArrayList<PokeMove>();
 		learnable = new ArrayList<PokeMove>();
 		gen = new PokeMoveGenerator();
+		head = new ArrayList<String>();
 		
 		if(name.equalsIgnoreCase("charmander"))
 			charmander();
@@ -59,8 +62,13 @@ public class Pokemon
 	public String getDescription() {
 		return description;
 	}
-	public void changeHP(int h) {
+	public void changeHP(double h) {
 		hp += h;
+		
+		if(hp < 0)
+			hp = 0;
+		if(hp > maxHP)
+			hp = maxHP;
 	}
 	public int getHP() {
 		return hp;
@@ -68,13 +76,13 @@ public class Pokemon
 	public void changeAttack(int a) {
 		attack += a;
 	}
-	public int getAttack() {
+	public double getAttack() {
 		return attack;
 	}
 	public void changeDefense(int d) {
 		defense += d;
 	}
-	public int getDefense() {
+	public double getDefense() {
 		return defense;
 	}
 	public void changeSpeed(int s) {
@@ -102,7 +110,7 @@ public class Pokemon
 		String toReturn = "";
 		
 		for(PokeMove m: moves) {
-			toReturn += m.getName() + ". Type: " + m.getTypeName() + ". Power: " + m.getPower() + "\n";
+			toReturn += m.toString() + "\n";
 		}
 		
 		return toReturn;
@@ -114,13 +122,19 @@ public class Pokemon
 	public void charmander()
 	{
 		name = "Charmander";
-		hp = 39;
+		maxHP = 39;
+		hp = maxHP;
 		attack = 52;
 		defense = 43;
 		speed = 65;
 		accuracy = 100;
 		type = new PokeType("fire");
 		description = "Obviously prefers hot places. When it rains, steam is said to spout from the tip of its tail.";
+		learnable.add(gen.scratch());
+		learnable.add(gen.growl());
+		learnable.add(gen.tailWhip());
+		learnable.add(gen.ember());
+		learnable.add(gen.rage());
 		
 		printOut =
 "              _.--\"\"`-..\n" +
@@ -158,18 +172,42 @@ public class Pokemon
 "    \"\"--'---\"\"\"\"\"'        `' '! |! /\n" +
 "                            `\" \" -' ";
 
+		head.add("          _.--\"\"`-..       ");
+		head.add("        ,'          `.     ");
+		head.add("      ,'          __  `.   ");
+		head.add("     /|          \" __   \\  ");
+		head.add("    , |           / |.   . ");
+		head.add("    |,'          !_.'|   | ");
+		head.add("  ,'             '   |   | ");
+		head.add(" /              |`--'|   | ");
+		head.add("|                `---'   | ");
+		head.add(" .   ,                   | ");
+		head.add("  ._     '           _'  | ");
+		head.add("  `.`-...___,...---\"\"  |   ");
+		head.add("    `._        _,-,.'   .| ");
+		head.add("     `. `-..--_.,.<     /  ");
+		head.add("                           ");
+		head.add("                           ");
+
 	}
 	
 	public void squirtle()
 	{
 		name = "Squirtle";
-		hp = 44;
+		maxHP = 44;
+		hp = maxHP;
 		attack = 48;
 		defense = 65;
 		speed = 43;
 		accuracy = 100;
 		type = new PokeType("water");
 		description = "After birth, its back swells and hardens into a shell. Powerfully sprays foam from its mouth.";
+		learnable.add(gen.tackle());
+		learnable.add(gen.growl());
+		learnable.add(gen.tailWhip());
+		learnable.add(gen.bubble());
+		learnable.add(gen.waterGun());
+		learnable.add(gen.withdraw());
 		
 		printOut = 
 "	                 _,........__\n" +
@@ -205,18 +243,42 @@ public class Pokemon
 "	                 ,'           )     `.         |\n" +
 "	                  7____,,..--'      /          |\n" +
 "	                                    `---.__,--.' ";
+		
+		head.add("           _,........__              ");
+		head.add("        ,-'            \"`-.          ");
+		head.add("      ,'                   `-.       ");
+		head.add("    ,'                        \\      ");
+		head.add("  ,'                           .     ");
+		head.add("  .'\\               ,\"\".       `     ");
+		head.add(" ._.'|             / |  `       \\    ");
+		head.add(" |   |            `-.'  ||       `.  ");
+		head.add(" |   |            '-._,'||       | \\ ");
+		head.add(" .`.,'             `..,'.'       ,   ");
+		head.add(" l                       .'`.  _/    ");
+		head.add(" `-.._'-   ,          _ _'   -\"      ");
+		head.add("     \"'-.`-...,---------','          ");
+		head.add("      `\"-..___      __,'             ");
+		head.add("                                     ");
+		head.add("                                     ");
+		
 	}
 	
 	public void bulbasaur()
 	{
 		name = "Bulbasaur";
-		hp = 45;
+		maxHP = 45;
+		hp = maxHP;
 		attack = 49;
 		defense = 49;
 		speed = 45;
 		accuracy = 100;
 		type = new PokeType("grass");
-		description = "A strange seed was planted on its back at birth. The plant sprouts and grows with this Pokémon.";
+		description = "A strange seed was planted on its back at birth. The plant sprouts and grows with this PokÃ©mon.";
+		learnable.add(gen.tackle());
+		learnable.add(gen.growl());
+		learnable.add(gen.vineWhip());
+		learnable.add(gen.razorLeaf());
+		learnable.add(gen.growth());
 		
 		printOut =
 				"                        _,.------....___,.' ',.-.\n" +
@@ -247,7 +309,24 @@ public class Pokemon
 				" '-.__ __ _,','    '`-..___;-...__   ,.'\\ ____.___.'\n" +
 				" `\"^--'..'   '-`-^-'\"--    `-^-'`.''\"\"\"\"\"`.,^.`.--' ";
 		
-		learnable.add(gen.tackle());
+		
+		head.add("       ____                                   ");
+		head.add("     .'    `---\" \"       ``\"-.--\"'`           ");
+		head.add("    .  ,            __               `        ");
+		head.add("    `,'         ,-\"'  .              \\        ");
+		head.add("   ,'          '    _.'                -._    ");
+		head.add("  ,`-.    ,\".   `--'                      >.  ");
+		head.add(" . .'\'   `-'       __    ,  ,-.         /     ");
+		head.add(" ||:, .           ,'  ;  /  /\\ `        `.    ");
+		head.add(" j|:D \\          `--'  ' ,'_  . .         `.  ");
+		head.add("/ L:_  |                 .  \"' :_;         /  ");
+		head.add(".    \"\"'                  \"\"\"\"\"'    /         ");
+		head.add(" `.                                 .    `.   ");
+		head.add("   `,_   .    .                _,-'/    .. \\  ");
+		head.add("    ) \\`._        ___....----\"'  ,'   .'  \\   ");
+		head.add("   /   `. \"`-.--\"'         _,' ,'     `---'  ");
+		head.add("  .   _  `\"\"'--.._____..--\"   ,          |    ");
+		
 	}
 	
 	public String printHP() {
@@ -261,6 +340,43 @@ public class Pokemon
 	}
 	
 	public String toString() {
-		return name + ". HP: " + hp + ". Attack: " + attack + ". Defense: " + defense + ". Speed: " + speed + "\n" + description;
+		return name + "\nHP: " + hp + " Attack: " + attack + " Defense: " + defense + " Speed: " + speed + "\n" + description + "\n";
 	}
+	
+	public ArrayList<String> getHead() {
+		return head;
+	}
+	
+	public String printHead() {
+		String toReturn = "";
+		for(String s: head) {
+			toReturn += s + "\n";
+		}
+		return toReturn;
+	}
+	
+	public String battleHUD(Pokemon opp) {
+		String toReturn = "";
+		for(int i=0; i<hp/5; i++) {
+			toReturn += "+";
+		}
+		toReturn += hp;
+		for(int i=0; i<head.get(0).length(); i++) {
+			toReturn += " ";
+		}
+		for(int i=0; i<opp.getHP()/5; i++) {
+			toReturn += "+";
+		}
+		toReturn += opp.getHP() + "\n";
+		for(int i=0; i<head.size(); i++) {
+			toReturn += head.get(i) + "    " + opp.getHead().get(i) + "\n";
+		}
+		
+		return toReturn;
+	}
+	
+	public boolean isDead() {
+		return hp <= 0;
+	}
+	
 }
