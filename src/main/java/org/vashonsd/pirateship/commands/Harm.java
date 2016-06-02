@@ -1,8 +1,7 @@
 package org.vashonsd.pirateship.commands;
 
-import org.vashonsd.pirateship.interactions.Actor;
-import org.vashonsd.pirateship.interactions.Player;
-import org.vashonsd.pirateship.interactions.Response;
+import org.vashonsd.pirateship.interactions.*;
+
 
 public class Harm extends Command {
 	

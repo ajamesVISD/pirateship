@@ -50,7 +50,7 @@ public class Game {
         	if (p.getTarget() == null && command.equals(quitWord)) {
         		break;
         	}
-        	writer.write(p.handle(command).getText());;
+        	writer.write(p.handle(command).getText());
 		}
 		writer.write("Thanks for playing!");
 	}

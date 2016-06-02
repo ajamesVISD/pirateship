@@ -4,6 +4,8 @@ import org.vashonsd.pirateship.creature.Creature;
 import org.vashonsd.pirateship.interactions.Actor;
 import org.vashonsd.pirateship.interactions.Player;
 import org.vashonsd.pirateship.interactions.Response;
+import org.vashonsd.pirateship.minigame.Interactions;
+import org.vashonsd.pirateship.minigame.MinigameRunner;
 
 public class Talk extends Command {
 	
@@ -16,9 +18,10 @@ public class Talk extends Command {
 
 	@Override
 	public Response execute(Actor obj, Player player) {
-		Response r = new Response();
-		r.setText(c.getSpeechBehavior().Speak());
-		return r;
+		Interactions i = new Interactions(c);
+		MinigameRunner run = new MinigameRunner(i);
+		player.getLocation().addToInventory(run);
+		return player.handle("play interact");
 	}
 
 }

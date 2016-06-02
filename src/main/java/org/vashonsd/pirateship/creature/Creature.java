@@ -11,6 +11,8 @@ public class Creature extends Actor {
 		super(name, typeName, description, splash);
 		this.enrollCommand(new Examine());
 		this.enrollCommand(new Harm());
+		this.enrollCommand(new Heal());
+		this.enrollCommand(new Drop());
 		this.enrollCommand(new Talk(this));
 		this.setAlive(true);
 		// Defaults creatures to no speech
