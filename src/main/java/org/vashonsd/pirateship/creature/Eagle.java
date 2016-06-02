@@ -1,5 +1,7 @@
 package org.vashonsd.pirateship.creature;
 
+import org.vashonsd.pirateship.commands.*;
+
 public class Eagle extends Creature {
 
 	public Eagle(String name) {
@@ -8,6 +10,10 @@ public class Eagle extends Creature {
 		this.setHealth(40);
 		this.setTypeName("eagle");
 		this.setTypeNamePlural("eagles");
+		this.enrollCommand(new Fight());
+		this.setAlive(true);
+		this.setAttack(10);
+		this.setDefense(0);
 	}
 	
 
