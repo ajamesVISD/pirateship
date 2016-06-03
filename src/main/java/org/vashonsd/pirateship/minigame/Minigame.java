@@ -34,7 +34,7 @@ public abstract class Minigame extends Actor {
 			m = new PrisonEscapeFactory();
 		} else if (s.equalsIgnoreCase("Shot")) {
 			m = new ShotgunFactory();
-		} else if (s.equalsIgnoreCase("Tic tac toe")) {
+		} else if (s.equalsIgnoreCase("TTT")) {
 			m = new TicTacToeFactory();
 		}
 		else {

@@ -85,7 +85,7 @@ public class WorldBuilder {
 		gameRoom.addToInventory(new MinigameRunner("math"));
 		gameRoom.addToInventory(new MinigameRunner("GOPP"));
 		gameRoom.addToInventory(new MinigameRunner("Shot"));
-		gameRoom.addToInventory(new MinigameRunner("Tic tac toe"));
+		gameRoom.addToInventory(new MinigameRunner("TTT"));
 		
 		w.addLocation(main);
 		w.addLocation(chat);

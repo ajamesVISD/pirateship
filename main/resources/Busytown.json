@@ -38,16 +38,28 @@
           "splash": "An eagle soars above"
         },
         {
+          "name": "stopwatch",
+          "type": "stopwatch",
+          "description": "You hear a stopwatch ticking",
+          "splash": "You hear a stopwatch"
+        },
+        {
           "name": "Little Larry Lizard",
           "type": "lizard",
           "description": "It is sleek and green",
           "splash": "There is a lizard here."
         },
         {
-          "name": "Twenty Questions",
-          "type": "20Q",
-          "description": "I'll pick a number between 1 and 1,000. You have 20 questions to guess it.",
-          "splash": " I'll pick a number between 1 and 1,000. You have 20 questions to guess it.[20Q]"
+          "name": "Jake the Dog",
+          "type": "dog",
+          "description": "It is a loyal dog who will stay by your side",
+          "splash": "A dog wags its tail"
+        },
+        {
+          "name": "bandage",
+          "type": "bandage",
+          "description": "bandage",
+          "splash": "There is a bandage here."
         }
       ]
     },
@@ -121,13 +133,14 @@
         },
         {
           "name": "Tic Tac Toe",
-          "type": "Tic Tac Toe",
+          "type": "TTT",
           "description": "Play tic tac toe against me, the computer. Don't worry, I'm not very good.",
-          "splash": " Play tic tac toe against me, the computer. Don't worry, I'm not very good.[Tic Tac Toe]"
+          "splash": " Play tic tac toe against me, the computer. Don't worry, I'm not very good.[TTT]"
         }
       ]
     }
   ],
+  "starting_location": "City Hall",
   "route": [
     {
       "id": "City Hall Lobby - City Hall",

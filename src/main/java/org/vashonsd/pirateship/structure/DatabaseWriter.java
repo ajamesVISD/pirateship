@@ -53,6 +53,7 @@ public class DatabaseWriter {
 				writer.endObject();
 			}
 			writer.endArray();
+			writer.name("starting_location").value(world.getStartingLocation().getName());
 			writer.name("route");
 			writer.beginArray();
 			for (Location l : world.getLocations()) {
