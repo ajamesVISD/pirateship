@@ -11,10 +11,16 @@ public class NoSpeech implements SpeechBehavior {
 	}
 
 	public String idle(Creature c) {
+		if (c.getHealth() < (c.getMaxHealth() / 2)) {
+			return c.getName() + " is nursing its wounds.";
+		}
 		return c.getName() + " is waiting for you to move.";
 	}
 
 	public String speak(Creature c) {
+		if (c.getHealth() < (c.getMaxHealth() / 2)) {
+			return c.getName() + " is too scared to talk.";
+		}
 		return c.getName() + " doesn't want to talk.";
 	}
 

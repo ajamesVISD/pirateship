@@ -12,6 +12,7 @@ public class Interactions extends Minigame {
 	Player player;
 	private int menu;
 	private int blankClick;
+	private MinigameRunner run;
 	
 	public static int MAIN_MENU = 0;
 	public static int GIVE = 1;
@@ -26,6 +27,10 @@ public class Interactions extends Minigame {
 		this.player = player;
 		menu = MAIN_MENU;
 		blankClick = 0;
+	}
+	
+	public void setMinigameRunner(MinigameRunner run) {
+		this.run = run;
 	}
 
 	/** Text that displays on first turn
@@ -121,7 +126,7 @@ public class Interactions extends Minigame {
 			blankClick = 0;
 			if (!c.getInventory().isEmpty()) {
 				text += "What would you like to take?\n\n";
-				text += player.getInventory().toString();
+				text += c.getInventory().toString();
 				menu = TAKE;
 			} else {
 				text += c.getName() + " doesn't have anything to take.";
@@ -150,10 +155,13 @@ public class Interactions extends Minigame {
 		String text = "";
 		if (player.getInventory().hasByTypeName(prompt)) {
 			text += "You give the " + prompt + " to " + c.getName() + ".\n";
-			Actor a = c.getByTypeName(prompt);
+			Actor a = player.getInventory().getByTypeName(prompt);
 			player.removeFromInventory(a);
-			c.addToInventory(a);
+			c.addToInventory(a);;
 			text += c.checkHoldingEffect(a);
+		} else if (prompt.equals("")) {
+			text += "You decide to stare awkwardly at " + c.getName() + " rather than give anything.\n";
+			text += c.getName() + " is uncomfortable.";
 		} else {
 			text += "You don't have a " + prompt + " to give.";
 		}
@@ -187,7 +195,7 @@ public class Interactions extends Minigame {
 	 */
 	@Override
 	public String getExit() {
-		player.getLocation().removeFromInventory(this);
-		return c.getSpeechBehavior().exit(c);
+		player.getLocation().removeFromInventory(run);
+		return c.getSpeechBehavior().exit(c) + "\n";
 	}
 }

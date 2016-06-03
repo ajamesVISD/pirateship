@@ -20,6 +20,7 @@ public class Talk extends Command {
 	public Response execute(Actor obj, Player player) {
 		Interactions i = new Interactions(c, player);
 		MinigameRunner run = new MinigameRunner(i);
+		i.setMinigameRunner(run);
 		player.getLocation().addToInventory(run);
 		return player.handle("play interact");
 	}

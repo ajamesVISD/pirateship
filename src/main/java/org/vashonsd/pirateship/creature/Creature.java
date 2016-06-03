@@ -54,7 +54,7 @@ public class Creature extends Actor {
 			checkHoldingEffect(a);
 		}
 		
-		if (tempSpeech.equals(getSpeechBehavior())) {
+		if (!tempSpeech.equals(getSpeechBehavior())) {
 			return getSpeechBehavior().intro(this);
 		}
 		

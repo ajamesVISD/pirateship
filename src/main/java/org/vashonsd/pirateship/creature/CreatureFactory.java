@@ -12,9 +12,11 @@ public class CreatureFactory {
 		else if(which.equals("kraken")) {
 			return new Kraken("The Kraken", "Ships Beware!", "You hear the ominous sounds of a Kraken!");
 		}
-		else if(which.equals("dog"))
-		{
-			return new Dog("Jake the Dog", "He is a loyal Labrador", "The dog is wagging his tail");
+		else if(which.equals("dog")) {
+			return new Dog("Jake the Dog", "He is a loyal Labrador", "A dog is wagging his tail");
+		}
+		else if(which.equals("cow")) {
+			return new Cow("Moofred", "His name is a joke, just like his life", "A cow grazes");
 		}
 		else {
 			return null;

@@ -1,11 +1,6 @@
 package org.vashonsd.pirateship.creature;
 
 public class Cow extends Creature {
-
-	public Cow(String name) {
-		super(name, "cow", "A big, beefy cow", "A cow grazes silently");
-		setUp();
-	}
 	
 	public Cow(String name, String description, String splash) {
 		super(name, "cow", description, splash);
