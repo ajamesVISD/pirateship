@@ -1,16 +1,31 @@
 package org.vashonsd.pirateship.minigame;
 
 import org.vashonsd.pirateship.creature.Creature;
+import org.vashonsd.pirateship.interactions.Actor;
+import org.vashonsd.pirateship.interactions.Player;
 import org.vashonsd.pirateship.interactions.Request;
 import org.vashonsd.pirateship.interactions.Response;
 
 public class Interactions extends Minigame {
 	
 	Creature c;
+	Player player;
+	private int menu;
+	private int blankClick;
 	
-	public Interactions(Creature c) {
+	public static int MAIN_MENU = 0;
+	public static int GIVE = 1;
+	public static int TAKE = 2;
+	
+	public static int MAX_CLICKS = 10;
+	
+	
+	public Interactions(Creature c, Player player) {
 		super("", "interact", "", "");
 		this.c = c;
+		this.player = player;
+		menu = MAIN_MENU;
+		blankClick = 0;
 	}
 
 	/** Text that displays on first turn
@@ -43,8 +58,9 @@ public class Interactions extends Minigame {
 	private String getCommandsMenu() {
 		String commands = "";
 		commands += "\nCommands:\n";
-		commands += "> Talk    > Give    > Take\n";
-		commands += " >Exit\n";
+		commands += "> Check    > Talk\n";
+		commands += " > Give     > Take\n";
+		commands += "> Exit\n";
 		
 		return commands;
 	}
@@ -57,22 +73,108 @@ public class Interactions extends Minigame {
 	public Response handleOtherwise(Request req) {
 		String prompt = req.getText();
 		String text = "";
-		if (prompt.equalsIgnoreCase("talk")) {
-			text += c.getSpeechBehavior().speak(c);
-			text += getTurnText();
-		} else if (prompt.equalsIgnoreCase("give")) {
-			
-		} else if (prompt.equalsIgnoreCase("take")) {
-			
-		} else if (prompt.equals("")){
-			text += "You stare at " + c.getName() + ".";
-			text += getTurnText();
+		if (menu == MAIN_MENU) {
+			text += processMainMenu(prompt);
+		} else if (menu == GIVE) {
+			text += processGiveMenu(prompt);
+			menu = MAIN_MENU;
+		} else if (menu == TAKE) {
+			text += processTakeMenu(prompt);
+			menu = MAIN_MENU;
 		} else {
-			text += c.getSpeechBehavior().failText(c);
-			text += getTurnText();
+			text += "I'm not sure how you got this, unless you're a hacker.\n";
+			menu = MAIN_MENU;
 		}
+		
 		this.response.setText(text);
 		return this.response;
+	}
+	
+	/**
+	 * Processes any prompts given to the main menu
+	 */
+	private String processMainMenu(String prompt) {
+		String text = "";
+		if (prompt.equalsIgnoreCase("check")) {
+			blankClick = 0;
+			text += c.getName() + " the " + c.getTypeName() + "\n";
+			text += c.getDescription() + "\n";
+			text += "HP: " + c.getHealth() + "/" + c.getMaxHealth() + "\n";
+			text += "ATK: " + c.getAttack() + "    DEF: " + c.getDefense();
+			return text;
+		} else if (prompt.equalsIgnoreCase("talk")) {
+			blankClick = 0;
+			text += c.getSpeechBehavior().speak(c);
+			return text;
+		} else if (prompt.equalsIgnoreCase("give")) {
+			blankClick = 0;
+			if (!player.getInventory().isEmpty()) {
+				text += "What would you like to give?\n\n";
+				text += player.getInventory().toString();
+				menu = GIVE;
+			} else {
+				text += "You don't have anything to give.";
+			}
+
+			return text;
+		} else if (prompt.equalsIgnoreCase("take")) {
+			blankClick = 0;
+			if (!c.getInventory().isEmpty()) {
+				text += "What would you like to take?\n\n";
+				text += player.getInventory().toString();
+				menu = TAKE;
+			} else {
+				text += c.getName() + " doesn't have anything to take.";
+			}
+
+			return text;
+		} else if (prompt.equals("")){
+			blankClick++;
+			if (blankClick >= MAX_CLICKS) {
+				blankClick = 0;
+				text += c.getName() + " is uncomfortable with all the clicking you're doing";
+			}
+		} else {
+			blankClick = 0;
+			text += c.getSpeechBehavior().failText(c);
+		}
+		
+		text += getTurnText();
+		return text;
+	}
+	
+	/**
+	 * Processes any prompts given to the Give menu
+	 */
+	private String processGiveMenu(String prompt) {
+		String text = "";
+		if (player.getInventory().hasByTypeName(prompt)) {
+			text += "You give the " + prompt + " to " + c.getName() + ".\n";
+			Actor a = c.getByTypeName(prompt);
+			player.removeFromInventory(a);
+			c.addToInventory(a);
+			text += c.checkHoldingEffect(a);
+		} else {
+			text += "You don't have a " + prompt + " to give.";
+		}
+		return text;
+	}
+	
+	/**
+	 * Processes any prompts given to the Take menu
+	 */
+	private String processTakeMenu(String prompt) {
+		String text = "";
+		if (c.getInventory().hasByTypeName(prompt)) {
+			text += "You take the " + prompt + " from " + c.getName() + ".\n";
+			Actor a = c.getInventory().getByTypeName(prompt);
+			c.removeFromInventory(a);
+			player.addToInventory(a);
+			text += c.refreshHoldingEffects();
+		} else {
+			text += c.getName() + " doesn't have a " + prompt + " to take.";
+		}
+		return text;
 	}
 	
 	@Override
@@ -85,6 +187,7 @@ public class Interactions extends Minigame {
 	 */
 	@Override
 	public String getExit() {
+		player.getLocation().removeFromInventory(this);
 		return c.getSpeechBehavior().exit(c);
 	}
 }

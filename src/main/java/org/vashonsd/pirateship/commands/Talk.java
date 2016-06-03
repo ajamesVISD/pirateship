@@ -18,7 +18,7 @@ public class Talk extends Command {
 
 	@Override
 	public Response execute(Actor obj, Player player) {
-		Interactions i = new Interactions(c);
+		Interactions i = new Interactions(c, player);
 		MinigameRunner run = new MinigameRunner(i);
 		player.getLocation().addToInventory(run);
 		return player.handle("play interact");

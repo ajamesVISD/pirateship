@@ -2,6 +2,10 @@ package org.vashonsd.pirateship.creature;
 
 public class NoSpeech implements SpeechBehavior {
 
+	public String intro(Creature c) {
+		return c.getName() + " is no longer one to talk.";
+	}
+	
 	public String approach(Creature c) {
 		return c.getName() + " approaches.";
 	}
@@ -19,6 +23,6 @@ public class NoSpeech implements SpeechBehavior {
 	}
 
 	public String failText(Creature c) {
-		return c.getName() + " doesn't understand what you're trying to say.";
+		return c.getName() + " doesn't understand you.";
 	}
 }
