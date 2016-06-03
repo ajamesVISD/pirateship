@@ -13,9 +13,7 @@ import org.vashonsd.pirateship.itemStuff.*;
 public class Game {
 	private StringRead reader;
 	private StringWrite writer;
-	
-	private DatabaseWriter db = new DatabaseWriter();
-	
+		
 	//Worlds act as namespaces. That is, two locations can have the same identifier as long as they exist in separate Worlds.
 	private HashMap<String, World> worlds;
 	

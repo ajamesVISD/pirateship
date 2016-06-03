@@ -17,25 +17,7 @@ public abstract class Minigame extends Actor {
 	
 	public static Minigame produce(String s) {
 		TextMinigameFactory m;
-		if (s.equalsIgnoreCase("20Q")) {
-			m = new TwentyQuestionsFactory();
-		} else if (s.equalsIgnoreCase("Blackjack")) {
-			m = new BlackjackFactory();
-		} else if (s.equalsIgnoreCase("CC")) {
-			m = new CookieClickerFactory();
-		} else if (s.equalsIgnoreCase("GF")) {
-			m = new GoFishFactory();
-		} else if (s.equalsIgnoreCase("GuessCalc")){
-			m = new GuessingCalculatorFactory();
-		} else if (s.equalsIgnoreCase("math")) {
-			m = new MathFactory();
-		} else if (s.equalsIgnoreCase("GOPP")) {
-			m = new PrisonEscapeFactory();
-		} else if (s.equalsIgnoreCase("Shot")) {
-			m = new ShotgunFactory();
-		} else if (s.equalsIgnoreCase("Tic tac toe")) {
-			m = new TicTacToeFactory();
-		} else if(s.equalsIgnoreCase("Poke")) {
+		if(s.equalsIgnoreCase("Poke")) {
 			m = new PokemonBattleFactory();
 		}
 		else {

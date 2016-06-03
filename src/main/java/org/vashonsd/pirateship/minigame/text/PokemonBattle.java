@@ -5,22 +5,22 @@ public class PokemonBattle implements TextMinigame {
 
 	private boolean choseP;
 	private boolean choseM;
-	private Pokemon you;
-	private Pokemon opponent;
+	private MiniPokemon you;
+	private MiniPokemon opponent;
 	private PokeMoveGenerator gen;
 	private boolean intro;
-	private ArrayList<Pokemon> availablePokemon;
+	private ArrayList<MiniPokemon> availablePokemon;
 	
 	public PokemonBattle() {
 		choseP = false;
 		choseM = false;
 		intro = false;
-		availablePokemon = new ArrayList<Pokemon>();
+		availablePokemon = new ArrayList<MiniPokemon>();
 		gen = new PokeMoveGenerator();
 		
-		availablePokemon.add(new Pokemon("bulbasaur"));
-		availablePokemon.add(new Pokemon("charmander"));
-		availablePokemon.add(new Pokemon("squirtle"));
+		availablePokemon.add(new MiniPokemon("bulbasaur"));
+		availablePokemon.add(new MiniPokemon("charmander"));
+		availablePokemon.add(new MiniPokemon("squirtle"));
 	}
 	
 	public String Run() {
@@ -45,21 +45,21 @@ public class PokemonBattle implements TextMinigame {
 				int which = Randomizer.nextInt(2);
 				
 				if(which == 0) {
-					opponent = new Pokemon("squirtle");
+					opponent = new MiniPokemon("squirtle");
 					opponent.addMove(gen.tackle());
 					opponent.addMove(gen.waterGun());
 					opponent.addMove(gen.withdraw());
 					opponent.addMove(gen.tailWhip());
 				} 
 				else if(which == 1) {
-					opponent = new Pokemon("charmander");
+					opponent = new MiniPokemon("charmander");
 					opponent.addMove(gen.scratch());
 					opponent.addMove(gen.ember());
 					opponent.addMove(gen.rage());
 					opponent.addMove(gen.tailWhip());
 				}
 				else if(which == 2) {
-					opponent = new Pokemon("bulbasaur");
+					opponent = new MiniPokemon("bulbasaur");
 					opponent.addMove(gen.tackle());
 					opponent.addMove(gen.razorLeaf());
 					opponent.addMove(gen.growth());
@@ -71,7 +71,7 @@ public class PokemonBattle implements TextMinigame {
 			else if (s.equalsIgnoreCase("no")) {
 				return getIntro();
 			}
-			for(Pokemon m: availablePokemon) {
+			for(MiniPokemon m: availablePokemon) {
 				if(s.equalsIgnoreCase(m.getName())) {
 					you = m;
 					return m.toString() + m.printOut() + "\nWould you like " + m.getName() + " the " + m.getTypeName() + " pokemon?";
@@ -181,7 +181,7 @@ public class PokemonBattle implements TextMinigame {
 		return "Your Pokemon journey has ended.";
 	}
 
-	public void hit(Pokemon source, Pokemon target, PokeMove move) 
+	public void hit(MiniPokemon source, MiniPokemon target, PokeMove move) 
 	{
 		source.changeHP(move.getHealthGain());
 		target.changeHP((-(((source.getAttack())/100)*(move.getPower()))*((100 - target.getDefense())/100))*move.getType().isEffective(target.getType()));
@@ -198,13 +198,13 @@ public class PokemonBattle implements TextMinigame {
 	public String getIntro()
 	{
 		String toReturn = "Select a Pokemon: \n";
-		for(Pokemon m: availablePokemon) {
+		for(MiniPokemon m: availablePokemon) {
 			toReturn += m.getName() + "\n";
 		}
 		return toReturn;
 	}
 	
-	public String learnableMoves(Pokemon s) {
+	public String learnableMoves(MiniPokemon s) {
 		String toReturn = "Available moves:\n";
 		for(PokeMove m: s.getLearnable()) {
 			toReturn += m.toString() + "\n";
@@ -216,7 +216,7 @@ public class PokemonBattle implements TextMinigame {
 		return you.getSpeed() >= opponent.getSpeed();
 	}
 	
-	public Pokemon getWinner() {
+	public MiniPokemon getWinner() {
 		if(you.isDead())
 			return opponent;
 		

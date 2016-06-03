@@ -1,9 +1,8 @@
 package org.vashonsd.pirateship.structure;
 
 import java.io.IOException;
-
 import org.vashonsd.pirateship.creature.CreatureFactory;
-import org.vashonsd.pirateship.interactions.Baguette;
+import org.vashonsd.pirateship.interactions.*;
 import org.vashonsd.pirateship.minigame.*;
 
 /**
