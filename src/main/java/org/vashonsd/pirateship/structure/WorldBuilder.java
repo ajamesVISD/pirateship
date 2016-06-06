@@ -34,7 +34,7 @@ public class WorldBuilder {
 	public static World PokemonWorld()
 	{
 		World w = new World("Kanto");
-		Location courtyard = new Location("Courtyard", "A wide empty courtyard", "Not much to do here");
+		Location courtyard = new Location("Courtyard", "Not much to do here", "A wide empty courtyard");
 		Location lab = new Location("Pokemon Lab", "Professor Oak works here", "You stand amidst big shiny machines");
 		Location arena = new Location("Pokemon Arena", "Battle!!!", "Fight your way to the top");
 		Location pokemonCenter = new Location("Pokemon Center", "Heal your pokemon", "A nice cozy mix of hospital and cafe");
@@ -56,7 +56,7 @@ public class WorldBuilder {
 		w.addLocation(pokemonCenter);
 		w.addLocation(shop);
 		
-		arena.addToInventory();
+		arena.addToInventory(new MinigameRunner("Poke"));
 		
 		w.setStartingLocation(courtyard);
 		

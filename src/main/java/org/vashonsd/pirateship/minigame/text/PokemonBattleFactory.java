@@ -19,7 +19,7 @@ public class PokemonBattleFactory implements TextMinigameFactory {
 
 	public TextMinigame newGame() {
 		// TODO Auto-generated method stub
-		return new PokemonBattle();
+		return new Battle();
 	}
 
 }

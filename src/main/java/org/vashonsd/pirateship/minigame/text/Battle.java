@@ -4,7 +4,7 @@ import java.util.*;
 import org.vashonsd.pirateship.interactions.poke.PokeMove;
 import org.vashonsd.pirateship.interactions.poke.PokeMoveGenerator;
 
-public class PokemonBattle implements TextMinigame {
+public class Battle implements TextMinigame {
 
 	private boolean choseP;
 	private boolean choseM;
@@ -14,7 +14,7 @@ public class PokemonBattle implements TextMinigame {
 	private boolean intro;
 	private ArrayList<MiniPokemon> availablePokemon;
 	
-	public PokemonBattle() {
+	public Battle() {
 		choseP = false;
 		choseM = false;
 		intro = false;
