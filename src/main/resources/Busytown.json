@@ -3,76 +3,737 @@
   "locations": [
     {
       "locname": "City Hall",
-      "description": "You stand before a brick building with Greek gods painted on it",
+      "description": "It's a brick building",
+      "splash": "You stand before a brick building with Greek gods painted on it",
       "route_id": [
-        "City HallCity Hall Lobby",
-        "City HallHappy Park",
-        "City HallDead End Street"
+        "City Hall - City Hall Lobby",
+        "City Hall - Happy Park",
+        "City Hall - Dead End Street",
+        "City Hall - Game Room",
+        "City Hall - Pig Prison"
+      ],
+      "inventory": [
+        {
+          "name": "Daniel the Eagle",
+          "type": "eagle",
+          "description": "It is an eagle with sharp talons",
+          "splash": "An eagle soars above"
+        },
+        {
+          "name": "stopwatch",
+          "type": "stopwatch",
+          "description": "You hear a stopwatch ticking",
+          "splash": "You hear a stopwatch"
+        },
+        {
+          "name": "Little Larry Lizard",
+          "type": "lizard",
+          "description": "It is sleek and green",
+          "splash": "There is a lizard here."
+        },
+        {
+          "name": "Jake the Dog",
+          "type": "dog",
+          "description": "It is a loyal dog who will stay by your side",
+          "splash": "A dog wags its tail"
+        },
+        {
+          "name": "bandage",
+          "type": "bandage",
+          "description": "bandage",
+          "splash": "There is a bandage here."
+        }
       ]
     },
     {
-      "locname": "City Hall Lobby",
-      "description": "Giant columns rise up 100 feet.",
+      "locname": "City Hall",
+      "description": "It's a brick building",
+      "splash": "You stand before a brick building with Greek gods painted on it",
       "route_id": [
-        "City Hall LobbyCity Hall"
+        "City Hall - City Hall Lobby",
+        "City Hall - Happy Park",
+        "City Hall - Dead End Street",
+        "City Hall - Game Room",
+        "City Hall - Pig Prison"
+      ],
+      "inventory": [
+        {
+          "name": "Daniel the Eagle",
+          "type": "eagle",
+          "description": "It is an eagle with sharp talons",
+          "splash": "An eagle soars above"
+        },
+        {
+          "name": "stopwatch",
+          "type": "stopwatch",
+          "description": "You hear a stopwatch ticking",
+          "splash": "You hear a stopwatch"
+        },
+        {
+          "name": "Little Larry Lizard",
+          "type": "lizard",
+          "description": "It is sleek and green",
+          "splash": "There is a lizard here."
+        },
+        {
+          "name": "Jake the Dog",
+          "type": "dog",
+          "description": "It is a loyal dog who will stay by your side",
+          "splash": "A dog wags its tail"
+        },
+        {
+          "name": "bandage",
+          "type": "bandage",
+          "description": "bandage",
+          "splash": "There is a bandage here."
+        }
       ]
     },
     {
-      "locname": "Happy Park",
-      "description": "This happy place has birds singing, people playing.",
+      "locname": "City Hall",
+      "description": "It's a brick building",
+      "splash": "You stand before a brick building with Greek gods painted on it",
       "route_id": [
-        "Happy ParkCity Hall"
+        "City Hall - City Hall Lobby",
+        "City Hall - Happy Park",
+        "City Hall - Dead End Street",
+        "City Hall - Game Room",
+        "City Hall - Pig Prison"
+      ],
+      "inventory": [
+        {
+          "name": "Daniel the Eagle",
+          "type": "eagle",
+          "description": "It is an eagle with sharp talons",
+          "splash": "An eagle soars above"
+        },
+        {
+          "name": "stopwatch",
+          "type": "stopwatch",
+          "description": "You hear a stopwatch ticking",
+          "splash": "You hear a stopwatch"
+        },
+        {
+          "name": "Little Larry Lizard",
+          "type": "lizard",
+          "description": "It is sleek and green",
+          "splash": "There is a lizard here."
+        },
+        {
+          "name": "Jake the Dog",
+          "type": "dog",
+          "description": "It is a loyal dog who will stay by your side",
+          "splash": "A dog wags its tail"
+        },
+        {
+          "name": "bandage",
+          "type": "bandage",
+          "description": "bandage",
+          "splash": "There is a bandage here."
+        }
       ]
     },
     {
-      "locname": "Dead End Street",
-      "description": "This place is miserable.",
+      "locname": "City Hall",
+      "description": "It's a brick building",
+      "splash": "You stand before a brick building with Greek gods painted on it",
       "route_id": [
-        "Dead End StreetCity Hall"
+        "City Hall - City Hall Lobby",
+        "City Hall - Happy Park",
+        "City Hall - Dead End Street",
+        "City Hall - Game Room",
+        "City Hall - Pig Prison"
+      ],
+      "inventory": [
+        {
+          "name": "Daniel the Eagle",
+          "type": "eagle",
+          "description": "It is an eagle with sharp talons",
+          "splash": "An eagle soars above"
+        },
+        {
+          "name": "stopwatch",
+          "type": "stopwatch",
+          "description": "You hear a stopwatch ticking",
+          "splash": "You hear a stopwatch"
+        },
+        {
+          "name": "Little Larry Lizard",
+          "type": "lizard",
+          "description": "It is sleek and green",
+          "splash": "There is a lizard here."
+        },
+        {
+          "name": "Jake the Dog",
+          "type": "dog",
+          "description": "It is a loyal dog who will stay by your side",
+          "splash": "A dog wags its tail"
+        },
+        {
+          "name": "bandage",
+          "type": "bandage",
+          "description": "bandage",
+          "splash": "There is a bandage here."
+        }
+      ]
+    },
+    {
+      "locname": "City Hall",
+      "description": "It's a brick building",
+      "splash": "You stand before a brick building with Greek gods painted on it",
+      "route_id": [
+        "City Hall - City Hall Lobby",
+        "City Hall - Happy Park",
+        "City Hall - Dead End Street",
+        "City Hall - Game Room",
+        "City Hall - Pig Prison"
+      ],
+      "inventory": [
+        {
+          "name": "Daniel the Eagle",
+          "type": "eagle",
+          "description": "It is an eagle with sharp talons",
+          "splash": "An eagle soars above"
+        },
+        {
+          "name": "stopwatch",
+          "type": "stopwatch",
+          "description": "You hear a stopwatch ticking",
+          "splash": "You hear a stopwatch"
+        },
+        {
+          "name": "Little Larry Lizard",
+          "type": "lizard",
+          "description": "It is sleek and green",
+          "splash": "There is a lizard here."
+        },
+        {
+          "name": "Jake the Dog",
+          "type": "dog",
+          "description": "It is a loyal dog who will stay by your side",
+          "splash": "A dog wags its tail"
+        },
+        {
+          "name": "bandage",
+          "type": "bandage",
+          "description": "bandage",
+          "splash": "There is a bandage here."
+        }
+      ]
+    },
+    {
+      "locname": "Game Room",
+      "description": "Play minigames!",
+      "splash": "You are in the Game Room. Bells ring and machines whir.",
+      "route_id": [
+        "Game Room - City Hall"
+      ],
+      "inventory": [
+        {
+          "name": "Twenty Questions",
+          "type": "20Q",
+          "description": "I'll pick a number between 1 and 1,000. You have 20 questions to guess it.",
+          "splash": " I'll pick a number between 1 and 1,000. You have 20 questions to guess it.[20Q]"
+        },
+        {
+          "name": "Cookie Clicker",
+          "type": "CC",
+          "description": "You click a cookie to gain cookies.",
+          "splash": " You click a cookie to gain cookies.[CC]"
+        },
+        {
+          "name": "Go Fish",
+          "type": "GF",
+          "description": "Play a game of Go Fish against the computer.",
+          "splash": " Play a game of Go Fish against the computer.[GF]"
+        },
+        {
+          "name": "Guessing Calculator",
+          "type": "GuessCalc",
+          "description": "I'll give you two whole numbers, and you tell me what their sum is.",
+          "splash": " I'll give you two whole numbers, and you tell me what their sum is.[GuessCalc]"
+        },
+        {
+          "name": "Solve the math problem.",
+          "type": "math",
+          "description": "Solve the math problem.",
+          "splash": " Solve the math problem.[math]"
+        },
+        {
+          "name": "Get Out of Pig Prison",
+          "type": "GOPP",
+          "description": "Convice your pig warden to let you out of jail",
+          "splash": " Convice your pig warden to let you out of jail[GOPP]"
+        },
+        {
+          "name": "Shotgun",
+          "type": "Shot",
+          "description": "Reload, Block, or Shoot, but time it right or you're dead",
+          "splash": " Reload, Block, or Shoot, but time it right or you're dead[Shot]"
+        },
+        {
+          "name": "Tic Tac Toe",
+          "type": "TTT",
+          "description": "Play tic tac toe against me, the computer. Don't worry, I'm not very good.",
+          "splash": " Play tic tac toe against me, the computer. Don't worry, I'm not very good.[TTT]"
+        }
+      ]
+    },
+    {
+      "locname": "Game Room",
+      "description": "Play minigames!",
+      "splash": "You are in the Game Room. Bells ring and machines whir.",
+      "route_id": [
+        "Game Room - City Hall"
+      ],
+      "inventory": [
+        {
+          "name": "Twenty Questions",
+          "type": "20Q",
+          "description": "I'll pick a number between 1 and 1,000. You have 20 questions to guess it.",
+          "splash": " I'll pick a number between 1 and 1,000. You have 20 questions to guess it.[20Q]"
+        },
+        {
+          "name": "Cookie Clicker",
+          "type": "CC",
+          "description": "You click a cookie to gain cookies.",
+          "splash": " You click a cookie to gain cookies.[CC]"
+        },
+        {
+          "name": "Go Fish",
+          "type": "GF",
+          "description": "Play a game of Go Fish against the computer.",
+          "splash": " Play a game of Go Fish against the computer.[GF]"
+        },
+        {
+          "name": "Guessing Calculator",
+          "type": "GuessCalc",
+          "description": "I'll give you two whole numbers, and you tell me what their sum is.",
+          "splash": " I'll give you two whole numbers, and you tell me what their sum is.[GuessCalc]"
+        },
+        {
+          "name": "Solve the math problem.",
+          "type": "math",
+          "description": "Solve the math problem.",
+          "splash": " Solve the math problem.[math]"
+        },
+        {
+          "name": "Get Out of Pig Prison",
+          "type": "GOPP",
+          "description": "Convice your pig warden to let you out of jail",
+          "splash": " Convice your pig warden to let you out of jail[GOPP]"
+        },
+        {
+          "name": "Shotgun",
+          "type": "Shot",
+          "description": "Reload, Block, or Shoot, but time it right or you're dead",
+          "splash": " Reload, Block, or Shoot, but time it right or you're dead[Shot]"
+        },
+        {
+          "name": "Tic Tac Toe",
+          "type": "TTT",
+          "description": "Play tic tac toe against me, the computer. Don't worry, I'm not very good.",
+          "splash": " Play tic tac toe against me, the computer. Don't worry, I'm not very good.[TTT]"
+        }
+      ]
+    },
+    {
+      "locname": "Game Room",
+      "description": "Play minigames!",
+      "splash": "You are in the Game Room. Bells ring and machines whir.",
+      "route_id": [
+        "Game Room - City Hall"
+      ],
+      "inventory": [
+        {
+          "name": "Twenty Questions",
+          "type": "20Q",
+          "description": "I'll pick a number between 1 and 1,000. You have 20 questions to guess it.",
+          "splash": " I'll pick a number between 1 and 1,000. You have 20 questions to guess it.[20Q]"
+        },
+        {
+          "name": "Cookie Clicker",
+          "type": "CC",
+          "description": "You click a cookie to gain cookies.",
+          "splash": " You click a cookie to gain cookies.[CC]"
+        },
+        {
+          "name": "Go Fish",
+          "type": "GF",
+          "description": "Play a game of Go Fish against the computer.",
+          "splash": " Play a game of Go Fish against the computer.[GF]"
+        },
+        {
+          "name": "Guessing Calculator",
+          "type": "GuessCalc",
+          "description": "I'll give you two whole numbers, and you tell me what their sum is.",
+          "splash": " I'll give you two whole numbers, and you tell me what their sum is.[GuessCalc]"
+        },
+        {
+          "name": "Solve the math problem.",
+          "type": "math",
+          "description": "Solve the math problem.",
+          "splash": " Solve the math problem.[math]"
+        },
+        {
+          "name": "Get Out of Pig Prison",
+          "type": "GOPP",
+          "description": "Convice your pig warden to let you out of jail",
+          "splash": " Convice your pig warden to let you out of jail[GOPP]"
+        },
+        {
+          "name": "Shotgun",
+          "type": "Shot",
+          "description": "Reload, Block, or Shoot, but time it right or you're dead",
+          "splash": " Reload, Block, or Shoot, but time it right or you're dead[Shot]"
+        },
+        {
+          "name": "Tic Tac Toe",
+          "type": "TTT",
+          "description": "Play tic tac toe against me, the computer. Don't worry, I'm not very good.",
+          "splash": " Play tic tac toe against me, the computer. Don't worry, I'm not very good.[TTT]"
+        }
+      ]
+    },
+    {
+      "locname": "Game Room",
+      "description": "Play minigames!",
+      "splash": "You are in the Game Room. Bells ring and machines whir.",
+      "route_id": [
+        "Game Room - City Hall"
+      ],
+      "inventory": [
+        {
+          "name": "Twenty Questions",
+          "type": "20Q",
+          "description": "I'll pick a number between 1 and 1,000. You have 20 questions to guess it.",
+          "splash": " I'll pick a number between 1 and 1,000. You have 20 questions to guess it.[20Q]"
+        },
+        {
+          "name": "Cookie Clicker",
+          "type": "CC",
+          "description": "You click a cookie to gain cookies.",
+          "splash": " You click a cookie to gain cookies.[CC]"
+        },
+        {
+          "name": "Go Fish",
+          "type": "GF",
+          "description": "Play a game of Go Fish against the computer.",
+          "splash": " Play a game of Go Fish against the computer.[GF]"
+        },
+        {
+          "name": "Guessing Calculator",
+          "type": "GuessCalc",
+          "description": "I'll give you two whole numbers, and you tell me what their sum is.",
+          "splash": " I'll give you two whole numbers, and you tell me what their sum is.[GuessCalc]"
+        },
+        {
+          "name": "Solve the math problem.",
+          "type": "math",
+          "description": "Solve the math problem.",
+          "splash": " Solve the math problem.[math]"
+        },
+        {
+          "name": "Get Out of Pig Prison",
+          "type": "GOPP",
+          "description": "Convice your pig warden to let you out of jail",
+          "splash": " Convice your pig warden to let you out of jail[GOPP]"
+        },
+        {
+          "name": "Shotgun",
+          "type": "Shot",
+          "description": "Reload, Block, or Shoot, but time it right or you're dead",
+          "splash": " Reload, Block, or Shoot, but time it right or you're dead[Shot]"
+        },
+        {
+          "name": "Tic Tac Toe",
+          "type": "TTT",
+          "description": "Play tic tac toe against me, the computer. Don't worry, I'm not very good.",
+          "splash": " Play tic tac toe against me, the computer. Don't worry, I'm not very good.[TTT]"
+        }
+      ]
+    },
+    {
+      "locname": "Game Room",
+      "description": "Play minigames!",
+      "splash": "You are in the Game Room. Bells ring and machines whir.",
+      "route_id": [
+        "Game Room - City Hall"
+      ],
+      "inventory": [
+        {
+          "name": "Twenty Questions",
+          "type": "20Q",
+          "description": "I'll pick a number between 1 and 1,000. You have 20 questions to guess it.",
+          "splash": " I'll pick a number between 1 and 1,000. You have 20 questions to guess it.[20Q]"
+        },
+        {
+          "name": "Cookie Clicker",
+          "type": "CC",
+          "description": "You click a cookie to gain cookies.",
+          "splash": " You click a cookie to gain cookies.[CC]"
+        },
+        {
+          "name": "Go Fish",
+          "type": "GF",
+          "description": "Play a game of Go Fish against the computer.",
+          "splash": " Play a game of Go Fish against the computer.[GF]"
+        },
+        {
+          "name": "Guessing Calculator",
+          "type": "GuessCalc",
+          "description": "I'll give you two whole numbers, and you tell me what their sum is.",
+          "splash": " I'll give you two whole numbers, and you tell me what their sum is.[GuessCalc]"
+        },
+        {
+          "name": "Solve the math problem.",
+          "type": "math",
+          "description": "Solve the math problem.",
+          "splash": " Solve the math problem.[math]"
+        },
+        {
+          "name": "Get Out of Pig Prison",
+          "type": "GOPP",
+          "description": "Convice your pig warden to let you out of jail",
+          "splash": " Convice your pig warden to let you out of jail[GOPP]"
+        },
+        {
+          "name": "Shotgun",
+          "type": "Shot",
+          "description": "Reload, Block, or Shoot, but time it right or you're dead",
+          "splash": " Reload, Block, or Shoot, but time it right or you're dead[Shot]"
+        },
+        {
+          "name": "Tic Tac Toe",
+          "type": "TTT",
+          "description": "Play tic tac toe against me, the computer. Don't worry, I'm not very good.",
+          "splash": " Play tic tac toe against me, the computer. Don't worry, I'm not very good.[TTT]"
+        }
+      ]
+    },
+    {
+      "locname": "Game Room",
+      "description": "Play minigames!",
+      "splash": "You are in the Game Room. Bells ring and machines whir.",
+      "route_id": [
+        "Game Room - City Hall"
+      ],
+      "inventory": [
+        {
+          "name": "Twenty Questions",
+          "type": "20Q",
+          "description": "I'll pick a number between 1 and 1,000. You have 20 questions to guess it.",
+          "splash": " I'll pick a number between 1 and 1,000. You have 20 questions to guess it.[20Q]"
+        },
+        {
+          "name": "Cookie Clicker",
+          "type": "CC",
+          "description": "You click a cookie to gain cookies.",
+          "splash": " You click a cookie to gain cookies.[CC]"
+        },
+        {
+          "name": "Go Fish",
+          "type": "GF",
+          "description": "Play a game of Go Fish against the computer.",
+          "splash": " Play a game of Go Fish against the computer.[GF]"
+        },
+        {
+          "name": "Guessing Calculator",
+          "type": "GuessCalc",
+          "description": "I'll give you two whole numbers, and you tell me what their sum is.",
+          "splash": " I'll give you two whole numbers, and you tell me what their sum is.[GuessCalc]"
+        },
+        {
+          "name": "Solve the math problem.",
+          "type": "math",
+          "description": "Solve the math problem.",
+          "splash": " Solve the math problem.[math]"
+        },
+        {
+          "name": "Get Out of Pig Prison",
+          "type": "GOPP",
+          "description": "Convice your pig warden to let you out of jail",
+          "splash": " Convice your pig warden to let you out of jail[GOPP]"
+        },
+        {
+          "name": "Shotgun",
+          "type": "Shot",
+          "description": "Reload, Block, or Shoot, but time it right or you're dead",
+          "splash": " Reload, Block, or Shoot, but time it right or you're dead[Shot]"
+        },
+        {
+          "name": "Tic Tac Toe",
+          "type": "TTT",
+          "description": "Play tic tac toe against me, the computer. Don't worry, I'm not very good.",
+          "splash": " Play tic tac toe against me, the computer. Don't worry, I'm not very good.[TTT]"
+        }
+      ]
+    },
+    {
+      "locname": "Game Room",
+      "description": "Play minigames!",
+      "splash": "You are in the Game Room. Bells ring and machines whir.",
+      "route_id": [
+        "Game Room - City Hall"
+      ],
+      "inventory": [
+        {
+          "name": "Twenty Questions",
+          "type": "20Q",
+          "description": "I'll pick a number between 1 and 1,000. You have 20 questions to guess it.",
+          "splash": " I'll pick a number between 1 and 1,000. You have 20 questions to guess it.[20Q]"
+        },
+        {
+          "name": "Cookie Clicker",
+          "type": "CC",
+          "description": "You click a cookie to gain cookies.",
+          "splash": " You click a cookie to gain cookies.[CC]"
+        },
+        {
+          "name": "Go Fish",
+          "type": "GF",
+          "description": "Play a game of Go Fish against the computer.",
+          "splash": " Play a game of Go Fish against the computer.[GF]"
+        },
+        {
+          "name": "Guessing Calculator",
+          "type": "GuessCalc",
+          "description": "I'll give you two whole numbers, and you tell me what their sum is.",
+          "splash": " I'll give you two whole numbers, and you tell me what their sum is.[GuessCalc]"
+        },
+        {
+          "name": "Solve the math problem.",
+          "type": "math",
+          "description": "Solve the math problem.",
+          "splash": " Solve the math problem.[math]"
+        },
+        {
+          "name": "Get Out of Pig Prison",
+          "type": "GOPP",
+          "description": "Convice your pig warden to let you out of jail",
+          "splash": " Convice your pig warden to let you out of jail[GOPP]"
+        },
+        {
+          "name": "Shotgun",
+          "type": "Shot",
+          "description": "Reload, Block, or Shoot, but time it right or you're dead",
+          "splash": " Reload, Block, or Shoot, but time it right or you're dead[Shot]"
+        },
+        {
+          "name": "Tic Tac Toe",
+          "type": "TTT",
+          "description": "Play tic tac toe against me, the computer. Don't worry, I'm not very good.",
+          "splash": " Play tic tac toe against me, the computer. Don't worry, I'm not very good.[TTT]"
+        }
+      ]
+    },
+    {
+      "locname": "Game Room",
+      "description": "Play minigames!",
+      "splash": "You are in the Game Room. Bells ring and machines whir.",
+      "route_id": [
+        "Game Room - City Hall"
+      ],
+      "inventory": [
+        {
+          "name": "Twenty Questions",
+          "type": "20Q",
+          "description": "I'll pick a number between 1 and 1,000. You have 20 questions to guess it.",
+          "splash": " I'll pick a number between 1 and 1,000. You have 20 questions to guess it.[20Q]"
+        },
+        {
+          "name": "Cookie Clicker",
+          "type": "CC",
+          "description": "You click a cookie to gain cookies.",
+          "splash": " You click a cookie to gain cookies.[CC]"
+        },
+        {
+          "name": "Go Fish",
+          "type": "GF",
+          "description": "Play a game of Go Fish against the computer.",
+          "splash": " Play a game of Go Fish against the computer.[GF]"
+        },
+        {
+          "name": "Guessing Calculator",
+          "type": "GuessCalc",
+          "description": "I'll give you two whole numbers, and you tell me what their sum is.",
+          "splash": " I'll give you two whole numbers, and you tell me what their sum is.[GuessCalc]"
+        },
+        {
+          "name": "Solve the math problem.",
+          "type": "math",
+          "description": "Solve the math problem.",
+          "splash": " Solve the math problem.[math]"
+        },
+        {
+          "name": "Get Out of Pig Prison",
+          "type": "GOPP",
+          "description": "Convice your pig warden to let you out of jail",
+          "splash": " Convice your pig warden to let you out of jail[GOPP]"
+        },
+        {
+          "name": "Shotgun",
+          "type": "Shot",
+          "description": "Reload, Block, or Shoot, but time it right or you're dead",
+          "splash": " Reload, Block, or Shoot, but time it right or you're dead[Shot]"
+        },
+        {
+          "name": "Tic Tac Toe",
+          "type": "TTT",
+          "description": "Play tic tac toe against me, the computer. Don't worry, I'm not very good.",
+          "splash": " Play tic tac toe against me, the computer. Don't worry, I'm not very good.[TTT]"
+        }
       ]
     }
   ],
+  "starting_location": "City Hall",
   "route": [
     {
-      "id": "City HallCity Hall Lobby",
-      "description": "You see a heavy door with a brass handle",
-      "accessor": "open",
+      "id": "City Hall - City Hall Lobby",
+      "name": "open",
+      "description": "This door has a brass handle. You could open it.",
+      "splash": "You see a heavy door with a brass handle",
       "from": "City Hall",
       "destination": "City Hall Lobby"
     },
     {
-      "id": "City HallHappy Park",
-      "description": "A gravel walkway leads to a park",
-      "accessor": "east",
+      "id": "City Hall - Happy Park",
+      "name": "east",
+      "description": "You can see a park off to the east",
+      "splash": "A gravel walkway leads east",
       "from": "City Hall",
       "destination": "Happy Park"
     },
     {
-      "id": "City HallDead End Street",
-      "description": "You can just barely spot a dark alley",
-      "accessor": "north",
+      "id": "City Hall - Dead End Street",
+      "name": "north",
+      "description": "You can't see very far into the alley",
+      "splash": "A dark alley leads to the north",
       "from": "City Hall",
       "destination": "Dead End Street"
     },
     {
-      "id": "City Hall LobbyCity Hall",
-      "description": "It's time to head back outside",
-      "accessor": "open",
-      "from": "City Hall Lobby",
-      "destination": "City Hall"
+      "id": "City Hall - Game Room",
+      "name": "games",
+      "description": "The sign says type \"games\" for some games!",
+      "splash": "A sign says type \"games\" for some games!",
+      "from": "City Hall",
+      "destination": "Game Room"
     },
     {
-      "id": "Happy ParkCity Hall",
-      "description": "The gravel walkway leads back to City Hall",
-      "accessor": "west",
-      "from": "Happy Park",
-      "destination": "City Hall"
+      "id": "City Hall - Pig Prison",
+      "name": "prison",
+      "description": "Go straight to jail",
+      "splash": "You can also go to prison if you want.",
+      "from": "City Hall",
+      "destination": "Pig Prison"
     },
     {
-      "id": "Dead End StreetCity Hall",
-      "description": "You can return to City Hall",
-      "accessor": "south",
-      "from": "Dead End Street",
+      "id": "Game Room - City Hall",
+      "name": "back",
+      "description": "It's the way back",
+      "splash": "You could go back to City Hall.",
+      "from": "Game Room",
       "destination": "City Hall"
     }
   ]
