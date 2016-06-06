@@ -1,6 +1,9 @@
 package org.vashonsd.pirateship.minigame.text;
 import java.util.*;
 
+import org.vashonsd.pirateship.interactions.poke.PokeMove;
+import org.vashonsd.pirateship.interactions.poke.PokeMoveGenerator;
+
 public class PokemonBattle implements TextMinigame {
 
 	private boolean choseP;

@@ -2,6 +2,10 @@ package org.vashonsd.pirateship.minigame.text;
 
 import java.util.*;
 
+import org.vashonsd.pirateship.interactions.poke.PokeMove;
+import org.vashonsd.pirateship.interactions.poke.PokeMoveGenerator;
+import org.vashonsd.pirateship.interactions.poke.PokeType;
+
 public class MiniPokemon 
 {
 	private String name;

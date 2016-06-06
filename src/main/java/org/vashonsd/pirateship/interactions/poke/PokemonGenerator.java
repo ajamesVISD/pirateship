@@ -1,37 +1,34 @@
-package org.vashonsd.pirateship.interactions;
+package org.vashonsd.pirateship.interactions.poke;
 
-import org.vashonsd.pirateship.minigame.text.PokeMoveGenerator;
-import org.vashonsd.pirateship.minigame.text.PokeType;
+import java.util.*;
 
 public class PokemonGenerator {
+	PokeMoveGenerator gen;
 	
-	public PokemonGenerator() {}
-	
-	public Pokemon charmander() {
-		Pokemon charmander = new Pokemon("Charmander", "Obviously prefers hot places. When it rains, steam is said to spout from the tip of its tail.");
-		
-		return charmander;
+	public PokemonGenerator() {
+		gen = new PokeMoveGenerator();
 	}
 	
-	/*
-	public void charmander()
+	public Pokemon charmander()
 	{
-		name = "Charmander";
-		maxHP = 39;
-		hp = maxHP;
-		attack = 52;
-		defense = 43;
-		speed = 65;
-		accuracy = 100;
-		type = new PokeType("fire");
-		description = "Obviously prefers hot places. When it rains, steam is said to spout from the tip of its tail.";
+		Pokemon charmander = new Pokemon("Charmander", "Obviously prefers hot places. When it rains, steam is said to spout from the tip of its tail.");
+		charmander.setMaxHP(39);
+		charmander.setHP(charmander.getMaxHP());
+		charmander.setAttack(52);
+		charmander.setDefense(43);
+		charmander.setSpeed(65);
+		charmander.setAccuracy(100);
+		charmander.setType(new PokeType("fire"));
+		
+		ArrayList<PokeMove> learnable = new ArrayList<PokeMove>();
 		learnable.add(gen.scratch());
 		learnable.add(gen.growl());
 		learnable.add(gen.tailWhip());
 		learnable.add(gen.ember());
 		learnable.add(gen.rage());
+		charmander.setLearnable(learnable);
 		
-		printOut =
+		charmander.setPrintOut(
 "              _.--\"\"`-..\n" +
 "            ,'          `.\n" +
 "          ,'          __  `.\n" +
@@ -65,8 +62,9 @@ public class PokemonGenerator {
 "   _,-_    '       `.     .'      ,\\" + "\n" +
 "   -\" /`.         _,'     | _  _  _.|\n" +
 "    \"\"--'---\"\"\"\"\"'        `' '! |! /\n" +
-"                            `\" \" -' ";
+"                            `\" \" -' ");
 
+	ArrayList<String> head = new ArrayList<String>();
 		head.add("          _.--\"\"`-..       ");
 		head.add("        ,'          `.     ");
 		head.add("      ,'          __  `.   ");
@@ -83,28 +81,33 @@ public class PokemonGenerator {
 		head.add("     `. `-..--_.,.<     /  ");
 		head.add("                           ");
 		head.add("                           ");
-
+	charmander.setHead(head);
+	
+	return charmander;
 	}
 	
-	public void squirtle()
+	
+	public Pokemon squirtle()
 	{
-		name = "Squirtle";
-		maxHP = 44;
-		hp = maxHP;
-		attack = 48;
-		defense = 65;
-		speed = 43;
-		accuracy = 100;
-		type = new PokeType("water");
-		description = "After birth, its back swells and hardens into a shell. Powerfully sprays foam from its mouth.";
+		Pokemon squirtle = new Pokemon("Squirtle", "Obviously prefers hot places. When it rains, steam is said to spout from the tip of its tail.");
+		squirtle.setMaxHP(44);
+		squirtle.setHP(squirtle.getMaxHP());
+		squirtle.setAttack(48);
+		squirtle.setDefense(65);
+		squirtle.setSpeed(43);
+		squirtle.setAccuracy(100);
+		squirtle.setType(new PokeType("water"));
+		
+		ArrayList<PokeMove> learnable = new ArrayList<PokeMove>();
 		learnable.add(gen.tackle());
 		learnable.add(gen.growl());
 		learnable.add(gen.tailWhip());
 		learnable.add(gen.bubble());
 		learnable.add(gen.waterGun());
 		learnable.add(gen.withdraw());
+		squirtle.setLearnable(learnable);
 		
-		printOut = 
+		squirtle.setPrintOut( 
 "	                 _,........__\n" +
 "	              ,-'            \"`-.\n" +
 "	            ,'                   `-.\n" +
@@ -137,8 +140,9 @@ public class PokemonGenerator {
 "	                  \\          \\      |          |\n" +
 "	                 ,'           )     `.         |\n" +
 "	                  7____,,..--'      /          |\n" +
-"	                                    `---.__,--.' ";
+"	                                    `---.__,--.' ");
 		
+	ArrayList<String> head = new ArrayList<String>();
 		head.add("           _,........__              ");
 		head.add("        ,-'            \"`-.          ");
 		head.add("      ,'                   `-.       ");
@@ -155,27 +159,32 @@ public class PokemonGenerator {
 		head.add("      `\"-..___      __,'             ");
 		head.add("                                     ");
 		head.add("                                     ");
+	squirtle.setHead(head);
+	
+	return squirtle;
 		
 	}
 	
-	public void bulbasaur()
+	public Pokemon bulbasaur()
 	{
-		name = "Bulbasaur";
-		maxHP = 45;
-		hp = maxHP;
-		attack = 49;
-		defense = 49;
-		speed = 45;
-		accuracy = 100;
-		type = new PokeType("grass");
-		description = "A strange seed was planted on its back at birth. The plant sprouts and grows with this PokÃ©mon.";
+		Pokemon bulbasaur = new Pokemon("Bulbasaur", "Obviously prefers hot places. When it rains, steam is said to spout from the tip of its tail.");
+		bulbasaur.setMaxHP(45);
+		bulbasaur.setHP(bulbasaur.getMaxHP());
+		bulbasaur.setAttack(49);
+		bulbasaur.setDefense(49);
+		bulbasaur.setSpeed(45);
+		bulbasaur.setAccuracy(100);
+		bulbasaur.setType(new PokeType("grass"));
+		
+		ArrayList<PokeMove> learnable = new ArrayList<PokeMove>();
 		learnable.add(gen.tackle());
 		learnable.add(gen.growl());
 		learnable.add(gen.vineWhip());
 		learnable.add(gen.razorLeaf());
 		learnable.add(gen.growth());
+		bulbasaur.setLearnable(learnable);
 		
-		printOut =
+		bulbasaur.setPrintOut(
 				"                        _,.------....___,.' ',.-.\n" +
 				"                     ,-'          _,.--\"        |\n" +
 				"                   ,'         _.-'              .\n" +
@@ -202,9 +211,10 @@ public class PokemonGenerator {
 				"  | `._.'    `,_            ;  /         ,'          .\n" +
 				" .'          /| `-.        . ,'         ,           ,\n" +
 				" '-.__ __ _,','    '`-..___;-...__   ,.'\\ ____.___.'\n" +
-				" `\"^--'..'   '-`-^-'\"--    `-^-'`.''\"\"\"\"\"`.,^.`.--' ";
+				" `\"^--'..'   '-`-^-'\"--    `-^-'`.''\"\"\"\"\"`.,^.`.--' ");
 		
 		
+	ArrayList<String> head = new ArrayList<String>();
 		head.add("       ____                                   ");
 		head.add("     .'    `---\" \"       ``\"-.--\"'`           ");
 		head.add("    .  ,            __               `        ");
@@ -221,7 +231,10 @@ public class PokemonGenerator {
 		head.add("    ) \\`._        ___....----\"'  ,'   .'  \\   ");
 		head.add("   /   `. \"`-.--\"'         _,' ,'     `---'  ");
 		head.add("  .   _  `\"\"'--.._____..--\"   ,          |    ");
-		
+	bulbasaur.setHead(head);
+	
+	return bulbasaur;
+	
 	}
-	 */
+	
 }

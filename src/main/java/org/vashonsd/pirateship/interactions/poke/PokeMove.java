@@ -1,4 +1,4 @@
-package org.vashonsd.pirateship.minigame.text;
+package org.vashonsd.pirateship.interactions.poke;
 
 public class PokeMove {
 

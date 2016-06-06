@@ -1,10 +1,8 @@
-package org.vashonsd.pirateship.interactions;
+package org.vashonsd.pirateship.interactions.poke;
 
 import java.util.ArrayList;
 
-import org.vashonsd.pirateship.minigame.text.PokeMove;
-import org.vashonsd.pirateship.minigame.text.PokeMoveGenerator;
-import org.vashonsd.pirateship.minigame.text.PokeType;
+import org.vashonsd.pirateship.interactions.Actor;
 
 public class Pokemon extends Actor {
 
