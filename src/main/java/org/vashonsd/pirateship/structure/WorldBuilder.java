@@ -75,6 +75,7 @@ public class WorldBuilder {
 		main.addToInventory(CreatureFactory.newCreature("dog"));
 		main.addToInventory(new Bandage("bandage"));
 		main.addToInventory(new Medic());
+		main.addToInventory(new Coin());
 
 		gameRoom.addToInventory(new MinigameRunner("20Q"));
 		//gameRoom.addToInventory(new MinigameRunner("Blackjack"));
