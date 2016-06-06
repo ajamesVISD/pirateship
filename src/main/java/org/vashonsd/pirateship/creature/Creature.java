@@ -8,6 +8,7 @@ import org.vashonsd.pirateship.interactions.Actor;
 public class Creature extends Actor {
 
 	private SpeechBehavior speech;
+	private SpeechBehavior speechDefault;
 	
 	public Creature(String name, String typeName, String description, String splash) {
 		super(name, typeName, description, splash);
@@ -18,7 +19,12 @@ public class Creature extends Actor {
 		this.enrollCommand(new Talk(this));
 		this.setAlive(true);
 		// Defaults creatures to no speech
-		setSpeechBehavior(new NoSpeech());
+		setDefaultSpeech(new NoSpeech());
+	}
+	
+	public void setDefaultSpeech(SpeechBehavior s) {
+		speechDefault = s;
+		setSpeechBehavior(s);
 	}
 	
 	public void setSpeechBehavior(SpeechBehavior s) {
@@ -39,6 +45,10 @@ public class Creature extends Actor {
 	 */
 	public String checkHoldingEffect(Actor a) {
 		String held = a.getTypeName();
+		if (held.equals("shades")) {
+			setSpeechBehavior(new RebelSpeech());
+			return speech.intro(this);
+		}
 		
 		return getName() + " doesn't seem to be very interested.";
 	}
@@ -48,13 +58,22 @@ public class Creature extends Actor {
 	 * is taken away
 	 */
 	public String refreshHoldingEffects() {
-		SpeechBehavior tempSpeech = getSpeechBehavior();
+		String temp = speech.intro(this);
 		ArrayList<Actor> tempList = this.getAllItems();
+		int x = 0;
+		
 		for (Actor a: tempList) {
-			checkHoldingEffect(a);
+			String s = checkHoldingEffect(a);
+			if (s.equals(speech.intro(this))) {
+				x++;
+			}
 		}
 		
-		if (!tempSpeech.equals(getSpeechBehavior())) {
+		if (x == 0) {
+			setSpeechBehavior(speechDefault);
+		}
+		
+		if (!temp.equals(speech.intro(this))) {
 			return getSpeechBehavior().intro(this);
 		}
 		

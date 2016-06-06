@@ -57,7 +57,7 @@ public class Inventory {
 			if (actors.size() > 1) {
 				result += actors.size() + " " + actors.peek().getTypeNamePlural() + "\n";
 			} else {
-				result += actors.peek().getTypeName();
+				result += actors.peek().getTypeName() + "\n";
 			}
 		}
 		return result;
