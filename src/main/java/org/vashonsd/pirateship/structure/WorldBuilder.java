@@ -56,6 +56,8 @@ public class WorldBuilder {
 		w.addLocation(pokemonCenter);
 		w.addLocation(shop);
 		
+		arena.addToInventory();
+		
 		w.setStartingLocation(courtyard);
 		
 		return w;
