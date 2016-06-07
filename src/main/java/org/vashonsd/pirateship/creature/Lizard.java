@@ -13,5 +13,10 @@ public class Lizard extends Creature {
 		this.enrollCommand(new Eat());
 		this.enrollCommand(new Take());
 	}
+	
+	public void runThread()
+	{
+		changeColor(6300);
+	}
 
 }

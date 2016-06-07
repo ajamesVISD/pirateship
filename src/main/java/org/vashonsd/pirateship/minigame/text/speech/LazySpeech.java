@@ -32,12 +32,12 @@ public class LazySpeech implements SpeechBehavior {
 	}
 
 	public String getOutro() {
-		return "Eh, you know what? Think I'm kind of fond of you.\nI was too lazy to take you to the chair anyways.\nSo, your free. Ciao.";
+		return "Eh, you know what? Think I'm kind of fond of you.\nI was too lazy to take you to the chair anyways.\nSo, you're free. Ciao.";
 	}
 
 	public void setPigSpeech() {
 		// "do you like"
-		responsePrompts.put("food", "Sure, I suppose. Chewings kind of a pain, though.");	
+		responsePrompts.put("food", "Sure, I suppose. Chewing's kind of a pain, though.");	
 		fLevelChange.put("food", 0);
 		responsePrompts.put("sci fi", "Sci fi? Nah, not really a fan.\nThey always seem to have all these fancy terms to keep track of\nand that's a lot of work.");
 		fLevelChange.put("sci fi", -1);
@@ -99,7 +99,7 @@ public class LazySpeech implements SpeechBehavior {
 		responsePrompts.put("something", "Something.");	
 		fLevelChange.put("something", 0);
 		// "can you give me"
-		responsePrompts.put("something to eat", "I'd love to, buddy, I really woud.\nBut then I'd have to go and GET it.\nAnd, to be honest, I don't wanna.\nSo no dice.");	
+		responsePrompts.put("something to eat", "I'd love to, buddy, I really would.\nBut then I'd have to go and GET it.\nAnd, to be honest, I don't wanna.\nSo no dice.");	
 		fLevelChange.put("something to eat", -1);
 		responsePrompts.put("a smile", "A smile? That's a bit more effort than I'm willing to expend.\nLopsided grin? Well, maybe I can manage.");	
 		fLevelChange.put("a smile", 0);
@@ -157,9 +157,9 @@ public class LazySpeech implements SpeechBehavior {
 		fLevelChange.put("brain stuff", 0);
 		responsePrompts.put("being cool", "Well, it does take a certain amount of talent to be as laid back and chill as me.");	
 		fLevelChange.put("being cool", 1);
-		responsePrompts.put("breathing", "Oh yeah, I'm a master at all types of breathing. I can do snoring, um...Snoring.");	
+		responsePrompts.put("breathing", "Oh yeah, I'm a master at all types of breathing.\nI can do snoring, um...Sleep breathing...Post excersize panting...");	
 		fLevelChange.put("breathing", 1);
-		responsePrompts.put("procrastinating", "Baby, I put the PRO in procrastination. You're talking to the master here.");	
+		responsePrompts.put("procrastinating", "Baby, I put the PRO in procrastination.\nYou're talking to the master here.");	
 		fLevelChange.put("procrastinating", 2);
 		responsePrompts.put("over-analyzing", "Nah, analyzing isn't really my thing. Prefer not to disturb the good ol' gray matter up there, you know?");	
 		fLevelChange.put("over-analyzing", -1);

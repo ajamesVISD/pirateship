@@ -11,7 +11,7 @@ public class Go extends Command {
 	
 	public Go(Location loc) {
 		this.loc = loc;
-		this.addKeyword("go");
+		this.addKeywords("go", "travel", "walk");
 	}
 	
 	@Override

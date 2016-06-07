@@ -172,7 +172,7 @@ public class SassSpeech implements SpeechBehavior {
 		fLevelChange.put("insomnia", 0);
 		responsePrompts.put("the dark side", "Baby, I practically CREATED the dark side.");	
 		fLevelChange.put("the dark side", 0);
-		responsePrompts.put("public speaking", "Uh, what do you think?\n...That was rhetorical. The answer is no, it should be obvious.");	
+		responsePrompts.put("public speaking", "And why would I be scared of showing off my fabulous self to the world?\nHonestly, prisoner, think before you ask.");	
 		fLevelChange.put("public speaking", 0);
 		responsePrompts.put("people knowing how dead you are inside", "Oh please, like that's any secret.");	
 		fLevelChange.put("people knowing how dead you are inside", 0);

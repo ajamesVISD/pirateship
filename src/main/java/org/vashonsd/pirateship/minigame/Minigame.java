@@ -6,6 +6,8 @@ import org.vashonsd.pirateship.interactions.Request;
 import org.vashonsd.pirateship.interactions.Response;
 import org.vashonsd.pirateship.minigame.text.*;
 
+import twitter4j.TwitterFactory;
+
 /**
  * A 
  * @author andy
@@ -38,6 +40,8 @@ public abstract class Minigame extends Actor {
 			m = new TicTacToeFactory();
 		} else if (s.equalsIgnoreCase("EscapeFactory")) {
 			m = new EscapeFactory();
+		} else if (s.equalsIgnoreCase("Twitter")) {
+			m = new MinigameTwitterFactory();
 		}
 		else {
 			m = null;
