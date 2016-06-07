@@ -6,7 +6,7 @@ import org.vashonsd.pirateship.interactions.*;
 import org.vashonsd.pirateship.interactions.poke.*;
 import org.vashonsd.pirateship.minigame.text.MiniPokemon;
 
-public class ChosePokemon extends Minigame {
+public class ChoosePokemon extends Minigame {
 
 	private Pokemon pokemon;
 	private PokemonGenerator pgen;
@@ -14,7 +14,7 @@ public class ChosePokemon extends Minigame {
 	private boolean over;
 	private ArrayList<Pokemon> availablePokemon;
 	
-	public ChosePokemon() {
+	public ChoosePokemon() {
 		super("Professor Oak", "poke", "Chose your pokemon", "An elderly gentleman in a white labcoat stands near a table with three red and white spheres on it.");
 		pgen = new PokemonGenerator();
 		lines = 0;
