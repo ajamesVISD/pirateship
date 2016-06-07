@@ -35,9 +35,62 @@ public class ChoosePokemon extends Minigame {
 	@Override
 	public Response handleOtherwise(Request req) {
 		// TODO Auto-generated method stub
+		if(lines == 0) {
+			lines++;
+			this.response.setText("As a Pokemon professor it is my job to provide young trainers like yourself with their first pokemon.");
+			return response;
+		}
+		if(lines == 1) {
+			lines++;
+			this.response.setText("I have three pokemon for you to choose from, they're inside the pokeballs on the table.\n\n" + pokeballs());
+			return response;
+		}
+		if(lines == 2) {
+			for(Pokemon m: availablePokemon) {
+				if(req.getText().equalsIgnoreCase(m.getName())) {
+					pokemon = m;
+					this.response.setText(m.toString() + m.getPrintOut() + "\nWould you like " + m.getName() + " the " + m.getTypeName() + " pokemon?");
+					return response;
+				}
+			}
+			
+			if(req.getText().equalsIgnoreCase("yes")) {
+				lines++;
+				this.response.setText("What moves should " + pokemon.getName() + " learn?\n\n" + learnableMoves(pokemon));
+				return response;
+			} else {
+				this.response.setText("Select a pokemon " + pokeballs());
+				return response;
+			}
+		}
+		if(lines == 3) {
+			if(pokemon.getMoves().size() == 4) {
+				lines++;
+				this.response.setText("Your Pokemon is ready to battle! Good luck! Take care of " + pokemon.getName());
+				return response;
+			}
+			for(PokeMove m: pokemon.getLearnable()) {
+				if(req.getText().equalsIgnoreCase(m.getName())) {
+					pokemon.addMove(m);
+					if(pokemon.getMoves().size() < 4) {
+						this.response.setText("Your Pokemon learned " + m.getName() + "\n" + pokemon.getName() + "'s moves: \n" + pokemon.printMoves() + "\n\nSelect another move. " + learnableMoves(pokemon) + "\n");
+						return response;
+					} else {
+						this.response.setText("Your Pokemon learned " + m.getName() + "\n" + pokemon.getName() + "'s moves: \n" + pokemon.printMoves());
+						return response;
+					}
+				}
+			}
+			
+			this.response.setText("You must select a move from the list.\n" + learnableMoves(pokemon));
+			return response;
+		}
 		
+		this.response.setText("Goodbye.");
+		Player player = req.getPlayer();
+		player.addToInventory(pokemon);
 		
-		return new Response("Goodbye");
+		return response;
 	}
 
 	@Override
@@ -60,7 +113,7 @@ public class ChoosePokemon extends Minigame {
 		return toReturn;
 	}
 
-	public String pokeballs() {
+	public String pokeball() {
 		return 
 "                000000000000000            \n" +
 "             000000000000000000000         \n" +
@@ -70,7 +123,7 @@ public class ChoosePokemon extends Minigame {
 "     0000000000000000000000000000000000000 \n" +
 "    000000000000000<<<<>>>>0000000000000000\n" +
 "    000000000000000<OOOOOO>0000000000000000\n" +
-"    <<<<<<<<<<<<<<<<OOOOOO>>>>>>>>>>>>>>>>>\n" +
+"    <<<<<<<<<<<<<<<<O<OO>O>>>>>>>>>>>>>>>>>\n" +
 "    OOOOOOOOOOOOOOO<OOOOOO>OOOOOOOOOOOOOOOO\n" +
 "    OOOOOOOOOOOOOOO<<<<>>>>OOOOOOOOOOOOOOOO\n" +
 "     OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO \n" +
@@ -79,5 +132,35 @@ public class ChoosePokemon extends Minigame {
 "          OOOOOOOOOOOOOOOOOOOOOOOOOOO      \n" +
 "              OOOOOOOOOOOOOOOOOOO          \n" +
 "                 OOOOOOOOOOOOO             \n";
+	}
+	
+	public String pokeballs() {
+		return 
+"                000000000000000            " + "                000000000000000            " + "                000000000000000            \n" +
+"             000000000000000000000         " + "             000000000000000000000         " + "             000000000000000000000         \n" +
+"          000000000000000000000000000      " + "          000000000000000000000000000      " + "          000000000000000000000000000      \n" +
+"        0000000000000000000000000000000    " + "        0000000000000000000000000000000    " + "        0000000000000000000000000000000    \n" +
+"      00000000000000000000000000000000000  " + "      00000000000000000000000000000000000  " + "      00000000000000000000000000000000000  \n" +
+"     0000000000000000000000000000000000000 " + "     0000000000000000000000000000000000000 " + "     0000000000000000000000000000000000000 \n" +
+"    000000000000000<<<<>>>>0000000000000000" + "    000000000000000<<<<>>>>0000000000000000" + "    000000000000000<<<<>>>>0000000000000000\n" +
+"    000000000000000<OOOOOO>0000000000000000" + "    000000000000000<OOOOOO>0000000000000000" + "    000000000000000<OOOOOO>0000000000000000\n" +
+"    <<<<<<<<<<<<<<<<O<OO>O>>>>>>>>>>>>>>>>>" + "    <<<<<<<<<<<<<<<<O<OO>O>>>>>>>>>>>>>>>>>" + "    <<<<<<<<<<<<<<<<O<OO>O>>>>>>>>>>>>>>>>>\n" +
+"    OOOOOOOOOOOOOOO<OOOOOO>OOOOOOOOOOOOOOOO" + "    OOOOOOOOOOOOOOO<OOOOOO>OOOOOOOOOOOOOOOO" + "    OOOOOOOOOOOOOOO<OOOOOO>OOOOOOOOOOOOOOOO\n" +
+"    OOOOOOOOOOOOOOO<<<<>>>>OOOOOOOOOOOOOOOO" + "    OOOOOOOOOOOOOOO<<<<>>>>OOOOOOOOOOOOOOOO" + "    OOOOOOOOOOOOOOO<<<<>>>>OOOOOOOOOOOOOOOO\n" +
+"     OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO " + "     OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO " + "     OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO \n" +
+"      OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO  " + "      OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO  " + "      OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO  \n" +
+"        OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO    " + "        OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO    " + "        OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO    \n" +
+"          OOOOOOOOOOOOOOOOOOOOOOOOOOO      " + "          OOOOOOOOOOOOOOOOOOOOOOOOOOO      " + "          OOOOOOOOOOOOOOOOOOOOOOOOOOO      \n" +
+"              OOOOOOOOOOOOOOOOOOO          " + "              OOOOOOOOOOOOOOOOOOO          " + "              OOOOOOOOOOOOOOOOOOO          \n" +
+"                 OOOOOOOOOOOOO             " + "                 OOOOOOOOOOOOO             " + "                 OOOOOOOOOOOOO             \n\n" +
+"                  Bulbasaur                " + "                   Squirtle                " + "                  Charmander               ";
+	}
+	
+	public String learnableMoves(Pokemon s) {
+		String toReturn = "Available moves:\n";
+		for(PokeMove m: s.getLearnable()) {
+			toReturn += m.toString() + "\n";
+		}
+		return toReturn;
 	}
 }

@@ -57,6 +57,7 @@ public class WorldBuilder {
 		w.addLocation(shop);
 		
 		arena.addToInventory(new MinigameRunner("Poke"));
+		lab.addToInventory(new ChoosePokemon());
 		
 		w.setStartingLocation(courtyard);
 		
