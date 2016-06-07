@@ -8,8 +8,7 @@ public class Examine extends Command {
 
 	public Examine() {
 		super();
-		this.addKeyword("examine");
-		this.addKeyword("look at");
+		this.addKeywords("examine", "look at", "check", "check out");
 	}
 
 	@Override

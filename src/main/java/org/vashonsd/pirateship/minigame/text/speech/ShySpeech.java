@@ -47,7 +47,7 @@ public class ShySpeech implements SpeechBehavior {
 		fLevelChange.put("long graduation speeches", 0);
 		responsePrompts.put("all things", "Um...No...My hatred for things is a vast, deep black sea...");
 		fLevelChange.put("all things", -1);
-		responsePrompts.put("voodoo", "Oh, um, voodoo is one of my h-hobbies, actually...\nI have a c-collection of voodoo dolls, actually, one for e-every enemy.");	
+		responsePrompts.put("voodoo", "Oh, um, voodoo is one of my h-hobbies, actually...\nI have a c-collection of voodoo dolls, one for e-every enemy.");	
 		fLevelChange.put("voodoo", 2);
 		responsePrompts.put("putting people in their place", "O-oh, n-no, I-I could hardly do that! T-that's just not me, you know?");	
 		fLevelChange.put("putting people in their place", -2);

@@ -16,7 +16,7 @@ public class MinigameRunner extends Actor {
 	String minigameType;
 	
 	//This is an example instance of the Minigame for this Runner.
-	Minigame model;
+	private Minigame model;
 	
 	/**
 	 * By default, this kind of runner gets its name from the sample Minigame you send it.
@@ -40,6 +40,18 @@ public class MinigameRunner extends Actor {
 		this.playWord = "play";
 	}
 	
+	public MinigameRunner(Minigame game) {
+		super("", "", "", "");
+		model = game;
+		this.minigameType = game.getTypeName();
+		this.setName(model.getName());
+		this.setTypeName(model.getTypeName());
+		this.setDescription(model.getDescription());
+		this.setSplashText(model.getSplashText());
+		this.games = new HashMap<String, Minigame>();
+		this.playWord = "play";
+	}
+	
 	@Override
 	public Response handle(Request req) {
 		Player player = req.getPlayer();
@@ -51,7 +63,7 @@ public class MinigameRunner extends Actor {
 				game = games.get(id);
 				result += game.getPrompt() + ": " + "Welcome back, " + player.getName() + "!\n";
 			} else {
-				game = Minigame.produce(minigameType);
+				game = model;
 				//result += game.getGreeting() + "\n";
 				games.put(id, game);
 			}
