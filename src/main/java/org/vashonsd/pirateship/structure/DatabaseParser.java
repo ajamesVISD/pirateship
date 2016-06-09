@@ -10,9 +10,9 @@ import com.google.gson.stream.*;
 public class DatabaseParser {
 
 	public static World parseWorld(String worldName) throws IOException {
-		ArrayList<String> locationNames = new ArrayList<String>();
 		HashMap<String, Location> locations = new HashMap<String, Location>();
 		ArrayList<String> ids = new ArrayList<String>();
+		String startingLocation = null;
 		World world = null;
 		DatabaseParser.class.getClassLoader().getResource(
 				"src/main/resources/" + worldName + ".json");
@@ -34,13 +34,13 @@ public class DatabaseParser {
 						name = reader.nextName();
 						if (name.equals("locname")) {
 							lName = reader.nextString();
-							locationNames.add(lName);
 						} else if (name.equals("description")) {
 							lDescription = reader.nextString();
 						} else if (name.equals("splash")) {
 							lSplash = reader.nextString();
-							locations.put(lName, new Location(lName,
-									lDescription, lSplash));
+							Location locTemp = new Location(lName,
+									lDescription, lSplash);
+							locations.put(lName, locTemp);
 						} else if (name.equals("route_id")) {
 							reader.beginArray();
 							while (reader.hasNext()) {
@@ -75,7 +75,6 @@ public class DatabaseParser {
 								l.addToInventory(
 										ItemFactory.newActor(iName, iTypeName,
 												iDescription, iSplash));
-								world.addLocation(l);
 							}
 							reader.endArray();
 						}
@@ -84,17 +83,17 @@ public class DatabaseParser {
 				}
 				reader.endArray();
 			} else if (name.equals("starting_location")) {
-				world.setPointer(locations.get(reader.nextString()));
+				startingLocation = reader.nextString();
 			} else if (name.equals("route")) {
 				reader.beginArray();
 				while (reader.hasNext()) {
-					reader.beginObject();
 					String id = null;
 					String rName = null;
 					String rDescription = null;
 					String rSplash = null;
 					String rWhereIs = null;
-					Location rDestination = null;
+					String rDestination = null;
+					reader.beginObject();
 					while (reader.hasNext()) {
 						name = reader.nextName();
 						if (name.equals("id")) {
@@ -108,17 +107,28 @@ public class DatabaseParser {
 						} else if (name.equals("from")) {
 							rWhereIs = reader.nextString();
 						} else if (name.equals("destination")) {
-							rDestination = locations.get(reader.nextString());
+							rDestination = reader.nextString();
 						}
 					}
 					locations.get(rWhereIs).addRoute(rDescription, rName,
-							rSplash, rDestination);
+							rSplash, locations.get(rDestination));
 					reader.endObject();
 				}
 				reader.endArray();
 			}
 		}
 		reader.close();
+		Iterator it = locations.entrySet().iterator();
+	    while (it.hasNext()) {
+	        Map.Entry pair = (Map.Entry)it.next();
+	        world.addLocation((Location)pair.getValue());
+	        it.remove();
+	    }
+		for(Location sL: world.getLocations()) {
+			if(sL.getName().equalsIgnoreCase(startingLocation)) {
+				world.setStartingLocation(sL);
+			}
+		}
 		return world;
 	}
 }

@@ -17,15 +17,14 @@ public class DatabaseWriter {
 		File file = new File(fileName);
 		if(file.exists()) {
 			try {
-				file.delete();
+				boolean deleted = file.delete();
 			}
 			catch(Exception e) {
 				e.printStackTrace();
 			}
 		}
-		if (!file.exists() && file.isDirectory()) {
+		if (!file.exists()) {
 			file.createNewFile();
-			System.out.println("Created?");
 		}
 		writer = new JsonWriter(new FileWriter(file));
 		writer.setIndent("  ");
