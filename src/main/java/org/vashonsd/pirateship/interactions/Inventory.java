@@ -23,6 +23,15 @@ public class Inventory {
 		return (inv.contains(a));
 	}
 	
+	public boolean hasActorType(String s) {
+		for(Actor a: inv) {
+			if(a.getTypeName().equalsIgnoreCase(s))
+				return true;
+		}
+		
+		return false;
+	}
+	
 	public String toString() {
 		String result = "";
 		HashMap<String, Stack<Actor>> byType = new HashMap<String, Stack<Actor>>();

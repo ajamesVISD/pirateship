@@ -44,8 +44,10 @@ public class Pokemon extends Actor {
 		
 		return null;
 	}
-	
 	public String getTypeName() {
+		return "Pokemon";
+	}
+	public String getPokeType() {
 		return type.getType();
 	}
 	public void changeHP(double h) {

@@ -85,11 +85,31 @@ public class ChoosePokemon extends Minigame {
 			this.response.setText("You must select a move from the list.\n" + learnableMoves(pokemon));
 			return response;
 		}
+		Player player = req.getPlayer();
+		if(lines == 4) {
+			if(!player.getInventory().hasActorType("Pokemon")) {
+				player.addToInventory(pokemon);
+				lines += 100;
+			}
+			else {
+				lines++;
+				this.response.setText("You already have a pokemon, would you like to swap your current pokemon for " + pokemon.getName() + " ?");
+				return response;
+			}
+		}
+		if(lines == 5) {
+			lines++;
+			if(req.getText().equalsIgnoreCase("yes")) {
+				player.addToInventory(pokemon);
+				lines += 100;
+			}
+			else {
+				this.response.setText("Okay then, come back if you want to switch pokemon.");
+				return response;
+			}
+		}
 		
 		this.response.setText("Goodbye.");
-		Player player = req.getPlayer();
-		player.addToInventory(pokemon);
-		
 		return response;
 	}
 

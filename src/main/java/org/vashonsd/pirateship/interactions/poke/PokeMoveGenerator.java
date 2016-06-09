@@ -22,7 +22,7 @@ public class PokeMoveGenerator {
 	}
 	
 	public PokeMove growth() {
-		return new PokeMove("Growth", "The userâ€™s body is forced to grow, raising its attack.", "normal", 0, 100, 0, 6, 0, 0, 0, 0, 0, 0, 0);
+		return new PokeMove("Growth", "The user's body is forced to grow, raising its attack.", "normal", 0, 100, 0, 6, 0, 0, 0, 0, 0, 0, 0);
 	}
 	
 	public PokeMove tailWhip() {

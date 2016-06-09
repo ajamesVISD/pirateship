@@ -45,6 +45,9 @@ public class PokeMove {
 		return moveType;
 	}
 	public String getTypeName() {
+		return "Pokemon Move";
+	}
+	public String getPokeType() {
 		return moveType.getType();
 	}
 	public int getPower() {
