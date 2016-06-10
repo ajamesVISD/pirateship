@@ -40,6 +40,23 @@ public class MinigameRunner extends Actor {
 		this.playWord = "play";
 	}
 	
+	public MinigameRunner(String game, String playWord) {
+		super("","","","");
+		model = Minigame.produce(game);
+		if (model == null) {
+			throw new NullPointerException();
+		} else {
+			//We do not set the name for this until we know it is successful.
+			this.minigameType = game;
+			this.setName(model.getName());
+			this.setTypeName(model.getTypeName());
+			this.setDescription(model.getDescription());
+			this.setSplashText(model.getSplashText());
+		}
+		this.games = new HashMap<String, Minigame>();
+		this.playWord = playWord;
+	}
+	
 	public MinigameRunner(Minigame game) {
 		super("", "", "", "");
 		model = game;

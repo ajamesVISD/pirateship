@@ -3,6 +3,7 @@ package org.vashonsd.pirateship.structure;
 import java.io.IOException;
 
 import org.vashonsd.pirateship.creature.CreatureFactory;
+import org.vashonsd.pirateship.creature.Pig;
 import org.vashonsd.pirateship.interactions.*;
 import org.vashonsd.pirateship.minigame.*;
 import org.vashonsd.pirateship.minigame.text.MinigameTwitterFactory;
@@ -31,6 +32,9 @@ public class WorldBuilder {
 		else if (s.equals("Busytown"))
 		{
 			return busyWorld();
+		}
+		else if (s.equals("Bovine Island")) {
+			return bovineIsland();
 		}
 		else
 		{
@@ -82,10 +86,13 @@ public class WorldBuilder {
 		gameRoom.addToInventory(new MinigameRunner("GF"));
 		gameRoom.addToInventory(new MinigameRunner("GuessCalc"));
 		gameRoom.addToInventory(new MinigameRunner("math"));
-		gameRoom.addToInventory(new MinigameRunner("GOPP"));
+		//gameRoom.addToInventory(new MinigameRunner("GOPP"));
 		gameRoom.addToInventory(new MinigameRunner("Shot"));
 		gameRoom.addToInventory(new MinigameRunner("Tic tac toe"));
 		gameRoom.addToInventory(new MinigameRunner("Twitter"));
+		
+		prison.addToInventory(new Pig());
+		
 		
 		w.addLocation(main);
 		w.addLocation(chat);
@@ -95,6 +102,54 @@ public class WorldBuilder {
 		w.addLocation(prison);
 		
 		w.setStartingLocation(main);
+		
+		return w;
+	}
+	
+	public static World bovineIsland() {
+		World w = new World("Bovine Island");
+		Location main = new Location("Bovine Square", "Cows bustle about. None that seem interested in talking to you, though.", "You stand on Bovine Island's main square patio.");
+		Location hall = new Location("Bovine Hall", "Its a memorial to the rich history of Bovine Island. Grazing...More grazing...", "You enter the Bovine Hall Memorial.");
+		Location post = new Location("Post Office", "Despite its name, you cannot send letters.", "Its the Bovine Post Office!");
+		
+		Location district = new Location("Bovine District", "You're bombarded by noise and neon, flashing lights.", "The Bovine Entertainment district. You're in the fun part of town!");
+		Location comedy = new Location("Comedy Club", "Smells like bad jokes.", "You have bad taste, coming here.");
+		Location movie = new Location("Movie Theatre", "Popcorn and hay are scattered on the floor.", "Movie watching is in session.");
+		Location thrift = new Location("Thrift Store", "Its a bit dirty here, but you're sure the merchandise is fine.", "You can buy things here!");
+		Location gym = new Location("Gym", "Sweaty cows on tredmills.", "What, you actually care about your health?");
+		
+		Location slums = new Location("Bovine Slums", "The cows here give you gruff looks", "This is the shadey side of town.");
+		Location alley = new Location("Suspicious Alley", "Feels like someone could mug you.", "You get the distinct feeling you shouldn't be here.");
+		Location club = new Location("The Club", "Music is blaring. Cows have had a bit too much to drink.", "You're with the Cool Cows now.");
+		
+		main.addRoute("BOVINE DISTRICT is written in big letters.", "trolly", "A trolly waits for you to board", district);
+		main.addRoute("The path is in serious need of maintenance.", "path", "A winding dirt path leads south", slums);
+		main.addRoute("The door leads to a magnificent hall", "door", "A large, engraved door towers before you", hall);
+		main.addRoute("Cudespondence is written above the door", "post", "A post office is nestled at the edge of the square", post);
+		
+		district.addRoute("BOVINE SQUARE is written in big letters", "trolly", "The trolly awaits your return", main);
+		district.addRoute("You hear jazzy music eminating. The music is terrible.", "comedy", "A Comedy Club is situated in the corner", comedy);
+		district.addRoute("Looks like 'Apocowlypse Cows' is on right now.", "movie", "There's a grand movie theatre with flashing signs", movie);
+		district.addRoute("The paint of the building is peeling a bit", "thrift", "There's a shoddy thrift store to the side.", thrift);
+		district.addRoute("For healthy cows.", "gym", "A well-lit gym sits in the distance", gym);
+		
+		slums.addRoute("The path is in serious need of maintenance", "path", "A winding dirt path leads north", main);
+		slums.addRoute("You'd have to be pretty stupid to go in there", "alley", "There's a suspicious alleyway just east of you", alley);
+		slums.addRoute("It emits an aura of bad decisions", "club", "A building titled 'The Club' looms in the distance", club);
+		
+		
+		w.addLocation(main);
+		w.addLocation(hall);
+		w.addLocation(post);
+		w.addLocation(district);
+		w.addLocation(comedy);
+		w.addLocation(movie);
+		w.addLocation(thrift);
+		w.addLocation(gym);
+		w.addLocation(slums);
+		w.addLocation(alley);
+		w.addLocation(club);
+		
 		
 		return w;
 	}

@@ -1,6 +1,6 @@
 package org.vashonsd.pirateship.interactions;
 
-import org.vashonsd.pirateship.commands.EasterEgg;
+import org.vashonsd.pirateship.commands.easteregg.EasterEgg;
 import org.vashonsd.pirateship.interactions.Actor;
 import org.vashonsd.pirateship.interactions.Response;
 
