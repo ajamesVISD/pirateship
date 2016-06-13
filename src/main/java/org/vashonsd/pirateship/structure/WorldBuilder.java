@@ -121,6 +121,7 @@ public class WorldBuilder {
 		Location slums = new Location("Bovine Slums", "The cows here give you gruff looks.", "The Bovine Slums. This is the shadey side of town.");
 		Location alley = new Location("Suspicious Alley", "Feels like someone could mug you.", "You get the distinct feeling you shouldn't be here.");
 		Location club = new Location("The Club", "Music is blaring. Cows have had a bit too much to drink.", "You're with the Cool Cows now.");
+		Location prison = new Location("Pig Prison", "Why is the prison run by pigs?", "You're in the slammer now.");
 		
 		main.addRoute("BOVINE DISTRICT is written in big letters.", "trolly", "A trolly waits for you to board", district);
 		main.addRoute("The path is in serious need of maintenance.", "path", "A winding dirt path leads south", slums);
@@ -135,7 +136,8 @@ public class WorldBuilder {
 		
 		slums.addRoute("The path is in serious need of maintenance.", "path", "A winding dirt path leads north", main);
 		slums.addRoute("You'd have to be pretty stupid to go in there.", "alley", "There's a suspicious alleyway just east of you", alley);
-		slums.addRoute("It emits an aura of bad decisions.", "club", "A building titled 'The Club' looms in the distance", club);
+		slums.addRoute("It emits an aura of bad decisions.", "club", "Lights flash from a building titled 'The Club'", club);
+		slums.addRoute("The place where bad bovine go. But it's run by pigs...?", "prison", "A prison looms in the distance", prison);
 		
 		hall.addRoute("Still a large, engraved door.", "door", "You can go back outside", main);
 		post.addRoute("The broad, sliding kind.", "door", "No mail to send?", main);
@@ -145,14 +147,20 @@ public class WorldBuilder {
 		gym.addRoute("Looks like sweet escape.", "door", "When you come to your senses, you can leave", district);
 		alley.addRoute("They're not great, but still better than this dump", "slums", "Ready to get the heck out?", slums);
 		club.addRoute("Leaving is most likely the wise choice.", "door", "Not in the moo-od to get hammered?", slums);
+		prison.addRoute("It's not locked...yet.", "door", "Escape, while you still can!", slums);
 		
+		hall.addToInventory(CreatureFactory.newCreature("ribecca"));
 		post.addToInventory(CreatureFactory.newCreature("hoofley"));
 		comedy.addToInventory(CreatureFactory.newCreature("cowner"));
-		movie.addToInventory(CreatureFactory.newCreature("ribecca"));
+		movie.addToInventory(CreatureFactory.newCreature("grazelda"));
 		thrift.addToInventory(CreatureFactory.newCreature("beefanca"));
 		gym.addToInventory(CreatureFactory.newCreature("moofred"));
-		alley.addToInventory(CreatureFactory.newCreature("cudsmo"));
+		slums.addToInventory(CreatureFactory.newCreature("cudsmo"));
+		alley.addToInventory(CreatureFactory.newCreature("larry"));
 		club.addToInventory(CreatureFactory.newCreature("steakbastion"));
+		prison.addToInventory(new Pig());
+		
+		thrift.addToInventory(new Beef());
 		
 		w.addLocation(main);
 		w.addLocation(hall);
@@ -165,6 +173,7 @@ public class WorldBuilder {
 		w.addLocation(slums);
 		w.addLocation(alley);
 		w.addLocation(club);
+		w.addLocation(prison);
 		
 		w.setStartingLocation(main);
 		

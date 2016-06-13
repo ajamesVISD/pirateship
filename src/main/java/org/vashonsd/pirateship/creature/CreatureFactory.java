@@ -16,19 +16,20 @@ public class CreatureFactory {
 			return new Dog("Jake the Dog", "He is a loyal Labrador", "A dog is wagging his tail");
 		}
 		else if(which.equals("cowner")) {
-			Creature c = new Cow("Cowner", "He thinks he's pretty a-moo-sing.", "There's a cow making terrible bad jokes.");
+			Creature c = new Cow("Cowner", "He thinks he's pretty a-moo-sing.", "There's a cow making cringe-worthy jokes.");
+			c.setDefaultSpeech(new CowPunSpeech());
 			return c;
 		}
 		else if (which.equals("moofred")) {
-			Creature c = new Cow("Moofred", "He was last years olympic champion mastication.", "You see a cow doing mad bench presses.");
+			Creature c = new Cow("Moofred", "He was last years olympic champion in mastication.", "You see a cow doing mad bench presses.");
 			return c;
 		}
 		else if (which.equals("ribecca")) {
-			Creature c = new Cow("Ribecca", "She's wearing sparkly hoofpolish.", "There's a pretty cow receptionist.");
+			Creature c = new Cow("Ribecca", "She's wearing sparkly hoofpolish.", "A cow tour guide is waiting to assist you.");
 			return c;
 		}
 		else if (which.equals("hoofley")) {
-			Creature c = new Cow("Hoofley", "", "There's a cow sorting through mail.");
+			Creature c = new Cow("Hoofley", "His only purpose is to sort through mail.", "There's a cow sorting through mail.");
 			return c;
 		}
 		else if (which.equals("beefanca")) {
@@ -40,15 +41,15 @@ public class CreatureFactory {
 			return c;
 		}
 		else if (which.equals("cudsmo")) {
-			Creature c = new Cow("Cudsmo", "He might have a beef to pick with you.", "You see a cow, hidden in the shadows.");
+			Creature c = new Cow("Cudsmo", "He might have a beef to pick with you.", "A cow glares at you from the corner.");
 			return c;
 		}
 		else if (which.equals("grazelda")) {
-			Creature c = new Cow("Grazelda", "She looks disallusioned with life.", "");
+			Creature c = new Cow("Grazelda", "She looks disillusioned with life.", "There's a pretty cow receptionist.");
 			return c;
 		}
 		else if (which.equals("larry")) {
-			Creature c = new Cow("Larry", "This is the stuff losers are made of.", "");
+			Creature c = new Cow("Larry", "This is the stuff losers are made of.", "You see a cow, hidden in the shadows.");
 			return c;
 		}
 		else {
