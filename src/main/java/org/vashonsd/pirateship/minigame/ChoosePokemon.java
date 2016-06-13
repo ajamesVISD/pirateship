@@ -66,7 +66,7 @@ public class ChoosePokemon extends Minigame {
 		if(lines == 3) {
 			if(pokemon.getMoves().size() == 4) {
 				lines++;
-				this.response.setText("Your Pokemon is ready to battle! Good luck! Take care of " + pokemon.getName());
+				this.response.setText("Your Pokemon is ready to battle!");
 				return response;
 			}
 			for(PokeMove m: pokemon.getLearnable()) {
@@ -89,7 +89,9 @@ public class ChoosePokemon extends Minigame {
 		if(lines == 4) {
 			if(!player.getInventory().hasActorType("Pokemon")) {
 				player.addToInventory(pokemon);
-				lines += 100;
+				lines += 2;
+				this.response.setText("Good luck, take care of " + pokemon.getName() + "!");
+				return response;
 			}
 			else {
 				lines++;
@@ -100,8 +102,10 @@ public class ChoosePokemon extends Minigame {
 		if(lines == 5) {
 			lines++;
 			if(req.getText().equalsIgnoreCase("yes")) {
+				player.removeActorTypeFromInventory("pokemon");
 				player.addToInventory(pokemon);
-				lines += 100;
+				this.response.setText("Good luck, take care of " + pokemon.getName() + "!");
+				return response;
 			}
 			else {
 				this.response.setText("Okay then, come back if you want to switch pokemon.");
@@ -122,7 +126,8 @@ public class ChoosePokemon extends Minigame {
 	@Override
 	public String getExit() {
 		// TODO Auto-generated method stub
-		return "Good luck! Take care of " + pokemon.getName();
+		lines = 0;
+		return "Goodbye";
 	}
 	
 	public String availablePokemon() {

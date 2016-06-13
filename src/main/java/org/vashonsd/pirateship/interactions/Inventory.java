@@ -19,6 +19,15 @@ public class Inventory {
 		inv.add(a);
 	}
 	
+	public Actor getActorByTypeName(String s) {
+		for(Actor a: inv) {
+			if(a.getTypeName().equalsIgnoreCase(s))
+				return a;
+		}
+		
+		return null;
+	}
+	
 	public boolean hasActor(Actor a) {
 		return (inv.contains(a));
 	}

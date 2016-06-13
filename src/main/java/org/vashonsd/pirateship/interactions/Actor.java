@@ -80,6 +80,13 @@ public abstract class Actor {
 		return this.inventory.remove(a);
 	}
 	
+	public void removeActorTypeFromInventory(String s) {
+		for(Actor a: inventory.getAllItems()) {
+			if(a.getTypeName().equals(s))
+				inventory.remove(a);
+		}
+	}
+	
 	/**
 	 * Gets all items out of the inventory.
 	 * @return
