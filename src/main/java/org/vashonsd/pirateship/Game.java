@@ -7,6 +7,10 @@ import org.vashonsd.pirateship.interactions.Player;
 import org.vashonsd.pirateship.interactions.Request;
 import org.vashonsd.pirateship.io.*;
 import org.vashonsd.pirateship.item.*;
+import org.vashonsd.pirateship.runtimeevents.listeners.PlayerDropListener;
+import org.vashonsd.pirateship.runtimeevents.listeners.PlayerMovementClassListener;
+import org.vashonsd.pirateship.runtimeevents.listeners.PlayerMovementListener;
+import org.vashonsd.pirateship.runtimeevents.listeners.PlayerTakeListener;
 import org.vashonsd.pirateship.structure.*;
 import org.vashonsd.pirateship.minigame.*;
 
@@ -34,6 +38,7 @@ public class Game {
 		this.players = new PlayerRegistry();
 		Player p = new Player("Demo", "Just a player");
 		p.setLocation(thisWorld.getStartingLocation());
+		p.addEventListeners(new PlayerMovementListener(), new PlayerTakeListener(), new PlayerDropListener());
 		String pid = players.EnrollPlayer(p);
 		
     	reader = new UserInput();

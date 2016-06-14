@@ -1,10 +1,16 @@
 package org.vashonsd.pirateship.interactions;
 
 import java.util.ArrayList;
+import java.util.EventListener;
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
 import java.util.UUID;
 
 import org.vashonsd.pirateship.commands.Command;
+import org.vashonsd.pirateship.runtimeevents.events.PlayerInventoryEvent;
+import org.vashonsd.pirateship.runtimeevents.events.PlayerMovementEvent;
+import org.vashonsd.pirateship.runtimeevents.listeners.*;
 
 /**
  * An Actor is anything that can interact in the World.
@@ -61,6 +67,43 @@ public abstract class Actor {
 	public void setCommands(HashMap<String, Command> commands) {
 		this.commands = commands;
 	}
+
+	/**
+	 * Represents all the listeners that can act upon an event originating from this Actor.
+	 * 
+	 * Once a listener is added to the Actor's listeners, that listener can handle that event
+	 * with the "onEvent()" method.
+	 */
+	//If we end up adding more types of listeners, we will need to change these list parameters.
+	private List<EventListener> _listeners = new ArrayList<EventListener>();
+	
+
+	/**
+	 * Use this to add a listener to the current listeners on this Actor.
+	 */
+	public synchronized void addEventListener(EventListener l) {
+		_listeners.add(l);
+	}
+	
+	public synchronized void addEventListeners(EventListener... l) {
+		for(EventListener eL: l) {
+			addEventListener(eL);
+		}
+	}
+	
+	/**
+	 * Use this to remove a listener from the current listeners on this Actor.
+	 */
+	public synchronized void removeEventListener(EventListener l) {
+		_listeners.remove(l);
+	}
+
+	public synchronized void removeEventListeners(EventListener... l) {
+		for(EventListener eL: l) {
+			removeEventListener(eL);
+		}
+	}
+	
 	
 	/**
 	 * An Inventory object keeps all the Actors within this Actor.
@@ -77,10 +120,24 @@ public abstract class Actor {
 	 */
 	public void addToInventory(Actor a) {
 		a.setLocation(this);
+		Iterator<EventListener> i = _listeners.iterator();
+	    while(i.hasNext())  {
+	    	try {
+	    		((PlayerTakeListener) i.next()).onPlayerTake(new PlayerInventoryEvent(this, a));
+	    	} catch(ClassCastException e) {
+	    	}
+	    }
 		this.inventory.addActor(a);
 	}
 	
 	public boolean removeFromInventory(Actor a) {
+		Iterator<EventListener> i = _listeners.iterator();
+	    while(i.hasNext())  {
+	    	try {
+		    	((PlayerDropListener) i.next()).onPlayerDrop(new PlayerInventoryEvent(this, a));
+	    	} catch(ClassCastException e) {
+	    	}
+	    }
 		return this.inventory.remove(a);
 	}
 	
@@ -113,7 +170,17 @@ public abstract class Actor {
 		return currentLocation;
 	}
 
+	/**
+	 * This method sets the location of an Actor, but also triggers the event "PlayerMovement".
+	 */
 	public void setLocation(Actor currentLocation) {
+		Iterator<EventListener> i = _listeners.iterator();
+	    while(i.hasNext())  {
+	    	try {
+		    	((PlayerMovementListener) i.next()).onPlayerMovement(new PlayerMovementEvent(this, currentLocation));
+	    	} catch(ClassCastException e) {
+	    	}
+	    }
 		this.currentLocation = currentLocation;
 	}
 
