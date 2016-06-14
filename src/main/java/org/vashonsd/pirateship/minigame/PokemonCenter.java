@@ -1,6 +1,7 @@
 package org.vashonsd.pirateship.minigame;
 
 import org.vashonsd.pirateship.interactions.*;
+import org.vashonsd.pirateship.interactions.poke.Pokemon;
 
 public class PokemonCenter extends Minigame {
 
@@ -33,13 +34,15 @@ public class PokemonCenter extends Minigame {
 		}
 		if(lines == 1) {
 			if(req.getText().equalsIgnoreCase("yes")) {
-				player.getInventory().getActorByTypeName("pokemon").changeHP(1000.00);
+				Pokemon that = (Pokemon)player.getInventory().getActorByTypeName("pokemon");
+				that.changeHP(1000.00);
 				lines++;
 				this.response.setText("Ok, I'll take your pokemon for a moment.");
 				return response;
 			}
 		}
 		if(lines == 2) {
+			lines++;
 			this.response.setText("Your Pokemon has been restored to full health, have a nice day.");
 			return response;
 		}

@@ -58,6 +58,7 @@ public class WorldBuilder {
 		
 		lab.addToInventory(new ChoosePokemon());
 		pokemonCenter.addToInventory(new PokemonCenter());
+		arena.addToInventory(new PokemonBattle());
 		
 		w.setStartingLocation(courtyard);
 		
