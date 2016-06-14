@@ -7,8 +7,7 @@ public class Harm extends Command {
 	
 	public Harm() {
 		super();
-		addKeyword("harm");
-		addKeyword("damage");
+		addKeywords("harm", "damage", "attack");
 	}
 
 	@Override

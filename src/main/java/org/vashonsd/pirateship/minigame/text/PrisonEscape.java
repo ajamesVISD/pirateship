@@ -217,7 +217,7 @@ public class PrisonEscape implements TextMinigame {
 				+ "You think in retrospect that maybe TacoBell wasn't the best idea for a last meal.\n";
 		pigText += pig.getBeginningSpeech();
 		pigText += "\n\nIt's now or never. you have " + MAXQUES + " chances. Convince your warden to let you out of Pig Prison.";
-		pigText += "\n\n" + getPigText();
+		pigText += "\nType 'start'";
 		return pigText;
 	}
 	
@@ -228,7 +228,7 @@ public class PrisonEscape implements TextMinigame {
 		String pigText = "";
 		if (lastPrompt.equals("")) {
 			pigText += pig.getPigPrint() + "\n\n";
-			pigText += "\nQ: " + (MAXQUES - pig.getQuestion()) + "\t<3: " + pig.getFLevel() + "\n\n";
+			pigText += "\nQ: " + (MAXQUES - pig.getQuestion()) + "\t<3: " + pig.getFLevel() + " / " + MAXLEVEL + "\n\n";
 		}
 		pigText += lastPrompt + "\n";
 		pigText += getPromptList();
@@ -269,7 +269,7 @@ public class PrisonEscape implements TextMinigame {
 				// Custom pig print
 				String response = pig.getPigPrint() + "\n";
 				response += pig.React(s);
-				response += "\nQ: " + (MAXQUES - pig.getQuestion()) + "\t<3: " + pig.getFLevel() + "\n\n";
+				response += "\nQ: " + (MAXQUES - pig.getQuestion()) + "\t<3: " + pig.getFLevel() + " / " + MAXLEVEL + "\n\n";
 				response += pig.changeOrientation();
 				
 				
@@ -284,9 +284,7 @@ public class PrisonEscape implements TextMinigame {
 					pig.resetPig();
 					pig.changeFLevel(-pig.getFLevel());
 					
-					end += "GAME END\nPlay again?\n";
-					end += pig.getBeginningSpeech() + "\n";
-					end += getPromptList();
+					end += "Play again?\nType 'start'";
 					
 					return end;
 				}
@@ -313,7 +311,7 @@ public class PrisonEscape implements TextMinigame {
 		else
 		{
 			String response = "";
-			if (!s.equals("")) {
+			if (!s.equals("") && !s.equals("start")) {
 				response += "Sorry, didn't quite get that";
 			}
 			response += "\n\n" + getPigText();
@@ -423,7 +421,7 @@ public class PrisonEscape implements TextMinigame {
 	}
 
 	public String Exit() {
-		return "Fine, Pig didn't want to talk with either";
+		return "Fine, Pig didn't want to talk with either\n";
 	}
 
 }

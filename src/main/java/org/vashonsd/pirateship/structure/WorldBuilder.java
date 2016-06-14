@@ -70,10 +70,10 @@ public class WorldBuilder {
 		//casino.addRoute("Back to City Hall", "back", main);
 		
 		main.addToInventory(CreatureFactory.newCreature("eagle"));
-		main.addToInventory(new StopWatch("stopwatch"));
 		main.addToInventory(CreatureFactory.newCreature("lizard"));
 		main.addToInventory(CreatureFactory.newCreature("dog"));
 		main.addToInventory(new Bandage("bandage"));
+		main.addToInventory(new Shades());
 		main.addToInventory(new Medic());
 		main.addToInventory(new Coin());
 		main.addToInventory(new TreasureChest(new Coin("shiny coin")));

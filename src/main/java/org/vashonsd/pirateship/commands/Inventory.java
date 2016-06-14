@@ -8,7 +8,7 @@ public class Inventory extends Command {
 	
 	public Inventory() {
 		super();
-		addKeyword("inventory");
+		addKeywords("inventory", "items", "check inventory", "check items");
 	}
 	
 	@Override
