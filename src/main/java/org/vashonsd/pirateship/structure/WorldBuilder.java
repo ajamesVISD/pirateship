@@ -6,7 +6,6 @@ import org.vashonsd.pirateship.creature.CreatureFactory;
 import org.vashonsd.pirateship.creature.Pig;
 import org.vashonsd.pirateship.interactions.*;
 import org.vashonsd.pirateship.minigame.*;
-import org.vashonsd.pirateship.minigame.text.MinigameTwitterFactory;
 
 /**
  * @author andy 
@@ -110,7 +109,7 @@ public class WorldBuilder {
 		World w = new World("Bovine Island");
 		Location main = new Location("Bovine Square", "Cows bustle about. None that seem interested in talking to you, though.", "You stand on Bovine Island's main square patio.");
 		Location hall = new Location("Bovine Hall", "Its a memorial to the rich history of Bovine Island. Grazing...More grazing...", "You enter the Bovine Hall Memorial.");
-		Location post = new Location("Post Office", "Despite its name, you cannot send letters.", "Its the Bovine Post Office!");
+		Location post = new Location("Post Office", "Despite its name, you cannot send letters here.", "Its the Bovine Post Office!");
 		
 		Location district = new Location("Bovine District", "You're bombarded by noise and neon, flashing lights.", "The Bovine Entertainment district. You're in the fun part of town!");
 		Location comedy = new Location("Cowmedy Club", "Smells like bad jokes.", "You have bad taste, coming here.");
@@ -129,7 +128,7 @@ public class WorldBuilder {
 		main.addRoute("Cud-espondence is written above the door.", "post", "A post office is nestled at the edge of the square", post);
 		
 		district.addRoute("BOVINE SQUARE is written in big letters.", "trolly", "The trolly awaits your return", main);
-		district.addRoute("You hear jazzy music eminating. The music udderly terrible.", "club", "The Cowmedy Club is situated in the cow-rner", comedy);
+		district.addRoute("You hear jazzy music eminating. The music is udderly terrible.", "club", "The Cowmedy Club is situated in the cow-rner", comedy);
 		district.addRoute("Looks like 'Apocowlypse Cows' is on right now.", "theater", "There's a grand movie theater with flashing signs", movie);
 		district.addRoute("The paint of the building is peeling a bit.", "store", "There's a shoddy thrift store to the side.", thrift);
 		district.addRoute("For healthy cows.", "gym", "A well-lit gym sits in the distance", gym);
@@ -142,11 +141,11 @@ public class WorldBuilder {
 		hall.addRoute("Still a large, engraved door.", "door", "You can go back outside", main);
 		post.addRoute("The broad, sliding kind.", "door", "No mail to send?", main);
 		comedy.addRoute("The sign on the door reads, \"Get a moo-ve on\".", "door", "You have the inexplicable urge to hoof it", district);
-		movie.addRoute("The ticket-collecting cow is glaring at you.", "door", "Not in the mood to watch a movie?", district);
+		movie.addRoute("The ticket-cowllecting cow is glaring at you.", "door", "Not in the moo-od to watch a movie?", district);
 		thrift.addRoute("It clatters when you go through it.", "door", "Don't want to shop?", district);
 		gym.addRoute("Looks like sweet escape.", "door", "When you come to your senses, you can leave", district);
 		alley.addRoute("They're not great, but still better than this dump", "slums", "Ready to get the heck out?", slums);
-		club.addRoute("Leaving is most likely the wise choice.", "door", "Not in the moo-od to get hammered?", slums);
+		club.addRoute("Leaving is most likely the wise choice.", "door", "Not in the moo-od to get cow-pie-faced?", slums);
 		prison.addRoute("It's not locked...yet.", "door", "Escape, while you still can!", slums);
 		
 		hall.addToInventory(CreatureFactory.newCreature("ribecca"));
@@ -156,8 +155,8 @@ public class WorldBuilder {
 		thrift.addToInventory(CreatureFactory.newCreature("beefanca"));
 		gym.addToInventory(CreatureFactory.newCreature("moofred"));
 		slums.addToInventory(CreatureFactory.newCreature("cudsmo"));
-		alley.addToInventory(CreatureFactory.newCreature("larry"));
 		club.addToInventory(CreatureFactory.newCreature("steakbastion"));
+		alley.addToInventory(CreatureFactory.newCreature("larry"));
 		prison.addToInventory(new Pig());
 		
 		thrift.addToInventory(new Beef());

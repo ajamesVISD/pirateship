@@ -3,7 +3,6 @@ package org.vashonsd.pirateship.interactions;
 import java.util.ArrayList;
 
 import org.vashonsd.pirateship.commands.Command;
-import org.vashonsd.pirateship.interactions.*;
 import org.vashonsd.pirateship.io.StringRead;
 import org.vashonsd.pirateship.io.StringWrite;
 
