@@ -32,9 +32,6 @@ public class WorldBuilder {
 		{
 			return busyWorld();
 		}
-		else if (s.equals("Bovine Island")) {
-			return bovineIsland();
-		}
 		else
 		{
 			return null;
@@ -75,8 +72,10 @@ public class WorldBuilder {
 		main.addToInventory(CreatureFactory.newCreature("eagle"));
 		main.addToInventory(CreatureFactory.newCreature("lizard"));
 		main.addToInventory(CreatureFactory.newCreature("dog"));
+		main.addToInventory(CreatureFactory.newCreature("cow"));
 		main.addToInventory(new Bandage("bandage"));
 		main.addToInventory(new Shades());
+		main.addToInventory(new Beef());
 		main.addToInventory(new Medic());
 
 		gameRoom.addToInventory(new MinigameRunner("20Q"));
@@ -98,80 +97,6 @@ public class WorldBuilder {
 		w.addLocation(soft);
 		w.addLocation(news);
 		w.addLocation(gameRoom);
-		w.addLocation(prison);
-		
-		w.setStartingLocation(main);
-		
-		return w;
-	}
-	
-	public static World bovineIsland() {
-		World w = new World("Bovine Island");
-		Location main = new Location("Bovine Square", "Cows bustle about. None that seem interested in talking to you, though.", "You stand on Bovine Island's main square patio.");
-		Location hall = new Location("Bovine Hall", "Its a memorial to the rich history of Bovine Island. Grazing...More grazing...", "You enter the Bovine Hall Memorial.");
-		Location post = new Location("Post Office", "Despite its name, you cannot send letters here.", "Its the Bovine Post Office!");
-		
-		Location district = new Location("Bovine District", "You're bombarded by noise and neon, flashing lights.", "The Bovine Entertainment district. You're in the fun part of town!");
-		Location comedy = new Location("Cowmedy Club", "Smells like bad jokes.", "You have bad taste, coming here.");
-		Location movie = new Location("Movie Theater", "Popcorn and hay are scattered on the floor.", "Movie watching is in session.");
-		Location thrift = new Location("Thrift Store", "Its a bit dirty here, but you're sure the merchandise is fine.", "You can buy things here!");
-		Location gym = new Location("Gym", "Sweaty cows on tredmills.", "What, you actually care about your health?");
-		
-		Location slums = new Location("Bovine Slums", "The cows here give you gruff looks.", "The Bovine Slums. This is the shadey side of town.");
-		Location alley = new Location("Suspicious Alley", "Feels like someone could mug you.", "You get the distinct feeling you shouldn't be here.");
-		Location club = new Location("The Club", "Music is blaring. Cows have had a bit too much to drink.", "You're with the Cool Cows now.");
-		Location prison = new Location("Pig Prison", "Why is the prison run by pigs?", "You're in the slammer now.");
-		
-		main.addRoute("BOVINE DISTRICT is written in big letters.", "trolly", "A trolly waits for you to board", district);
-		main.addRoute("The path is in serious need of maintenance.", "path", "A winding dirt path leads south", slums);
-		main.addRoute("The door leads to a magnificent hall.", "door", "A large, engraved door towers before you", hall);
-		main.addRoute("Cud-espondence is written above the door.", "post", "A post office is nestled at the edge of the square", post);
-		
-		district.addRoute("BOVINE SQUARE is written in big letters.", "trolly", "The trolly awaits your return", main);
-		district.addRoute("You hear jazzy music eminating. The music is udderly terrible.", "club", "The Cowmedy Club is situated in the cow-rner", comedy);
-		district.addRoute("Looks like 'Apocowlypse Cows' is on right now.", "theater", "There's a grand movie theater with flashing signs", movie);
-		district.addRoute("The paint of the building is peeling a bit.", "store", "There's a shoddy thrift store to the side.", thrift);
-		district.addRoute("For healthy cows.", "gym", "A well-lit gym sits in the distance", gym);
-		
-		slums.addRoute("The path is in serious need of maintenance.", "path", "A winding dirt path leads north", main);
-		slums.addRoute("You'd have to be pretty stupid to go in there.", "alley", "There's a suspicious alleyway just east of you", alley);
-		slums.addRoute("It emits an aura of bad decisions.", "club", "Lights flash from a building titled 'The Club'", club);
-		slums.addRoute("The place where bad bovine go. But it's run by pigs...?", "prison", "A prison looms in the distance", prison);
-		
-		hall.addRoute("Still a large, engraved door.", "door", "You can go back outside", main);
-		post.addRoute("The broad, sliding kind.", "door", "No mail to send?", main);
-		comedy.addRoute("The sign on the door reads, \"Get a moo-ve on\".", "door", "You have the inexplicable urge to hoof it", district);
-		movie.addRoute("The ticket-cowllecting cow is glaring at you.", "door", "Not in the moo-od to watch a movie?", district);
-		thrift.addRoute("It clatters when you go through it.", "door", "Don't want to shop?", district);
-		gym.addRoute("Looks like sweet escape.", "door", "When you come to your senses, you can leave", district);
-		alley.addRoute("They're not great, but still better than this dump", "slums", "Ready to get the heck out?", slums);
-		club.addRoute("Leaving is most likely the wise choice.", "door", "Not in the moo-od to get cow-pie-faced?", slums);
-		prison.addRoute("It's not locked...yet.", "door", "Escape, while you still can!", slums);
-		
-		hall.addToInventory(CreatureFactory.newCreature("ribecca"));
-		post.addToInventory(CreatureFactory.newCreature("hoofley"));
-		comedy.addToInventory(CreatureFactory.newCreature("cowner"));
-		movie.addToInventory(CreatureFactory.newCreature("grazelda"));
-		thrift.addToInventory(CreatureFactory.newCreature("beefanca"));
-		gym.addToInventory(CreatureFactory.newCreature("moofred"));
-		slums.addToInventory(CreatureFactory.newCreature("cudsmo"));
-		club.addToInventory(CreatureFactory.newCreature("steakbastion"));
-		alley.addToInventory(CreatureFactory.newCreature("larry"));
-		prison.addToInventory(new Pig());
-		
-		thrift.addToInventory(new Beef());
-		
-		w.addLocation(main);
-		w.addLocation(hall);
-		w.addLocation(post);
-		w.addLocation(district);
-		w.addLocation(comedy);
-		w.addLocation(movie);
-		w.addLocation(thrift);
-		w.addLocation(gym);
-		w.addLocation(slums);
-		w.addLocation(alley);
-		w.addLocation(club);
 		w.addLocation(prison);
 		
 		w.setStartingLocation(main);

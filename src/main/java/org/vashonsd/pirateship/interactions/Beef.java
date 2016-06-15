@@ -7,7 +7,7 @@ import org.vashonsd.pirateship.commands.Take;
 public class Beef extends Actor {
 
 	public Beef() {
-		super("beef", "beef", "It's raw.", "there's a slab of beef on the shelf.");
+		super("beef", "beef", "It's raw.", "there's a slab of beef.");
 		setUp();
 	}
 	
