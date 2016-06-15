@@ -93,7 +93,7 @@ public class PokemonBattle extends Minigame {
 					return response;
 				}
 				if(you.isDead() || opponent.isDead()) {
-					this.response.setText(you.battleHUD(opponent) + getWinner().getName() + " wins.");
+					this.response.setText(you.battleHUD(opponent) + getWinner(player).getName() + " wins.");
 					return response;
 				}
 				
@@ -113,7 +113,7 @@ public class PokemonBattle extends Minigame {
 					}
 					
 					if(you.isDead() || opponent.isDead()) {
-						this.response.setText(getWinner().getName() + " wins.");
+						this.response.setText(getWinner(player).getName() + " wins.");
 						return response;
 					}
 					
@@ -151,7 +151,7 @@ public class PokemonBattle extends Minigame {
 			return response;
 		}
 		
-		this.response.setText(you.battleHUD(opponent) + getWinner().getName() + " wins.");
+		this.response.setText(you.battleHUD(opponent) + getWinner(player).getName() + " wins.");
 		return response;
 	}
 
@@ -192,14 +192,14 @@ public class PokemonBattle extends Minigame {
 		return you.getSpeed() >= opponent.getSpeed();
 	}
 	
-	public Pokemon getWinner() {
+	public Pokemon getWinner(Player player) {
 		if(you.isDead()) {
 			wonLast = true;
 			return opponent;	
 		}
 		
 		wonLast = false;
-		you.addToInventory(new GoldCoin());
+		player.addToInventory(new GoldCoin());
 		return you;
 	}
 	

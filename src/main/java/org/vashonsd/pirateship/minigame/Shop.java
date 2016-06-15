@@ -66,6 +66,7 @@ public class Shop extends Minigame {
 	@Override
 	public String getExit() {
 		// TODO Auto-generated method stub
+		lines = 0;
 		return "Goodbye";
 	}
 
