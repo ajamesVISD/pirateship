@@ -40,16 +40,19 @@ public class Shop extends Minigame {
 			}
 		}
 		if(lines == 1) {
-			if(Character.isDigit(req.getText().charAt(0))) {
-				for(int i=0; i<req.getText().charAt(0); i++) {
-					player.removeActorTypeFromInventory("coin");
-					player.addToInventory(new Potion());
-				}
-				this.response.setText("Here you go, come again.");
+			int coin;
+			try {
+				coin = Integer.parseInt(req.getText());
+			} catch(NumberFormatException err) {
+				this.response.setText("I don't know how many potions " + req.getText() + " is, give me a number.");
 				return response;
 			}
 			
-			this.response.setText("Come again.");
+			for(int i=0; i<coin; i++) {
+				player.removeActorTypeFromInventory("coin");
+				player.addToInventory(new Potion());
+			}
+			this.response.setText("Here you go, come again.");
 			return response;
 		}
 		

@@ -60,6 +60,7 @@ public class WorldBuilder {
 		pokemonCenter.addToInventory(new PokemonCenter());
 		arena.addToInventory(new PokemonBattle());
 		shop.addToInventory(new Shop());
+		shop.addToInventory(new GoldCoin());
 		
 		w.setStartingLocation(courtyard);
 		
