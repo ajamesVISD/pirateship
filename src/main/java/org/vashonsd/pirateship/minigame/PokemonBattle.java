@@ -199,6 +199,7 @@ public class PokemonBattle extends Minigame {
 		}
 		
 		wonLast = false;
+		you.addToInventory(new GoldCoin());
 		return you;
 	}
 	
