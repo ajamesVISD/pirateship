@@ -10,8 +10,8 @@ public class Coin extends Actor {
 		setUp();
 	}
 	
-	public Coin(String description) {
-		super("coin", "coin", description, "There is a coin here.");
+	public Coin(String name) {
+		super(name, "coin", "Use this to buy things", "There is a coin here.");
 		setUp();
 	}
 	

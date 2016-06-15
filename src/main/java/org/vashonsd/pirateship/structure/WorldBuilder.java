@@ -75,6 +75,8 @@ public class WorldBuilder {
 		main.addToInventory(new Bandage("bandage"));
 		main.addToInventory(new Shades());
 		main.addToInventory(new Medic());
+		main.addToInventory(new Coin());
+		main.addToInventory(new TreasureChest(new Coin("shiny coin")));
 
 		gameRoom.addToInventory(new MinigameRunner("20Q"));
 		//gameRoom.addToInventory(new MinigameRunner("Blackjack"));

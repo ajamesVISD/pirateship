@@ -1,3 +1,4 @@
+
 package org.vashonsd.pirateship.minigame;
 
 import org.vashonsd.pirateship.interactions.*;
@@ -5,7 +6,7 @@ import org.vashonsd.pirateship.interactions.*;
 public class Medic extends Minigame {
 	
 	private int amountOfBandage = 0;
-	private int stage = 1;
+	private int stage = 0;
 
 	public Medic() {
 		super("medic", "medic", "Here you can try to earn a bandage to heal your friends" , "There is a medic here");
@@ -14,28 +15,35 @@ public class Medic extends Minigame {
 
 	@Override
 	public String getGreeting() {
-		return "If you want another bandage just ask!";
+		return "It costs one coin to buy a bandage! ";
 	}
 
 	@Override
 	public Response handleOtherwise(Request req) {
-		if(stage == 1) {
-			stage = 2;
-			response.setText(getGreeting());
-			return response;
+		if(req.getPlayer().hasByTypeName("coin")) {
 			
+			if(stage == 1) {
+				stage = 2;
+				response.setText(getGreeting());
+				return response;
+				
+			}
+			else if(stage == 2) {
+				if(req.getText().equalsIgnoreCase("Can I buy a bandage?")||req.getText().equalsIgnoreCase("I want a bandage")||req.getText().equalsIgnoreCase("bandage please")) {
+					req.getPlayer().addToInventory(new Bandage());
+					amountOfBandage++;
+					response.setText("Here you go! \n you now have " + amountOfBandage + " Bandages.");
+					req.getPlayer().removeFromInventory(req.getPlayer().getByTypeName("coin"));
+					return response;
+				}
+				else {
+					this.response.setText("Ask me differently (Can I buy a bandage?)");
+					return response;
+				}
+			}
 		}
-		else if(stage == 2) {
-			if(req.getText().equalsIgnoreCase("Can I have a bandage?")) {
-				req.getPlayer().addToInventory(new Bandage());
-				amountOfBandage++;
-				response.setText("Here you go! \n you now have " + amountOfBandage + " Bandages.");
-				return response;
-			}
-			else {
-				this.response.setText("Ask me differently (Can I have a bandage?)");
-				return response;
-			}
+		else {
+			response.setText("You need a coin to buy a bandage!");
 		}
 		return response;
 	}
