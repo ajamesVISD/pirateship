@@ -7,6 +7,9 @@ import org.vashonsd.pirateship.interactions.Player;
 import org.vashonsd.pirateship.interactions.Request;
 import org.vashonsd.pirateship.io.*;
 import org.vashonsd.pirateship.item.*;
+import org.vashonsd.pirateship.runtimeevents.listeners.PlayerDropListener;
+import org.vashonsd.pirateship.runtimeevents.listeners.PlayerMovementListener;
+import org.vashonsd.pirateship.runtimeevents.listeners.PlayerTakeListener;
 import org.vashonsd.pirateship.structure.*;
 import org.vashonsd.pirateship.minigame.*;
 
@@ -14,12 +17,12 @@ public class Game {
 	private StringRead reader;
 	private StringWrite writer;
 	
-	private DatabaseWriter db = new DatabaseWriter();
-	
 	//This is our register of current Players, each with a unique ID.
 	private PlayerRegistry players;
 	
 	//private HashMap<String, Player> players;
+	
+	private World thisWorld;
 	
 	private String quitWord;
 	
@@ -28,12 +31,13 @@ public class Game {
 		
 		quitWord = "exit";
 
-    	//thisWorld = WorldBuilder.makeWorldByFile(world);
-		World thisWorld = WorldBuilder.makeWorld(world);
+    	thisWorld = DatabaseParser.parseWorld(world);
+		//thisWorld = WorldBuilder.makeWorld(world);
 		
 		this.players = new PlayerRegistry();
 		Player p = new Player("Demo", "Just a player");
 		p.setLocation(thisWorld.getStartingLocation());
+		p.addEventListeners(new PlayerMovementListener(), new PlayerTakeListener(), new PlayerDropListener());
 		String pid = players.EnrollPlayer(p);
 		
     	reader = new UserInput();
@@ -52,6 +56,7 @@ public class Game {
         	}
         	writer.write(p.handle(command).getText());
 		}
+		DatabaseWriter.worldWriter(thisWorld);
 		writer.write("Thanks for playing!");
 	}
 }
