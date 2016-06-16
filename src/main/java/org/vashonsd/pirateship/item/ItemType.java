@@ -2,8 +2,6 @@ package org.vashonsd.pirateship.item;
 
 import java.util.*;
 
-<<<<<<< HEAD
-import org.vashonsd.pirateship.interactions.Response;
 import org.vashonsd.pirateship.item.typeInterfaces.ReadBehavior;
 
 public class ItemType
