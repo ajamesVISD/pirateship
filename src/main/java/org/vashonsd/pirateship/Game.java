@@ -8,7 +8,6 @@ import org.vashonsd.pirateship.interactions.Request;
 import org.vashonsd.pirateship.io.*;
 import org.vashonsd.pirateship.item.*;
 import org.vashonsd.pirateship.runtimeevents.listeners.PlayerDropListener;
-import org.vashonsd.pirateship.runtimeevents.listeners.PlayerMovementClassListener;
 import org.vashonsd.pirateship.runtimeevents.listeners.PlayerMovementListener;
 import org.vashonsd.pirateship.runtimeevents.listeners.PlayerTakeListener;
 import org.vashonsd.pirateship.structure.*;
