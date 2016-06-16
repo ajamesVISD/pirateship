@@ -176,7 +176,11 @@ public class PokemonBattle extends Minigame {
 	public void hit(Pokemon source, Pokemon target, PokeMove move) 
 	{
 		source.changeHP(move.getHealthGain());
-		target.changeHP((-(((source.getAttack())/100)*(move.getPower()))*((100 - target.getDefense())/100))*move.getType().isEffective(target.getType()));
+		double damage = ((((source.getAttack())/100)*(move.getPower()))*((100 - target.getDefense())/100))*move.getType().isEffective(target.getType());
+		if(damage<1) {
+			damage = 1.00;
+		}
+		target.changeHP(-damage);
 		source.changeAttack(move.getMyAttackChange());
 		target.changeAttack(move.getAttackChange());
 		source.changeDefense(move.getMyDefenseChange());
