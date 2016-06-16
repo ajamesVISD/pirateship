@@ -19,11 +19,6 @@ public class PokemonBattle extends Minigame {
 		super("Gary", "battle", "Battle pokemon", "A smug looking chump, who's name is quite likely Gary, stands in the middle of the arena tossing a pokeball in the air.");
 		gen = new PokemonGenerator();
 		mGen = new PokeMoveGenerator();
-		opponent = gen.squirtle();
-		opponent.addMove(mGen.withdraw());
-		opponent.addMove(mGen.tailWhip());
-		opponent.addMove(mGen.waterGun());
-		opponent.addMove(mGen.tackle());
 		hasMove = false;
 		firstTime = true;
 		wonLast = false;
@@ -47,10 +42,20 @@ public class PokemonBattle extends Minigame {
 	@Override
 	public Response handleOtherwise(Request req) {
 		// TODO Auto-generated method stub
-		this.you = (Pokemon)req.getPlayer().getInventory().getActorByTypeName("pokemon");
 		Player player = req.getPlayer();
 		
+		if(!player.getInventory().hasActorType("pokemon")) {
+			this.response.setText("Come back when you have a pokemon");
+			return response;
+		}
+		
 		if(firstLine == false) {
+			this.you = (Pokemon)req.getPlayer().getInventory().getActorByTypeName("pokemon");
+			opponent = gen.squirtle();
+			opponent.addMove(mGen.withdraw());
+			opponent.addMove(mGen.tailWhip());
+			opponent.addMove(mGen.waterGun());
+			opponent.addMove(mGen.tackle());
 			firstLine = true;
 			if(player.getInventory().hasActorType("potion")) 
 				this.response.setText("Battle!!!\n\n" + you.battleHUD(opponent) + "\n" + you.printMoves() + "\nPotion:\n refill 1/2 HP");
@@ -164,6 +169,7 @@ public class PokemonBattle extends Minigame {
 	@Override
 	public String getExit() {
 		// TODO Auto-generated method stub
+		firstLine = false;
 		return "Goodbye";
 	}
 	
