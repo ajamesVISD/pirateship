@@ -60,7 +60,7 @@ public class PokeType {
 	// 1/2 = weak (50% power)
 	// 1 = normal (100% power)
 	// 2 = effective (200% power)
-	public int isEffective(PokeType p)
+	public double isEffective(PokeType p)
 	{
 		if(type.equals(p.getWeak()))
 			return 2;
