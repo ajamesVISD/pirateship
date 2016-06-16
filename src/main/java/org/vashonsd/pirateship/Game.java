@@ -1,14 +1,10 @@
 package org.vashonsd.pirateship;
 
 import java.io.IOException;
-import java.util.HashMap;
 
 import org.vashonsd.pirateship.interactions.Player;
-import org.vashonsd.pirateship.interactions.Request;
 import org.vashonsd.pirateship.io.*;
-import org.vashonsd.pirateship.item.*;
 import org.vashonsd.pirateship.structure.*;
-import org.vashonsd.pirateship.minigame.*;
 
 public class Game {
 	private StringRead reader;

@@ -16,7 +16,9 @@ public class CreatureFactory {
 			return new Dog("Jake the Dog", "He is a loyal Labrador", "A dog is wagging his tail");
 		}
 		else if(which.equals("cow")) {
-			return new Cow("Moofred", "His name is a joke, just like his life", "A cow grazes");
+			Creature c = new Cow("Cowner", "He thinks he's pretty a-moo-sing.", "There's a cow making cringe-worthy jokes.");
+			c.setDefaultSpeech(new CowPunSpeech());
+			return c;
 		}
 		else {
 			return null;

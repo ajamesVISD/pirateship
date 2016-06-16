@@ -22,13 +22,30 @@ public class Creature extends Actor {
 		setDefaultSpeech(new NoSpeech());
 	}
 	
+	/**
+	 * Use this method when FIRST setting your creatures speech behavior,
+	 * or if you want your creatures default speech to PERMENANTLY change
+	 */
 	public void setDefaultSpeech(SpeechBehavior s) {
 		speechDefault = s;
 		setSpeechBehavior(s);
 	}
 	
+	/**
+	 * Use this method ONLY when changing the speech behavior from the
+	 * default speech
+	 */
 	public void setSpeechBehavior(SpeechBehavior s) {
 		speech = s;
+	}
+	
+	/**
+	 * Use this method to revert your creatures speech behavior back
+	 * to its default
+	 */
+	public void setSpeechToDefault()
+	{
+		setSpeechBehavior(speechDefault);
 	}
 	
 	public SpeechBehavior getSpeechBehavior() {
@@ -70,7 +87,7 @@ public class Creature extends Actor {
 		}
 		
 		if (x == 0) {
-			setSpeechBehavior(speechDefault);
+			setSpeechToDefault();
 		}
 		
 		if (!temp.equals(speech.intro(this))) {

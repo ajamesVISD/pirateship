@@ -1,4 +1,4 @@
-package org.vashonsd.pirateship.commands;
+package org.vashonsd.pirateship.commands.easteregg;
 
 import org.vashonsd.pirateship.interactions.Actor;
 import org.vashonsd.pirateship.interactions.Player;
