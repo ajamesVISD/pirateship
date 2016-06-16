@@ -59,7 +59,7 @@ public class ChoosePokemon extends Minigame {
 				this.response.setText("What moves should " + pokemon.getName() + " learn?\n\n" + learnableMoves(pokemon));
 				return response;
 			} else {
-				this.response.setText("Select a pokemon " + pokeballs());
+				this.response.setText("Select a pokemon\n" + pokeballs());
 				return response;
 			}
 		}
