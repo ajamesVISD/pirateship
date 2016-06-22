@@ -38,6 +38,8 @@ public abstract class Minigame extends Actor {
 			m = new ShotgunFactory();
 		} else if (s.equalsIgnoreCase("Tic tac toe")) {
 			m = new TicTacToeFactory();
+		} else if (s.equalsIgnoreCase("EscapeFactory")) {
+			m = new EscapeFactory();
 		} else if (s.equalsIgnoreCase("Twitter")) {
 			m = new MinigameTwitterFactory();
 		}

@@ -32,6 +32,10 @@ public class Inventory {
 		return false;
 	}
 	
+	public boolean isEmpty() {
+		return inv.isEmpty();
+	}
+	
 	public Actor getByTypeName(String s) {
 		for (Actor a : getAllItems()) {
 			if (a.getTypeName().equals(s)) {
@@ -40,6 +44,7 @@ public class Inventory {
 		}
 		return null;
 	}
+	
 	public String toString() {
 		String result = "";
 		HashMap<String, Stack<Actor>> byType = new HashMap<String, Stack<Actor>>();
@@ -52,7 +57,7 @@ public class Inventory {
 			if (actors.size() > 1) {
 				result += actors.size() + " " + actors.peek().getTypeNamePlural() + "\n";
 			} else {
-				result += actors.peek().getTypeName();
+				result += actors.peek().getTypeName() + "\n";
 			}
 		}
 		return result;

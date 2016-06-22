@@ -341,7 +341,6 @@ public abstract class Actor {
 	{
 		Thread t1 = new Thread(new Runnable() 
 		{
-			@Override
 			public void run() {
 				
 				runThread();
@@ -440,5 +439,24 @@ public abstract class Actor {
 	 */
 	protected Response handleOtherwise(Request req) {
 		return new Response("I don't know how to " + req.getVerb() + " a " + this.getTypeName() + ".");
+	}
+	
+	protected int attack;
+	protected int defense;
+
+	protected void setAttack(int a) {
+		attack = a;
+	}
+	
+	protected void setDefense(int a) {
+		defense = a;
+	}
+	
+	public int getAttack() {
+		return attack;
+	}
+	
+	public int getDefense() {
+		return defense;
 	}
 }

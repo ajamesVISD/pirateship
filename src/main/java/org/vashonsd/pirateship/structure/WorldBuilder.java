@@ -32,7 +32,11 @@ public class WorldBuilder {
 		{
 			return busyWorld();
 		}
-		else
+		else if (s.equals("Littletown"))
+		{
+			return littleTown();
+		} 
+		else 
 		{
 			return null;
 		}
@@ -54,7 +58,6 @@ public class WorldBuilder {
 		Location news = new Location("Dead End Street", "This place is miserable.", "Uh oh! Dead end.");
 		Location gameRoom = new Location("Game Room", "Play minigames!", "You are in the Game Room. Bells ring and machines whir.");
 		Location prison = new Location("Pig Prison", "You done it now sonny", "It's Pig Prison, the worst place ever.");
-		Location casino = new Location("Casino", "Play Cards", "Welcome to the Casino!");
 		
 		main.addRoute("This door has a brass handle. You could open it.", "open", "You see a heavy door with a brass handle", chat);
 		main.addRoute("You can see a park off to the east", "east", "A gravel walkway leads east",soft);
@@ -71,12 +74,12 @@ public class WorldBuilder {
 		//casino.addRoute("Back to City Hall", "back", main);
 		
 		main.addToInventory(CreatureFactory.newCreature("eagle"));
-		main.addToInventory(new StopWatch("stopwatch"));
 		main.addToInventory(CreatureFactory.newCreature("lizard"));
 		main.addToInventory(CreatureFactory.newCreature("dog"));
 		main.addToInventory(new Bandage("bandage"));
-		
-		
+		main.addToInventory(new Shades());
+		main.addToInventory(new Medic());
+
 		gameRoom.addToInventory(new MinigameRunner("20Q"));
 		//gameRoom.addToInventory(new MinigameRunner("Blackjack"));
 		gameRoom.addToInventory(new MinigameRunner("CC"));
@@ -86,6 +89,7 @@ public class WorldBuilder {
 		gameRoom.addToInventory(new MinigameRunner("GOPP"));
 		gameRoom.addToInventory(new MinigameRunner("Shot"));
 		gameRoom.addToInventory(new MinigameRunner("Tic tac toe"));
+		gameRoom.addToInventory(new MinigameRunner("EscapeFactory"));
 		gameRoom.addToInventory(new MinigameRunner("Twitter"));
 		
 		w.addLocation(main);
@@ -94,20 +98,6 @@ public class WorldBuilder {
 		w.addLocation(news);
 		w.addLocation(gameRoom);
 		w.addLocation(prison);
-		//w.addLocation(casino);
-		
-		
-//		gameRoom.addGame(new TwentyQuestionsFactory());
-//		gameRoom.addGame(new CookieClickerFactory());
-//		gameRoom.addGame(new MathFactory());
-//		gameRoom.addGame(new GuessingCalculatorFactory());
-//		gameRoom.addGame(new TicTacToeFactory());
-//		gameRoom.addGame(new MinigameTwitterFactory());
-//		gameRoom.addGame(new ShotgunFactory());
-		
-//		casino.addGame(new GoFishFactory());
-		
-		//prison.addGame(new PrisonEscapeFactory());
 		
 		w.setStartingLocation(main);
 		
@@ -162,87 +152,54 @@ public class WorldBuilder {
 	}
 	*/
 
-	/*
+	
 	public static World littleTown() {
 		World w = new World("Littletown");
-		Location square = new Location("Town square", "It's bustling with excitment.");
-		Location florist = new Location("Florist stand", "Fresh flowers for sale!");
-		Location baker = new Location("Baker's shop", "Bread, bagels, and buns all right here.");
-		Location clother = new Location("Tailorist", "Clothes for everybody folks.");
-		Location west = new Location("West Street", "A nice looking cobblestone road with houses lining it.");
-		Location houseJacob = new Location("Jacob's House", "A good sized oak door with a shining brass door handle.");
-		Location houseJacobLocked = new Location("The door is locked tight", "Must not be home.");
-		Location houseMary = new Location("Mary's House", "A small circular door with colorful painted designs.");
-		Location houseMaryInside = new Location("Mary's house is very bright with colors", "Mary is sobbing in the corner.");
-		Location houseMaryInsideTalk = new Location("She says through her tears", "My hampster died and i'm sad.");
-		Location houseMaryInsideTalkNice = new Location("Her tears dry up", "She starts to smile.");
-		Location houseMaryInsideTalkMean = new Location("She pushes you away", "You are forced to leave.");
+		boolean hasGem = false;
+		Location square = new Location("Town square", "It's bustling with excitment.", "You are in the town square with shops and streets.");
+		Location florist = new Location("Florist stand", "", "You are at a brightly colored forist's stand.\n\"Fresh flowers for sale!\"");
+		Location baker = new Location("Baker's shop", "", "You are in a baker's shop, it smells delicious.\n\"Bread, bagels, and buns all right here.\"");
+		Location clother = new Location("Tailorist", "", "You are in a dimmly lit tailor's shop.\n\"Clothes for everybody folks.\"");
+		Location west = new Location("West Street", "", "You are in west street.\nA nice looking cobblestone road with houses lining it.");
+		Location east = new Location("East Street", "", "You are in east street.\nA dirty dark alley.");
+		Location south = new Location("South Street", "", "You are in south street.\nA clean wide street with the king's crest on banners.");
+		Location north = new Location("North Street", "", "You are in north street.\nA clean, heavily guarded street.");
 		
-		square.addRoute("The florist's stand is bright with colors", "florist", "Town square", florist);
-		square.addRoute("A warm aroma wafts from the bakery", "bakery", "Town square", baker);
-		square.addRoute("The tailor is hard at work mending a green shirt", "tailor", "Town square", clother);
-		square.addRoute("Neighbors talk and laugh in the street", "west", "Town square", west);
+		square.addRoute("The florist's stand is bright with colors", "florist", "There is a florist's stand.", florist);
+		square.addRoute("A warm aroma wafts from the bakery", "bakery", "There is a bakery.", baker);
+		square.addRoute("The tailor is hard at work mending a green shirt", "tailor", "There is a tailor.", clother);
+		square.addRoute("Neighbors talk and laugh in the street", "west", "West street", west);
+		square.addRoute("Homeless people sleep in the street", "east", "East street", east);
+		square.addRoute("Caravaners sell their foreign goods", "south", "South street", south);
+		square.addRoute("Armored gaurds patrol the street", "north", "North street", north);
+		square.addToInventory(CreatureFactory.newCreature("dog"));
 		
-		west.addRoute("Visit Jacob's house", "jacob", "West Street", houseJacob);
-		west.addRoute("Visit Mary's house", "mary", "West Street", houseMary);
-		west.addRoute("Go back to the square", "back", "West Street", square);
+		west.addRoute("Go back to the square", "square", "West Street", square);
 		
-		houseJacob.addRoute("Go inside", "open", "Jacob's House", houseJacobLocked);
-		houseJacobLocked.addRoute("Leave", "back", "The door is locked tight", west);
+		east.addRoute("Go back to the square", "square", "East street", square);
+		east.addToInventory(new LWGemdealer());
 		
-		houseMary.addRoute("Go inside", "open", "Mary's House", houseMaryInside);
-		houseMaryInside.addRoute("Talk to her", "talk", "Mary's house is very bright with colors", houseMaryInsideTalk);
-		houseMaryInsideTalk.addRoute("Comfort her", "comfort", "She says through her tears", houseMaryInsideTalkNice);
-		houseMaryInsideTalkNice.addRoute("Talk to her some more", "talk", "Her tears dry up", houseMaryInsideTalk);
-		houseMaryInsideTalkNice.addRoute("Leave", "leave", "Her tears dry up", west);
-		houseMaryInsideTalk.addRoute("Laugh in her face", "laugh", "She says through her tears", houseMaryInsideTalkMean);
-		houseMaryInsideTalkMean.addRoute("Leave", "leave", "She pushes you away", west);
-		houseMaryInside.addRoute("Leave", "back", "Mary's house is very bright with colors", west);
+		south.addRoute("Go back to the square", "square", "South street", square);
 		
-		florist.addRoute("Leave the florist's stand", "back", "Florist stand", square);
-		baker.addRoute("Leave the bakery", "back", "Baker's shop", square);
-		clother.addRoute("Leave the tailorist's", "back", "Tailorist", square);	
-		square.addRoute("The florist's stand is bright with colors", "florist", florist);
-		square.addRoute("A warm aroma wafts from the bakery", "bakery", baker);
-		square.addRoute("The tailor is hard at work mending a green shirt", "tailor", clother);
-		square.addRoute("Neighbors talk and laugh in the street", "west", west);
+		north.addRoute("The gaurds force you to leave. \"King's orders\" they say.", "square", "North street", square);
+		north.addToInventory(new LWGuard());
 		
-		west.addRoute("Visit Jacob's house", "jacob", houseJacob);
-		west.addRoute("Visit Mary's house", "mary", houseMary);
-		west.addRoute("Go back to the square", "back", square);
-		
-		houseJacob.addRoute("Go inside", "open", houseJacobLocked);
-		houseJacobLocked.addRoute("Leave", "back", west);
-		
-		houseMary.addRoute("Go inside", "open", houseMaryInside);
-		houseMaryInside.addRoute("Talk to her", "talk", houseMaryInsideTalk);
-		houseMaryInsideTalk.addRoute("Comfort her", "comfort", houseMaryInsideTalkNice);
-		houseMaryInsideTalkNice.addRoute("Talk to her some more", "talk", houseMaryInsideTalk);
-		houseMaryInsideTalkNice.addRoute("Leave", "leave", west);
-		houseMaryInsideTalk.addRoute("Laugh in her face", "laugh", houseMaryInsideTalkMean);
-		houseMaryInsideTalkMean.addRoute("Leave", "leave", west);
-		houseMaryInside.addRoute("Leave", "back", west);
-		
-		florist.addRoute("Leave the florist's stand", "back", square);
-		baker.addRoute("Leave the bakery", "back", square);
-		clother.addRoute("Leave the tailorist's", "back", square);	
+		florist.addRoute("Leave the florist's stand", "back", "Town square", square);
+		baker.addRoute("Leave the bakery", "back", "Town square", square);
+		clother.addRoute("Leave the tailorist's", "back", "Town square", square);	
 		
 		w.addLocation(square);
 		w.addLocation(florist);
 		w.addLocation(baker);
 		w.addLocation(clother);
 		w.addLocation(west);
-		w.addLocation(houseJacob);
-		w.addLocation(houseJacobLocked);
-		w.addLocation(houseMary);
-		w.addLocation(houseMaryInside);
-		w.addLocation(houseMaryInsideTalk);
-		w.addLocation(houseMaryInsideTalkNice);
-		w.addLocation(houseMaryInsideTalkMean);
+		w.addLocation(east);
+		w.addLocation(south);
+		w.addLocation(north);
 		
 		w.setPointer(square);
 		
 		return w;
 	}
-*/
+
 }
